@@ -5,7 +5,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import ServiceDetail from './pages/ServiceDetail'; // Import the new page
+import ServiceDetail from './pages/ServiceDetail';
+import Portfolio from './components/Portfolio' // Import the new page
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/services/:id" element={<ServiceDetail />} /> {/* Dynamic Route */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/portfolio" element={<Portfolio/>} />
         </Routes>
         <Footer />
       </div>

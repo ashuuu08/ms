@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
+import { Mail, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle } from 'lucide-react';
 
 const Contact = () => {
-  // 1. State for Form Handling (UX: Feedback)
-  const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success
+  const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Web Dev', // Default selection
+    projectType: 'Web Dev',
     message: ''
   });
 
@@ -21,15 +20,37 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, projectType: type }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('submitting');
+
+    // 1. Create FormData from the event
+    const formPayload = new FormData(e.target);
     
-    // Simulate network request (UX: Loading State)
-    setTimeout(() => {
-      setFormStatus('success');
-      // Reset after 3 seconds if you want them to send another, or keep the success message
-    }, 1500);
+    // 2. Append your Web3Forms Access Key
+    formPayload.append("access_key", "cf30a0de-ccdd-4770-9a70-761e8a001a7f");
+
+    try {
+      // 3. Send Request
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formPayload
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus('success');
+        // Optional: Clear form
+        setFormData({ name: '', email: '', projectType: 'Web Dev', message: '' });
+      } else {
+        console.error("Error:", data);
+        setFormStatus('error');
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -51,7 +72,6 @@ const Contact = () => {
           
           {/* LEFT SIDE: Info & Process */}
           <div className="lg:w-5/12 relative bg-indigo-600 dark:bg-indigo-950 p-8 md:p-12 text-white flex flex-col justify-between overflow-hidden">
-            {/* Abstract Shapes */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
             <div className="relative z-10">
@@ -60,7 +80,6 @@ const Contact = () => {
                 Ready to automate your workflow or scale your platform? We are ready to help.
               </p>
 
-              {/* Process Steps - Visual Trust */}
               <div className="mb-8">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-300 mb-6">How it works</h3>
                 <ul className="space-y-5">
@@ -83,13 +102,11 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Footer Info */}
             <div className="relative z-10 space-y-6 mt-8">
               <a href="mailto:hello@devscript.com" className="flex items-center gap-3 text-sm hover:text-white/80 transition group">
                 <div className="w-10 h-10 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Mail size={18} /></div>
                 <span className="font-medium">hello@devscript.com</span>
               </a>
-              
               <div className="flex gap-3 pt-6 border-t border-white/10">
                 {[Linkedin, Github, Twitter].map((Icon, i) => (
                   <a key={i} href="#" className="p-2 bg-white/5 hover:bg-white/20 rounded-lg transition-colors text-white/80 hover:text-white">
@@ -105,8 +122,9 @@ const Contact = () => {
             
             <AnimatePresence mode='wait'>
               {formStatus === 'success' ? (
-                // SUCCESS STATE (UX: Confirmation)
+                // SUCCESS STATE
                 <motion.div 
+                  key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -117,7 +135,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Message Sent!</h3>
                   <p className="text-slate-600 dark:text-slate-400 max-w-xs mx-auto mb-8">
-                    Thanks, {formData.name}. We'll get back to you at {formData.email} within 24 hours.
+                    Thanks! We'll be in touch shortly.
                   </p>
                   <button 
                     onClick={() => setFormStatus('idle')}
@@ -136,6 +154,9 @@ const Contact = () => {
                   onSubmit={handleSubmit}
                   className="space-y-6"
                 >
+                  {/* HIDDEN INPUT FOR CUSTOM PROJECT TYPE */}
+                  <input type="hidden" name="project_type" value={formData.projectType} />
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Full Name</label>
@@ -163,7 +184,6 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  {/* Project Type Selection - Improved Clickability */}
                   <div>
                     <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">I'm interested in...</label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -191,6 +211,12 @@ const Contact = () => {
                       placeholder="Tell us a bit about your goals, timeline, and budget..."
                     ></textarea>
                   </div>
+
+                  {formStatus === 'error' && (
+                    <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 text-sm rounded-lg flex items-center gap-2">
+                       <AlertCircle size={16} /> Something went wrong. Please try again later.
+                    </div>
+                  )}
 
                   <button 
                     disabled={formStatus === 'submitting'}

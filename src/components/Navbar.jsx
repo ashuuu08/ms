@@ -9,19 +9,27 @@ const Navbar = () => {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
 
-  // --- MISSING PART ADDED HERE ---
+  // Navigation Links
   const navs = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
+    { name: 'Portfolio', path: '/portfolio' },
     { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
   ];
-  // ------------------------------
 
-  // Check if we are on the homepage
-  const isHome = location.pathname === '/';
+  // --- NEW: Scroll to Top on Route Change ---
+  useEffect(() => {
+    // 1. Scroll to top of the window
+    window.scrollTo(0, 0);
+    
+    // 2. Reset the navbar "scrolled" state so it becomes transparent again immediately
+    setScrolled(false);
+    
+    // 3. Close mobile menu if open (safety check)
+    setIsOpen(false);
+  }, [location.pathname]);
 
-  // Handle Scroll
+  // Handle Scroll (Visual style for navbar)
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -30,34 +38,27 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dynamic Styles
-  // 1. Text Color: White at top of Home, Dark elsewhere
-  const textColorClass = (scrolled || !isHome) 
-    ? "text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400" 
-    : "text-white/90 hover:text-white";
+  // --- STYLING LOGIC ---
+  const textColorClass = "text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400";
+  const logoColorClass = "text-slate-900 dark:text-white";
 
-  // 2. Logo Color
-  const logoColorClass = (scrolled || !isHome)
-    ? "text-slate-900 dark:text-white"
-    : "text-white";
-
-  // 3. Navbar Background
-  const navBackgroundClass = (scrolled)
+  // Background: Transparent at top, Glassmorphism when scrolled
+  const navBackgroundClass = scrolled
     ? "bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm"
     : "bg-transparent border-b border-transparent";
 
-  // 4. Link Active State Logic
+  // Active Link Style
   const getLinkClass = (path) => {
     const isActive = location.pathname === path;
     const baseStyle = "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200";
     
+    // Active State
     if (isActive) {
-        if (scrolled || !isHome) {
-            return `${baseStyle} text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30`;
-        }
-        return `${baseStyle} text-white bg-white/20 backdrop-blur-sm`;
+      return `${baseStyle} text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30`;
     }
-    return `${baseStyle} ${textColorClass} hover:bg-slate-50/10`;
+
+    // Inactive State
+    return `${baseStyle} ${textColorClass} hover:bg-slate-50/50 dark:hover:bg-slate-800/50`;
   };
 
   return (
@@ -87,12 +88,12 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <div className={`h-6 w-px mx-4 ${scrolled || !isHome ? 'bg-slate-200 dark:bg-slate-700' : 'bg-white/20'}`}></div>
+            <div className="h-6 w-px mx-4 bg-slate-200 dark:bg-slate-700"></div>
 
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full transition-colors ${textColorClass} hover:bg-white/10`}
+              className={`p-2 rounded-full transition-colors ${textColorClass} hover:bg-slate-100 dark:hover:bg-slate-800`}
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
@@ -100,11 +101,7 @@ const Navbar = () => {
             {/* CTA Button */}
             <Link 
               to="/contact" 
-              className={`ml-4 px-5 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition shadow-lg ${
-                scrolled || !isHome 
-                 ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900' 
-                 : 'bg-white text-indigo-900'
-              }`}
+              className="ml-4 px-5 py-2.5 rounded-lg text-sm font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 transition shadow-lg"
             >
               Book Call
             </Link>
@@ -132,7 +129,9 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              onClick={() => setIsOpen(false)}
+              // setIsOpen(false) is redundant here because of the useEffect above, 
+              // but good to keep for explicit interaction feedback
+              onClick={() => setIsOpen(false)} 
               className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                  location.pathname === item.path
                  ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
