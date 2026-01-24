@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useMemo, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logoo.png'; 
 import { 
   motion, 
   useInView, 
   useMotionValue, 
   useSpring, 
   useTransform, 
-  useMotionTemplate 
+  useMotionTemplate,
+  AnimatePresence 
 } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -15,8 +17,6 @@ import {
   Server, 
   FileSpreadsheet,
   TrendingUp,
-  Clock,
-  Users,
   Bell,
   Code2,
   Database,
@@ -30,7 +30,8 @@ import {
   MoreHorizontal,
   Search, 
   Code, 
-  Rocket
+  Rocket,
+  Hexagon // Used for the Logo
 } from 'lucide-react';
 
 // --- DATA ---
@@ -91,23 +92,21 @@ const staggerContainer = {
   }
 };
 
-// --- COMPONENT: ANTI-GRAVITY BACKGROUND (EXACT REPLICA) ---
+// --- COMPONENT: ANTI-GRAVITY BACKGROUND ---
 const AntiGravityBackground = () => {
   const canvasRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // 1. Detect Mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    checkMobile(); // Check on mount
+    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
-    // If mobile, do not run any canvas logic
     if (isMobile) return;
 
     const canvas = canvasRef.current;
@@ -121,19 +120,13 @@ const AntiGravityBackground = () => {
     let width = 0;
     let height = 0;
 
-    // --- CONFIGURATION TO MATCH VIDEO ---
-    const PARTICLE_COUNT = 800; // High density like the video
-    const MOUSE_RADIUS = 120;   // Large "void" radius
-    const REPULSION_STRENGTH = 5; // Strong push
-    const FLOAT_SPEED = 0.4;    // Constant upward drift speed
+    const PARTICLE_COUNT = 800;
+    const MOUSE_RADIUS = 120;
+    const REPULSION_STRENGTH = 5;
+    const FLOAT_SPEED = 0.4;
     
-    // Google Brand Colors + Grey (Exact Hex Codes)
     const COLORS = [
-    '#6da99a', // Midnight Blue
-  '#E74C3C', // Classic Red
-  '#ECF0F1', // Cloud White
-  '#34495E', // Wet Asphalt
-  '#4e2532'  // Concrete Grey
+      '#6da99a', '#E74C3C', '#ECF0F1', '#34495E', '#4e2532'
     ];
 
     const mouse = { x: -1000, y: -1000 };
@@ -146,55 +139,34 @@ const AntiGravityBackground = () => {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 20;
-        
-        // Random velocity factors
         this.vx = (Math.random() - 0.5) * 0.5; 
-        this.vy = (Math.random() * -0.5) - FLOAT_SPEED; // Always negative Y (upward)
-        
-        // Size: Random mixture of very small and slightly larger dots
+        this.vy = (Math.random() * -0.5) - FLOAT_SPEED;
         this.size = Math.random() < 0.8 ? Math.random() * 2 + 1 : Math.random() * 3 + 2; 
-        
         this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        
-        // Friction for returning to normal state after repulsion
         this.friction = 0.94;
       }
 
       update() {
-        // 1. Mouse Interaction (The "Hole" Logic)
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < MOUSE_RADIUS) {
-          // Calculate vector pointing AWAY from mouse
           const angle = Math.atan2(dy, dx);
-          // Force gets stronger as you get closer to center
           const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS; 
           const repulsion = force * REPULSION_STRENGTH;
-
-          // Apply strong force
           this.vx -= Math.cos(angle) * repulsion;
           this.vy -= Math.sin(angle) * repulsion;
         }
 
-        // 2. Apply Velocity
         this.x += this.vx;
         this.y += this.vy;
-
-        // 3. Friction & Normalization
-        // Slowly reduce chaotic velocity created by mouse
         this.vx *= this.friction;
         
-        // Gently pull vertical speed back to the target float speed
-        // This ensures they don't stay stuck flying sideways forever
         const targetVy = -FLOAT_SPEED - (Math.random() * 0.2);
         this.vy += (targetVy - this.vy) * 0.05;
 
-        // 4. Boundary Check (Infinite Loop)
-        if (this.y < -20) {
-          this.reset(false); // Respawn at bottom
-        }
+        if (this.y < -20) this.reset(false);
         if (this.x < -20) this.x = width + 20;
         if (this.x > width + 20) this.x = -20;
       }
@@ -214,7 +186,6 @@ const AntiGravityBackground = () => {
       height = canvas.parentElement.offsetHeight;
       canvas.width = width;
       canvas.height = height;
-      
       particles = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push(new Particle());
@@ -223,15 +194,8 @@ const AntiGravityBackground = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      
-      // Theme Check: Use 'screen' blend mode if in dark mode for "glow" effect
-      // Otherwise use default source-over for crisp colors on white
       const isDarkMode = document.documentElement.classList.contains('dark');
-      if (isDarkMode) {
-          ctx.globalCompositeOperation = 'screen'; 
-      } else {
-          ctx.globalCompositeOperation = 'source-over';
-      }
+      ctx.globalCompositeOperation = isDarkMode ? 'screen' : 'source-over';
 
       particles.forEach((particle) => {
         particle.update();
@@ -261,18 +225,14 @@ const AntiGravityBackground = () => {
       window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  },
+  }, [isMobile]);
 
-    [isMobile]); // Re-run effect if isMobile changes
-
-  // 3. Conditional Render: Return null if mobile
   if (isMobile) return null;
 
   return (
     <canvas 
       ref={canvasRef} 
       className="absolute inset-0 z-0 pointer-events-none"
-      // Full opacity for the crisp look seen in the video
       style={{ opacity: 1 }} 
     />
   );
@@ -311,16 +271,13 @@ const Home = () => {
   // --- TESTIMONIAL CAROUSEL STATE ---
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  // Auto-advance testimonials
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 4000); 
-
     return () => clearInterval(timer);
   }, []);
 
-  // Helper to determine position relative to active
   const getCardStyle = (index) => {
     const length = TESTIMONIALS.length;
     let diff = (index - activeTestimonial + length) % length;
@@ -337,7 +294,6 @@ const Home = () => {
     }
   };
 
-
   useEffect(() => {
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX - window.innerWidth / 2);
@@ -348,13 +304,11 @@ const Home = () => {
   }, [mouseX, mouseY]);
 
   return (
-    // Updated Background: Clean White for Light Mode to match video, Slate-950 for Dark
     <div className="overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 font-sans min-h-screen">
       
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-10 lg:pt-40 lg:pb-20 overflow-hidden min-h-[90vh] flex items-center">
   
-        {/* EXACT VIDEO REPLICA BACKGROUND */}
         <AntiGravityBackground />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
@@ -367,12 +321,30 @@ const Home = () => {
               variants={fadeInUp} 
               className="text-center lg:text-left z-20"
             >
+              {/* BRAND LOGO HEADER */}
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-8 group cursor-default">
+                  {/* Logo Container */}
+                  {/* Replaced Terminal Icon with Image */}
+                              <img 
+                                  src={logo} 
+                                  alt="AshSoft Logo" 
+                                  className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
+                              />
+
+                  {/* Brand Name Text */}
+                  <div className="text-left">
+                      <div className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white leading-none">
+                          Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
+                      </div>
+                  </div>
+              </div>
+
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase tracking-wider mb-6 cursor-default shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
                 </span>
-                Enterprise Software & Automation
+                Version 2.0 Now Live
               </div>
 
               <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6">
@@ -437,10 +409,10 @@ const Home = () => {
                 <div className="mb-6 p-1">
                   <div className="flex justify-between items-end mb-2">
                     <div>
-                       <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Revenue</div>
-                       <div className="text-3xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">
-                         $124,592
-                       </div>
+                        <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Revenue</div>
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">
+                          $124,592
+                        </div>
                     </div>
                     <div className="flex items-center gap-1 text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-lg border border-emerald-100 dark:border-emerald-900/30">
                       <TrendingUp size={12} strokeWidth={3} />
@@ -582,7 +554,7 @@ const Home = () => {
                 icon={Database}
                 title="Scalable Infrastructure"
                 desc="Backend systems designed for resilience. From microservices to serverless architectures, we build foundations that handle millions of requests securely."
-                techs={['Node.js / Express.js', 'AWS / Docker', 'PostgreSQL','Java / SpringBoot', 'Spring Security','Hibernate']}
+                techs={['Node.js / Express.js', 'AWS / Docker', 'PostgreSQL','Java / SpringBoot']}
                 color="violet"
             />
           </motion.div>
@@ -603,9 +575,7 @@ const Home = () => {
                 <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
                     We don't guess. We follow a battle-tested architecture process to ensure scalability from Day 1.
                 </p>
-                {/*  */}
             </div>
-
             {/* Process Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
                 
@@ -642,18 +612,12 @@ const Home = () => {
                     }
                 ].map((step, i) => (
                     <div key={i} className={`group relative bg-white dark:bg-slate-900/50 backdrop-blur-sm p-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-none ${step.border} z-10`}>
-                        
-                        {/* Step Number Background */}
                         <div className="absolute top-4 right-8 text-6xl font-black text-slate-100 dark:text-slate-800/50 -z-10 select-none transition-colors group-hover:text-slate-200 dark:group-hover:text-slate-800">
                             {step.number}
                         </div>
-
-                        {/* Icon */}
                         <div className={`w-14 h-14 rounded-2xl ${step.bg} ${step.color} flex items-center justify-center mb-6 shadow-sm transition-transform group-hover:scale-110 duration-300`}>
                             <step.icon size={28} />
                         </div>
-
-                        {/* Content */}
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
                             {step.title}
                         </h3>
@@ -668,8 +632,6 @@ const Home = () => {
 
     {/* --- 5. TECH STACK MARQUEE --- */}
       <section className="py-24 bg-transparent border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
-        
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
              style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
         </div>
@@ -681,17 +643,13 @@ const Home = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
                 Enterprise-Grade Technology Stack
             </h2>
-             {/* ADDED DESCRIPTION HERE */}
             <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mt-4">
                 We leverage a battle-tested suite of modern technologies designed for speed, security, and scalability. No bloat, just performance.
             </p>
-            {/*  */}
         </div>
         
         {/* Marquee Container */}
         <div className="relative flex overflow-x-hidden group">
-            
-            {/* Gradient Masks (Fade edges) */}
             <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent"></div>
             <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent"></div>
 
@@ -700,38 +658,29 @@ const Home = () => {
                 animate={{ x: "-50%" }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
             >
-                {/* Duplicated list for seamless loop */}
                 {[...Array(2)].map((_, groupIndex) => (
                     <React.Fragment key={groupIndex}>
                        {[
-                         { name: "React", icon: Code2, color: "text-blue-500", shadow: "group-hover:shadow-blue-500/20", border: "group-hover:border-blue-500/50" },
-                         { name: "Node.js", icon: Server, color: "text-green-500", shadow: "group-hover:shadow-green-500/20", border: "group-hover:border-green-500/50" },
-                         { name: "AWS Cloud", icon: Cloud, color: "text-orange-500", shadow: "group-hover:shadow-orange-500/20", border: "group-hover:border-orange-500/50" },
-                         { name: "MongoDB", icon: Database, color: "text-emerald-500", shadow: "group-hover:shadow-emerald-500/20", border: "group-hover:border-emerald-500/50" },
-                         { name: "Python", icon: FileSpreadsheet, color: "text-yellow-500", shadow: "group-hover:shadow-yellow-500/20", border: "group-hover:border-yellow-500/50" },
-                         { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white", shadow: "group-hover:shadow-slate-500/20", border: "group-hover:border-slate-500/50" },
-                         { name: "Docker", icon: Globe, color: "text-blue-400", shadow: "group-hover:shadow-blue-400/20", border: "group-hover:border-blue-400/50" },
-                         { name: "Tailwind", icon: Layout, color: "text-cyan-500", shadow: "group-hover:shadow-cyan-500/20", border: "group-hover:border-cyan-500/50" }
-                       ].map((tech, i) => (
-                           <div 
-                             key={i} 
-                             className={`group relative flex items-center gap-4 px-8 py-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${tech.border} ${tech.shadow}`}
-                           >
-                             {/* Icon Box */}
+                          { name: "React", icon: Code2, color: "text-blue-500", shadow: "group-hover:shadow-blue-500/20", border: "group-hover:border-blue-500/50" },
+                          { name: "Node.js", icon: Server, color: "text-green-500", shadow: "group-hover:shadow-green-500/20", border: "group-hover:border-green-500/50" },
+                          { name: "AWS Cloud", icon: Cloud, color: "text-orange-500", shadow: "group-hover:shadow-orange-500/20", border: "group-hover:border-orange-500/50" },
+                          { name: "MongoDB", icon: Database, color: "text-emerald-500", shadow: "group-hover:shadow-emerald-500/20", border: "group-hover:border-emerald-500/50" },
+                          { name: "Python", icon: FileSpreadsheet, color: "text-yellow-500", shadow: "group-hover:shadow-yellow-500/20", border: "group-hover:border-yellow-500/50" },
+                          { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white", shadow: "group-hover:shadow-slate-500/20", border: "group-hover:border-slate-500/50" },
+                          { name: "Docker", icon: Globe, color: "text-blue-400", shadow: "group-hover:shadow-blue-400/20", border: "group-hover:border-blue-400/50" },
+                          { name: "Tailwind", icon: Layout, color: "text-cyan-500", shadow: "group-hover:shadow-cyan-500/20", border: "group-hover:border-cyan-500/50" }
+                        ].map((tech, i) => (
+                           <div key={i} className={`group relative flex items-center gap-4 px-8 py-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${tech.border} ${tech.shadow}`}>
                              <div className={`w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${tech.color}`}>
                                  <tech.icon size={22} />
                              </div>
-                             
-                             {/* Text */}
                              <div className="flex flex-col">
                                  <span className="text-lg font-bold text-slate-700 dark:text-slate-200">{tech.name}</span>
                                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Production Ready</span>
                              </div>
-
-                             {/* Subtle Glow Overlay */}
                              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-current ${tech.color}`}></div>
                            </div>
-                       ))}
+                        ))}
                     </React.Fragment>
                 ))}
             </motion.div>
@@ -742,9 +691,8 @@ const Home = () => {
       <section className="py-16 px-4 bg-transparent overflow-hidden">
         <div className="max-w-4xl mx-auto mb-10 px-4 text-center">
              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Trusted by Industry Leaders</h2>
-              {/* ADDED DESCRIPTION HERE */}
              <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-6">
-                Real results from real partners. We measure our success by the growth of our clients.
+               Real results from real partners. We measure our success by the growth of our clients.
              </p>
              <div className="flex items-center justify-center gap-2">
                  <div className="flex">
@@ -770,25 +718,21 @@ const Home = () => {
                     filter: `blur(${style.blur}) brightness(${style.brightness})`
                   }}
                 >
-                  {/* Card Content */}
                   <div className="relative bg-white dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col items-center text-center h-full">
-                     
-                     {/* Decorative Quote Icon */}
-                     <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center shadow-lg mb-4`}>
-                        <Quote size={20} className="text-white fill-white/20" />
-                     </div>
+                      
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center shadow-lg mb-4`}>
+                         <Quote size={20} className="text-white fill-white/20" />
+                      </div>
 
-                     <div className="flex-1">
-                        <p className="text-lg font-medium text-slate-800 dark:text-slate-100 leading-relaxed mb-6">
-                           "{t.quote}"
-                        </p>
-                        
-                        <div className="flex flex-col items-center">
-                           <div className="font-bold text-slate-900 dark:text-white text-base">{t.author}</div>
-                           <div className="text-xs text-slate-500 dark:text-slate-400">{t.role} @ <span className="text-indigo-600 dark:text-indigo-400 font-semibold">{t.company}</span></div>
-                        </div>
-                     </div>
-
+                      <div className="flex-1">
+                         <p className="text-lg font-medium text-slate-800 dark:text-slate-100 leading-relaxed mb-6">
+                            "{t.quote}"
+                         </p>
+                         <div className="flex flex-col items-center">
+                            <div className="font-bold text-slate-900 dark:text-white text-base">{t.author}</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400">{t.role} @ <span className="text-indigo-600 dark:text-indigo-400 font-semibold">{t.company}</span></div>
+                         </div>
+                      </div>
                   </div>
                 </motion.div>
               );
@@ -857,7 +801,6 @@ const SpotlightCard = ({ to, icon: Icon, title, desc, techs, color }) => {
                 className="group relative h-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden"
                 onMouseMove={handleMouseMove}
             >
-                {/* Spotlight Gradient Effect */}
                 <motion.div
                     className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
                     style={{
