@@ -54,7 +54,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300 py-12 px-4 flex items-center justify-center font-sans">
+    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300 py-12 px-4 flex items-center justify-center font-sans">
       
       {/* Background Decor */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

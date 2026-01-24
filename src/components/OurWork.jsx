@@ -25,7 +25,7 @@ const projects = [
 
 const OurWork = () => {
   return (
-    <section className="bg-slate-900 py-24" id="our-work">
+    <section className=" bg-slate-50 dark:bg-slate-950 py-24" id="our-work">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">

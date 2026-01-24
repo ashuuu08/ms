@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FileSpreadsheet, Globe, Server, Share2, Layout, Cpu, ShieldCheck, 
   BarChart3, ArrowRight, Terminal, Bot, Search,
-  CheckCircle2, Plus, Minus, Code2, Rocket, Settings
+  CheckCircle2, Plus, Minus, Code2, Rocket, Settings,
+  Zap, Layers, Users, Sparkles, LineChart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -37,17 +38,21 @@ const Services = () => {
   ];
 
   return (
-    <div className="w-full overflow-x-hidden bg-slate-50 dark:bg-slate-950 min-h-screen pt-28 pb-20 transition-colors duration-300 font-sans">
+    <div className="w-full overflow-x-hidden bg-white dark:bg-slate-950 min-h-screen pt-28 pb-20 transition-colors duration-300 font-sans">
       <div className="max-w-7xl mx-auto px-4">
         
-        {/* Header - More Welcoming */}
+        {/* Header - Main Page Description */}
         <div className="text-center mb-16">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-indigo-500 uppercase bg-indigo-100 dark:bg-indigo-900/30 rounded-full">
+              What We Do
+            </div>
             <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-4">
               Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Services</span>
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Everything you need to build, automate, and scale your digital presence.
+              From simple automation scripts to full-scale enterprise applications. 
+              We provide the technical foundation for your business growth.
             </p>
           </motion.div>
         </div>
@@ -71,6 +76,13 @@ const Services = () => {
                 <div className="bg-green-100 dark:bg-green-900/30 w-fit p-3 rounded-xl text-green-600 mb-6">
                   <FileSpreadsheet size={32} />
                 </div>
+                
+                {/* Header Description Added */}
+                <div className="flex items-center gap-2 mb-2">
+                    <Zap size={14} className="text-green-500" />
+                    <span className="text-xs font-bold text-green-600 dark:text-green-400 uppercase tracking-wider">Operational Efficiency</span>
+                </div>
+
                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Automation</h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
                    Eliminate manual data entry and save 10+ hours a week with custom scripts.
@@ -88,7 +100,7 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Bottom CTA (Visible on Mobile) */}
+              {/* Bottom CTA */}
               <div className="relative z-10 flex items-center text-green-600 font-bold group-hover:gap-2 transition-all">
                 Explore Automation <ArrowRight size={18} className="ml-1" />
               </div>
@@ -102,7 +114,13 @@ const Services = () => {
                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                
                <div className="relative z-10 flex flex-col md:flex-row justify-between gap-6 items-start mb-6">
-                  <div>
+                 <div>
+                    {/* Header Description Added */}
+                    <div className="flex items-center gap-2 mb-3">
+                        <Layers size={14} className="text-indigo-500" />
+                        <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider">Digital Presence</span>
+                    </div>
+
                     <div className="flex items-center gap-3 mb-4">
                        <div className="bg-indigo-100 dark:bg-indigo-900/30 p-2 rounded-lg text-indigo-600"><Layout size={24} /></div>
                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Web & Design</h2>
@@ -110,11 +128,10 @@ const Services = () => {
                     <p className="text-slate-600 dark:text-slate-400 max-w-md">
                       Pixel-perfect websites built with React. Fast, SEO-friendly, and designed to convert visitors into customers.
                     </p>
-                  </div>
-                  <Globe size={60} className="text-indigo-200 dark:text-slate-700 hidden md:block" />
+                 </div>
+                 <Globe size={60} className="text-indigo-200 dark:text-slate-700 hidden md:block" />
                </div>
 
-               {/* Bottom CTA */}
                <div className="relative z-10 flex items-center text-indigo-600 font-bold group-hover:gap-2 transition-all">
                 View Web Solutions <ArrowRight size={18} className="ml-1" />
                </div>
@@ -127,6 +144,12 @@ const Services = () => {
                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-pink-500 to-orange-500"></div>
                
                <div>
+                 {/* Header Description Added */}
+                 <div className="flex items-center gap-2 mb-3">
+                    <Users size={14} className="text-pink-500" />
+                    <span className="text-xs font-bold text-pink-500 uppercase tracking-wider">Audience Building</span>
+                 </div>
+
                  <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-bold text-slate-900 dark:text-white">Social Growth</h2>
                     <Share2 className="text-pink-500" />
@@ -136,7 +159,6 @@ const Services = () => {
                  </p>
                </div>
 
-               {/* Bottom CTA */}
                <div className="flex items-center text-pink-600 text-sm font-bold group-hover:gap-2 transition-all">
                 See Tools <ArrowRight size={16} className="ml-1" />
                </div>
@@ -149,16 +171,21 @@ const Services = () => {
                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-slate-900"></div>
                
                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-4">
+                 {/* Header Description Added */}
+                 <div className="flex items-center gap-2 mb-3">
+                    <Sparkles size={14} className="text-purple-400" />
+                    <span className="text-xs font-bold text-purple-300 uppercase tracking-wider">Future Tech</span>
+                 </div>
+
+                 <div className="flex justify-between items-center mb-4">
                      <h2 className="text-xl font-bold">AI Solutions</h2>
                      <Bot className="text-purple-400" />
-                  </div>
-                  <p className="text-sm text-slate-300 mb-6">
-                    Integrate ChatGPT into your business for support and content generation.
-                  </p>
+                 </div>
+                 <p className="text-sm text-slate-300 mb-6">
+                   Integrate ChatGPT into your business for support and content generation.
+                 </p>
                </div>
 
-               {/* Bottom CTA */}
                <div className="relative z-10 flex items-center text-purple-300 text-sm font-bold group-hover:gap-2 transition-all">
                 Learn More <ArrowRight size={16} className="ml-1" />
                </div>
@@ -171,6 +198,12 @@ const Services = () => {
                
                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                   <div>
+                     {/* Header Description Added */}
+                     <div className="flex items-center gap-2 mb-3">
+                        <LineChart size={14} className="text-blue-500" />
+                        <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Data Driven</span>
+                     </div>
+
                      <div className="flex items-center gap-3 mb-2">
                         <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg text-blue-600"><Search size={20} /></div>
                         <h2 className="text-xl font-bold text-slate-900 dark:text-white">SEO & Analytics</h2>
@@ -194,7 +227,6 @@ const Services = () => {
                   </div>
                </div>
 
-               {/* Bottom CTA */}
                <div className="relative z-10 mt-6 flex items-center text-blue-600 font-bold group-hover:gap-2 transition-all">
                 Boost Traffic <ArrowRight size={18} className="ml-1" />
                </div>
@@ -208,11 +240,12 @@ const Services = () => {
                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
                
                <div className="relative z-10 flex-1">
+                  {/* Header Description (Enhanced) */}
                   <div className="flex items-center gap-2 mb-3">
                      <ShieldCheck className="text-emerald-400" size={24} />
-                     <span className="text-xs font-bold text-emerald-300 uppercase tracking-wider">Enterprise</span>
+                     <span className="text-xs font-bold text-emerald-300 uppercase tracking-wider">Mission Critical</span>
                   </div>
-                  <h2 className="text-3xl font-bold mb-4">Large Scale Infrastructure</h2>
+                  <h2 className="text-3xl font-bold mb-4">Enterprise Infrastructure</h2>
                   <p className="text-slate-400 leading-relaxed max-w-2xl">
                      Secure, scalable cloud systems for businesses that need to handle millions of users. AWS, Docker, and Kubernetes experts.
                   </p>
@@ -228,11 +261,14 @@ const Services = () => {
 
         </motion.div>
 
-        {/* --- NEW SECTION: PROCESS TIMELINE --- */}
+        {/* --- PROCESS TIMELINE --- */}
         <div className="py-24 mt-16 relative">
             <div className="text-center mb-16">
+                {/* Header Description Added */}
+                <div className="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-2">Our Methodology</div>
+                
                 <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">The Blueprint</h2>
-                <p className="text-slate-500 dark:text-slate-400">How we go from idea to deployed product.</p>
+                <p className="text-slate-500 dark:text-slate-400">How we go from idea to deployed product in 4 steps.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
@@ -262,9 +298,17 @@ const Services = () => {
             </div>
         </div>
 
-        {/* --- NEW SECTION: FAQ ACCORDION --- */}
+        {/* --- FAQ ACCORDION --- */}
         <div className="py-12 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">Common Questions</h2>
+            {/* Header Description Added */}
+            <div className="text-center mb-12">
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Support</div>
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Common Questions</h2>
+                <p className="text-slate-500 dark:text-slate-400">
+                    Everything you need to know about how we work, billing, and support.
+                </p>
+            </div>
+
             <div className="space-y-4">
                 {faqs.map((faq, i) => (
                     <div key={i} className="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden shadow-sm">
