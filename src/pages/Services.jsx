@@ -1,12 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FileSpreadsheet, Globe, Server, Share2, Layout, Cpu, ShieldCheck, 
-  BarChart3, ArrowRight, Terminal, Bot, Search
+  BarChart3, ArrowRight, Terminal, Bot, Search,
+  CheckCircle2, Plus, Minus, Code2, Rocket, Settings
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
+  // FAQ State
+  const [openFaq, setOpenFaq] = useState(null);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -16,6 +20,21 @@ const Services = () => {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
   };
+
+  const faqs = [
+    {
+      q: "Do you work with existing codebases?",
+      a: "Yes. Whether it's a legacy React app or a messy Google Sheet, we can audit, refactor, and improve what you already have."
+    },
+    {
+      q: "How long does a typical automation project take?",
+      a: "Simple workflows (like email parsers) take 2-3 days. Complex dashboards and web apps typically take 2-4 weeks."
+    },
+    {
+      q: "What if I need ongoing maintenance?",
+      a: "We offer flexible retainer packages for updates, monitoring, and new feature additions after the initial launch."
+    }
+  ];
 
   return (
     <div className="w-full overflow-x-hidden bg-slate-50 dark:bg-slate-950 min-h-screen pt-28 pb-20 transition-colors duration-300 font-sans">
@@ -157,7 +176,7 @@ const Services = () => {
                         <h2 className="text-xl font-bold text-slate-900 dark:text-white">SEO & Analytics</h2>
                      </div>
                      <p className="text-slate-600 dark:text-slate-400 max-w-sm text-sm">
-                        Get found on Google. We optimize your structure and set up advanced tracking so you know exactly who visits your site.
+                       Get found on Google. We optimize your structure and set up advanced tracking so you know exactly who visits your site.
                      </p>
                   </div>
                   
@@ -201,13 +220,79 @@ const Services = () => {
 
                <div className="relative z-10">
                  <button className="px-6 py-3 bg-white text-slate-950 font-bold rounded-xl hover:bg-emerald-400 transition-colors flex items-center gap-2">
-                    View Enterprise Solutions <ArrowRight size={18} />
+                   View Enterprise Solutions <ArrowRight size={18} />
                  </button>
                </div>
             </motion.div>
           </Link>
 
         </motion.div>
+
+        {/* --- NEW SECTION: PROCESS TIMELINE --- */}
+        <div className="py-24 mt-16 relative">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">The Blueprint</h2>
+                <p className="text-slate-500 dark:text-slate-400">How we go from idea to deployed product.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                {/* Connecting Line (Desktop) */}
+                <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-slate-200 dark:from-slate-800 via-indigo-500/50 to-slate-200 dark:to-slate-800 -z-10"></div>
+                
+                {[
+                    { title: "Discovery", desc: "We audit your workflow.", icon: Search },
+                    { title: "Strategy", desc: "We design the architecture.", icon: Settings },
+                    { title: "Build", desc: "Agile coding sprints.", icon: Code2 },
+                    { title: "Launch", desc: "Deployment & Training.", icon: Rocket }
+                ].map((step, i) => (
+                    <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        className="relative bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-lg text-center"
+                    >
+                        <div className="w-12 h-12 mx-auto bg-indigo-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-indigo-500/30 relative z-10">
+                            <step.icon size={20} />
+                        </div>
+                        <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2">{step.title}</h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">{step.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+
+        {/* --- NEW SECTION: FAQ ACCORDION --- */}
+        <div className="py-12 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">Common Questions</h2>
+            <div className="space-y-4">
+                {faqs.map((faq, i) => (
+                    <div key={i} className="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden shadow-sm">
+                        <button 
+                            onClick={() => setOpenFaq(openFaq === i ? null : i)} 
+                            className="flex justify-between items-center w-full p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                        >
+                            <span className="font-bold text-slate-900 dark:text-white">{faq.q}</span>
+                            {openFaq === i ? <Minus className="text-indigo-500" /> : <Plus className="text-slate-400" />}
+                        </button>
+                        <AnimatePresence>
+                            {openFaq === i && (
+                                <motion.div 
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="p-6 pt-0 text-slate-600 dark:text-slate-400 leading-relaxed">
+                                        {faq.a}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                ))}
+            </div>
+        </div>
 
         {/* CTA */}
         <div className="mt-20 text-center">

@@ -103,9 +103,9 @@ const Contact = () => {
             </div>
 
             <div className="relative z-10 space-y-6 mt-8">
-              <a href="mailto:hello@devscript.com" className="flex items-center gap-3 text-sm hover:text-white/80 transition group">
+              <a href="mailto:contact@ashsoft.com" className="flex items-center gap-3 text-sm hover:text-white/80 transition group">
                 <div className="w-10 h-10 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Mail size={18} /></div>
-                <span className="font-medium">hello@devscript.com</span>
+                <span className="font-medium">contact@ashsoft.com</span>
               </a>
               <div className="flex gap-3 pt-6 border-t border-white/10">
                 {[Linkedin, Github, Twitter].map((Icon, i) => (

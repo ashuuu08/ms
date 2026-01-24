@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal, Sun, Moon, ChevronRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, ChevronRight } from 'lucide-react';
 import useTheme from '../hooks/useTheme';
+
+// --- IMPORT YOUR LOGO HERE ---
+// Make sure 'logoo.png' is inside your 'src/assets' folder
+import logo from '../assets/logoo.png'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,19 +21,14 @@ const Navbar = () => {
     { name: 'About', path: '/about' },
   ];
 
-  // --- NEW: Scroll to Top on Route Change ---
+  // --- Scroll to Top on Route Change ---
   useEffect(() => {
-    // 1. Scroll to top of the window
     window.scrollTo(0, 0);
-    
-    // 2. Reset the navbar "scrolled" state so it becomes transparent again immediately
     setScrolled(false);
-    
-    // 3. Close mobile menu if open (safety check)
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Handle Scroll (Visual style for navbar)
+  // Handle Scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -42,22 +41,17 @@ const Navbar = () => {
   const textColorClass = "text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400";
   const logoColorClass = "text-slate-900 dark:text-white";
 
-  // Background: Transparent at top, Glassmorphism when scrolled
   const navBackgroundClass = scrolled
     ? "bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm"
     : "bg-transparent border-b border-transparent";
 
-  // Active Link Style
   const getLinkClass = (path) => {
     const isActive = location.pathname === path;
     const baseStyle = "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200";
     
-    // Active State
     if (isActive) {
       return `${baseStyle} text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30`;
     }
-
-    // Inactive State
     return `${baseStyle} ${textColorClass} hover:bg-slate-50/50 dark:hover:bg-slate-800/50`;
   };
 
@@ -66,13 +60,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
-          {/* --- LOGO --- */}
+          {/* --- LOGO SECTION --- */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className={`relative flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-600 text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/30`}>
-              <Terminal size={20} />
-            </div>
+            {/* Replaced Terminal Icon with Image */}
+            <img 
+                src={logo} 
+                alt="AshSoft Logo" 
+                className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
+            />
             <span className={`font-bold text-xl tracking-tight transition-colors ${logoColorClass}`}>
-              ash<span className="text-indigo-500">Soft</span>
+              Ash<span className="text-blue-400">Soft</span>
             </span>
           </Link>
 
@@ -129,8 +126,6 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              // setIsOpen(false) is redundant here because of the useEffect above, 
-              // but good to keep for explicit interaction feedback
               onClick={() => setIsOpen(false)} 
               className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                  location.pathname === item.path

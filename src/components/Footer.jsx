@@ -1,23 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/logoo.png'; // Ensure the path is correct
 import { 
   Github, 
   Twitter, 
   Linkedin, 
   Mail, 
   MapPin, 
-  Phone, 
-  ArrowRight, 
-  Terminal 
+  ArrowRight,
+  Phone // <--- Added Phone icon import
 } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const logoColorClass = "text-slate-900 dark:text-white"; 
 
   return (
     <footer className="relative bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8 overflow-hidden transition-colors duration-300">
       
-      {/* Abstract Background Glow (Cool Effect) */}
+      {/* Abstract Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -26,12 +27,14 @@ const Footer = () => {
 
           {/* 1. Brand Section */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="bg-indigo-600 text-white p-1.5 rounded-lg group-hover:bg-indigo-700 transition">
-                <Terminal size={20} />
-              </div>
-              <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-                ash<span className="text-indigo-600">Soft</span>
+            <Link to="/" className="flex items-center gap-2 group w-fit">
+              <img 
+                src={logo} 
+                alt="AshSoft Logo" 
+                className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <span className={`font-bold text-xl tracking-tight transition-colors ${logoColorClass}`}>
+                Ash<span className="text-indigo-500">Soft</span>
               </span>
             </Link>
             
@@ -68,7 +71,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               {['About Us', 'Our Work', 'Testimonials', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link to={`/${item.toLowerCase().replace("", "")}`} className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  <Link to={`/${item.toLowerCase().replace(/\s+/g, "")}`} className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                     {item}
                   </Link>
                 </li>
@@ -93,12 +96,18 @@ const Footer = () => {
               </button>
             </form>
             
-            <div className="flex flex-col gap-2 text-sm text-slate-500 dark:text-slate-400">
-               <a href="mailto:contact@ashsoft.com" className="flex items-center gap-2 hover:text-indigo-600 transition">
+            <div className="flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400">
+               {/* Phone Number Added Here */}
+               <a href="tel:9691207533" className="flex items-center gap-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                 <Phone size={14} /> +91 96912 07533
+               </a>
+               
+               <a href="mailto:contact@ashsoft.com" className="flex items-center gap-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                  <Mail size={14} /> contact@ashsoft.com
                </a>
+               
                <div className="flex items-center gap-2">
-                 <MapPin size={14} /> remote, India
+                 <MapPin size={14} /> Remote, India
                </div>
             </div>
           </div>
@@ -107,9 +116,21 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-500 dark:text-slate-500">
-            © {currentYear} ashSoft Solutions. All rights reserved.
-          </p>
+          
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-500">
+            <span>© {currentYear}</span>
+            <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
+              <img 
+                src={logo} 
+                alt="AshSoft" 
+                className="w-4 h-4 object-contain"
+              />
+              <span className={`font-bold ${logoColorClass}`}>
+                Ash<span className="text-indigo-500">Soft</span>
+              </span>
+            </Link>
+            <span>Solutions. All rights reserved.</span>
+          </div>
 
           <div className="flex gap-4">
             {[Github, Twitter, Linkedin].map((Icon, i) => (

@@ -22,7 +22,10 @@ import {
   Code2,
   Database,
   Globe,
-  Cpu // <--- Added missing import
+  Cpu,
+  Star,
+  Quote,
+  Cloud
 } from 'lucide-react';
 import Feedback from '../components/Feedback';
 
@@ -174,7 +177,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE: Visual (Minimized & Optimized) */}
+            {/* RIGHT SIDE: Visual */}
             <motion.div 
                style={{ x: cardX, y: cardY }}
                initial={{ opacity: 0, scale: 0.8 }}
@@ -182,9 +185,8 @@ const Home = () => {
                transition={{ duration: 0.8 }}
                className="relative hidden lg:block perspective-1000 max-w-md mx-auto"
             >
-               {/* MAIN CARD: Dashboard (Scaled Down) */}
+               {/* MAIN CARD: Dashboard */}
                <div className="relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 rounded-[2rem] p-6 shadow-2xl scale-95 hover:scale-100 transition-transform duration-500">
-                  
                   {/* Card Header */}
                   <div className="flex justify-between items-center mb-6">
                      <div className="flex items-center gap-3">
@@ -232,7 +234,7 @@ const Home = () => {
                      ))}
                   </div>
 
-                  {/* Floating Notification - Shifted position */}
+                  {/* Floating Notification */}
                   <motion.div 
                      animate={{ y: [0, -8, 0] }}
                      transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -254,7 +256,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 2. STATS SECTION (Transparent & Blended) */}
+      {/* 2. STATS SECTION (Transparent) */}
       <section className="py-12 bg-transparent relative z-10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-8">
@@ -343,15 +345,160 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 5. CTA SECTION */}
-      <section className="py-24 px-4">
+    {/* --- 5. TECH STACK MARQUEE (Redesigned) --- */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
+        
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 text-center mb-12 relative z-10">
+            <span className="inline-block py-1 px-3 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest mb-2">
+                The Engine Room
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+                Powering Next-Gen Applications
+            </h2>
+        </div>
+        
+        {/* Marquee Container */}
+        <div className="relative flex overflow-x-hidden group">
+            
+            {/* Gradient Masks (Fade edges) */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent"></div>
+
+            <motion.div 
+                className="flex gap-6 items-center whitespace-nowrap"
+                animate={{ x: "-50%" }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+            >
+                {/* Duplicated list for seamless loop */}
+                {[...Array(2)].map((_, groupIndex) => (
+                    <React.Fragment key={groupIndex}>
+                       {[
+                         { name: "React", icon: Code2, color: "text-blue-500", shadow: "group-hover:shadow-blue-500/20", border: "group-hover:border-blue-500/50" },
+                         { name: "Node.js", icon: Server, color: "text-green-500", shadow: "group-hover:shadow-green-500/20", border: "group-hover:border-green-500/50" },
+                         { name: "AWS Cloud", icon: Cloud, color: "text-orange-500", shadow: "group-hover:shadow-orange-500/20", border: "group-hover:border-orange-500/50" },
+                         { name: "MongoDB", icon: Database, color: "text-emerald-500", shadow: "group-hover:shadow-emerald-500/20", border: "group-hover:border-emerald-500/50" },
+                         { name: "AppScript", icon: FileSpreadsheet, color: "text-yellow-500", shadow: "group-hover:shadow-yellow-500/20", border: "group-hover:border-yellow-500/50" },
+                         { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white", shadow: "group-hover:shadow-slate-500/20", border: "group-hover:border-slate-500/50" },
+                         { name: "Python", icon: Globe, color: "text-blue-400", shadow: "group-hover:shadow-blue-400/20", border: "group-hover:border-blue-400/50" },
+                         { name: "Tailwind", icon: Layout, color: "text-cyan-500", shadow: "group-hover:shadow-cyan-500/20", border: "group-hover:border-cyan-500/50" }
+                       ].map((tech, i) => (
+                           <div 
+                             key={i} 
+                             className={`group relative flex items-center gap-4 px-8 py-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${tech.border} ${tech.shadow}`}
+                           >
+                              {/* Icon Box */}
+                              <div className={`w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${tech.color}`}>
+                                  <tech.icon size={22} />
+                              </div>
+                              
+                              {/* Text */}
+                              <div className="flex flex-col">
+                                  <span className="text-lg font-bold text-slate-700 dark:text-slate-200">{tech.name}</span>
+                                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Enterprise Ready</span>
+                              </div>
+
+                              {/* Subtle Glow Overlay */}
+                              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-current ${tech.color}`}></div>
+                           </div>
+                       ))}
+                    </React.Fragment>
+                ))}
+            </motion.div>
+        </div>
+      </section>
+
+      {/* --- 6. FLOATING TESTIMONIALS (Scrolling Marquee) --- */}
+      <section className="py-24 px-4 bg-white dark:bg-slate-950 overflow-hidden">
+        <div className="max-w-6xl mx-auto mb-16 px-4">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+                <div>
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Don't just take our word for it.</h2>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">See how we've transformed businesses just like yours.</p>
+                </div>
+                <div className="flex gap-2">
+                    <div className="flex">
+                        {[1,2,3,4,5].map(s => <Star key={s} size={20} className="text-yellow-400 fill-yellow-400" />)}
+                    </div>
+                    <span className="text-slate-700 dark:text-white font-bold">5.0/5 Rating</span>
+                </div>
+            </div>
+        </div>
+
+        {/* Marquee Wrapper */}
+        <div className="relative w-full">
+            <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white dark:from-slate-950 to-transparent"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-slate-950 to-transparent"></div>
+            
+            <motion.div 
+                className="flex gap-8 w-max"
+                animate={{ x: "-50%" }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+            >
+                {[...Array(2)].map((_, groupIndex) => (
+                    <React.Fragment key={groupIndex}>
+                        {[
+                            {
+                                quote: "We were drowning in spreadsheets. The team automated our entire billing process in 2 weeks. It feels like magic.",
+                                author: "Sarah J.",
+                                role: "Operations Director",
+                                color: "border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-900/10"
+                            },
+                            {
+                                quote: "The web portal they built is lightning fast. Our client engagement went up by 40% immediately after launch.",
+                                author: "Mike T.",
+                                role: "Founder",
+                                color: "border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/10"
+                            },
+                            {
+                                quote: "Professional, communicative, and they actually understood our business logic. Best dev team we've hired.",
+                                author: "Elena R.",
+                                role: "CTO",
+                                color: "border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/10"
+                            },
+                            {
+                                quote: "Saved us 20 hours a week. The automation script just works. Highly recommend for any agency owner.",
+                                author: "David K.",
+                                role: "Agency Owner",
+                                color: "border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-900/10"
+                            }
+                        ].map((t, i) => (
+                            <div 
+                                key={i}
+                                className={`w-[400px] p-8 rounded-3xl border ${t.color} relative shrink-0`}
+                            >
+                                <Quote size={40} className="text-slate-300 dark:text-slate-700 absolute top-6 right-6 opacity-50" />
+                                <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed relative z-10 font-medium text-lg">"{t.quote}"</p>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-300 font-bold text-sm">
+                                        {t.author[0]}
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-slate-900 dark:text-white text-sm">{t.author}</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">{t.role}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </React.Fragment>
+                ))}
+            </motion.div>
+        </div>
+      </section>
+
+      {/* 7. CTA SECTION */}
+      <section className="py-20 px-3 bg-slate-50 dark:bg-slate-900/50">
         <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block p-4 rounded-full bg-indigo-50 dark:bg-indigo-900/20 mb-6">
                 <Cpu size={32} className="text-indigo-600 dark:text-indigo-400" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">Ready to upgrade your workflow?</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6">Ready to upgrade your workflow?</h2>
             <p className="text-slate-500 dark:text-slate-400 text-xl mb-10">Stop doing repetitive tasks. Start building systems.</p>
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-indigo-600 text-white font-bold px-12 py-5 rounded-full hover:bg-indigo-700 transition shadow-xl shadow-indigo-500/30 text-lg">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-indigo-600 text-white font-bold px-10 py-4 rounded-full hover:bg-indigo-700 transition shadow-xl shadow-indigo-500/30 text-lg">
               Get a Free Quote <ArrowRight size={20} />
             </Link>
         </div>

@@ -1,17 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class', // Add this line
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        // This sets the default font stack
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        // You can use 'font-heading' class if you need to force a heading font elsewhere
+        heading: ['"Outfit"', 'sans-serif'],
       },
+      // ... keep your other extensions like animation/keyframes here
     },
   },
   plugins: [],
 }
-
