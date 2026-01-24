@@ -69,7 +69,7 @@ const Navbar = () => {
                 className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
             />
             <span className={`font-bold text-xl tracking-tight transition-colors ${logoColorClass}`}>
-              Ash<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
+              Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
             </span>
           </Link>
 

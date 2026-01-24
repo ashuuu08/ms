@@ -34,7 +34,7 @@ const Footer = () => {
                 className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
               />
               <span className={`font-bold text-xl tracking-tight transition-colors ${logoColorClass}`}>
-                Ash<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
+                Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
               </span>
             </Link>
             
@@ -122,11 +122,11 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
               <img 
                 src={logo} 
-                alt="AshSoft" 
+                alt="AshbitSoft" 
                 className="w-4 h-4 object-contain"
               />
               <span className={`font-bold ${logoColorClass}`}>
-                Ash<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
+                Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
               </span>
             </Link>
             <span>Solutions. All rights reserved.</span>

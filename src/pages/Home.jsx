@@ -122,10 +122,10 @@ const AntiGravityBackground = () => {
     let height = 0;
 
     // --- CONFIGURATION TO MATCH VIDEO ---
-    const PARTICLE_COUNT = 600; // High density like the video
+    const PARTICLE_COUNT = 800; // High density like the video
     const MOUSE_RADIUS = 120;   // Large "void" radius
     const REPULSION_STRENGTH = 5; // Strong push
-    const FLOAT_SPEED = -0.4;    // Constant upward drift speed
+    const FLOAT_SPEED = 0.4;    // Constant upward drift speed
     
     // Google Brand Colors + Grey (Exact Hex Codes)
     const COLORS = [
@@ -262,7 +262,7 @@ const AntiGravityBackground = () => {
       cancelAnimationFrame(animationFrameId);
     };
   },
-  
+
     [isMobile]); // Re-run effect if isMobile changes
 
   // 3. Conditional Render: Return null if mobile
