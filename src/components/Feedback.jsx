@@ -47,7 +47,7 @@ const Feedback = () => {
   return (
     <section className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        
+
         {/* Abstract Background Element */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -67,9 +67,9 @@ const Feedback = () => {
             </p>
           </motion.div>
         </div>
-        
+
         {/* Reviews Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -77,14 +77,15 @@ const Feedback = () => {
           viewport={{ once: true, margin: "-50px" }}
         >
           {reviews.map((review, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative group hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              whileHover={{ y: -10 }}
+              className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative group hover:shadow-xl transition-all duration-300"
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-8 text-slate-200 dark:text-slate-800 group-hover:text-indigo-100 dark:group-hover:text-indigo-900/30 transition-colors">
-                 <Quote size={64} fill="currentColor" />
+                <Quote size={64} fill="currentColor" />
               </div>
 
               {/* Stars */}

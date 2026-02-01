@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,11 +9,28 @@
   html {
     font-family: 'Plus Jakarta Sans', sans-serif;
     scroll-behavior: smooth;
-    zoom:95%;
+    zoom: 95%;
   }
-  
+
   /* Use Outfit for headings automatically */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Outfit', sans-serif;
+  }
+
+  /* Ensure smooth dark mode transitions */
+  * {
+    transition-property: background-color, border-color, color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* Dark theme background gradient */
+  .dark {
+    background: linear-gradient(to bottom, #0b0f17 0%, #0f1419 100%);
   }
 }

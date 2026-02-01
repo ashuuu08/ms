@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logoo.png'; 
-import { 
-  motion, 
-  useInView, 
-  useMotionValue, 
-  useSpring, 
-  useTransform, 
+import logo from '../assets/logoo.png';
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
   useMotionTemplate,
-  AnimatePresence 
+  AnimatePresence
 } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Zap, 
-  Layout, 
-  Server, 
+import {
+  ArrowRight,
+  Zap,
+  Layout,
+  Server,
   FileSpreadsheet,
   TrendingUp,
   Bell,
@@ -28,67 +28,54 @@ import {
   ShieldCheck,
   FileCheck,
   MoreHorizontal,
-  Search, 
-  Code, 
+  Search,
+  Code,
   Rocket,
-  Hexagon // Used for the Logo
+  Bot,
+  Megaphone,
+  Coffee, // Java
+  Table, // Sheets
 } from 'lucide-react';
 
 // --- DATA ---
 const TESTIMONIALS = [
   {
-      id: 1,
-      quote: "They didn't just build a website; they re-engineered our entire client onboarding flow. We've saved ~40 hours/week in manual data entry.",
-      author: "Sarah Jenkins",
-      role: "Director of Operations",
-      company: "TechFlow Logistics",
-      color: "from-purple-500 to-indigo-500"
+    id: 1,
+    quote: "They didn't just build a website; they re-engineered our entire client onboarding flow. We've saved ~40 hours/week in manual data entry.",
+    author: "Sarah Jenkins",
+    role: "Director of Operations",
+    company: "TechFlow Logistics",
+    color: "from-purple-500 to-indigo-500"
   },
   {
-      id: 2,
-      quote: "The ROI was immediate. The custom ERP dashboard gave us visibility we never had before. Scaling from 10k to 100k users was seamless.",
-      author: "Michael Tran",
-      role: "Founder & CEO",
-      company: "StartUp Lab",
-      color: "from-blue-500 to-cyan-500"
+    id: 2,
+    quote: "The ROI was immediate. The custom ERP dashboard gave us visibility we never had before. Scaling from 10k to 100k users was seamless.",
+    author: "Michael Tran",
+    role: "Founder & CEO",
+    company: "StartUp Lab",
+    color: "from-blue-500 to-cyan-500"
   },
   {
-      id: 3,
-      quote: "Technical excellence matched with business acumen. They understood our compliance requirements and built a fortress-grade backend.",
-      author: "Elena Rodriguez",
-      role: "CTO",
-      company: "FinSecure Global",
-      color: "from-emerald-500 to-teal-500"
-  },
-  {
-      id: 4,
-      quote: "We replaced three expensive SaaS subscriptions with the custom automation tool they built. It paid for itself in 4 months.",
-      author: "David Kim",
-      role: "Principal Partner",
-      company: "Creative Pulse Agency",
-      color: "from-orange-500 to-amber-500"
-  },
-  {
-      id: 5,
-      quote: "Their code quality is exceptional. Our internal dev team took over the project after launch and found the documentation pristine.",
-      author: "James Wilson",
-      role: "VP of Engineering",
-      company: "Nexus Health",
-      color: "from-pink-500 to-rose-500"
+    id: 3,
+    quote: "Our marketing campaigns are now fully automated. The Google Sheets integration they built syncs perfectly with our CRM.",
+    author: "Jessica Li",
+    role: "Marketing Head",
+    company: "Growth Hacking Co",
+    color: "from-pink-500 to-rose-500"
   }
 ];
 
 // --- ANIMATION VARIANTS ---
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.05 }
   }
 };
 
@@ -115,19 +102,16 @@ const AntiGravityBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId;
+    let animationFrameId; // Define animationFrameId here
     let particles = [];
     let width = 0;
     let height = 0;
 
-    const PARTICLE_COUNT = 800;
-    const MOUSE_RADIUS = 120;
-    const REPULSION_STRENGTH = 5;
-    const FLOAT_SPEED = 0.4;
-    
-    const COLORS = [
-      '#6da99a', '#E74C3C', '#ECF0F1', '#34495E', '#4e2532'
-    ];
+    const PARTICLE_COUNT = 400; // Reduced for performance
+    const MOUSE_RADIUS = 150;
+    const FLOAT_SPEED = 0.2;
+
+    const COLORS = ['#6366f1', '#a855f7', '#10b981', '#349ec9']; // Brand colors
 
     const mouse = { x: -1000, y: -1000 };
 
@@ -139,11 +123,10 @@ const AntiGravityBackground = () => {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 20;
-        this.vx = (Math.random() - 0.5) * 0.5; 
+        this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() * -0.5) - FLOAT_SPEED;
-        this.size = Math.random() < 0.8 ? Math.random() * 2 + 1 : Math.random() * 3 + 2; 
+        this.size = Math.random() * 2 + 0.5;
         this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        this.friction = 0.94;
       }
 
       update() {
@@ -153,18 +136,14 @@ const AntiGravityBackground = () => {
 
         if (distance < MOUSE_RADIUS) {
           const angle = Math.atan2(dy, dx);
-          const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS; 
-          const repulsion = force * REPULSION_STRENGTH;
-          this.vx -= Math.cos(angle) * repulsion;
-          this.vy -= Math.sin(angle) * repulsion;
+          const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS;
+          this.vx -= Math.cos(angle) * force * 0.5;
+          this.vy -= Math.sin(angle) * force * 0.5;
         }
 
         this.x += this.vx;
         this.y += this.vy;
-        this.vx *= this.friction;
-        
-        const targetVy = -FLOAT_SPEED - (Math.random() * 0.2);
-        this.vy += (targetVy - this.vy) * 0.05;
+        this.vx *= 0.95;
 
         if (this.y < -20) this.reset(false);
         if (this.x < -20) this.x = width + 20;
@@ -176,7 +155,9 @@ const AntiGravityBackground = () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
+        ctx.globalAlpha = 0.4;
         ctx.fill();
+        ctx.globalAlpha = 1;
       }
     }
 
@@ -194,9 +175,6 @@ const AntiGravityBackground = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      ctx.globalCompositeOperation = isDarkMode ? 'screen' : 'source-over';
-
       particles.forEach((particle) => {
         particle.update();
         particle.draw();
@@ -210,19 +188,16 @@ const AntiGravityBackground = () => {
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
     };
-    const handleMouseLeave = () => { mouse.x = -1000; mouse.y = -1000; };
 
     init();
     animate();
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
@@ -230,10 +205,9 @@ const AntiGravityBackground = () => {
   if (isMobile) return null;
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{ opacity: 1 }} 
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-0 pointer-events-none opacity-60"
     />
   );
 };
@@ -265,8 +239,8 @@ const Home = () => {
   const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 });
 
-  const cardX = useTransform(smoothX, (v) => v * -0.03); 
-  const cardY = useTransform(smoothY, (v) => v * -0.03);
+  const cardX = useTransform(smoothX, (v) => v * -0.02);
+  const cardY = useTransform(smoothY, (v) => v * -0.02);
 
   // --- TESTIMONIAL CAROUSEL STATE ---
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -274,25 +248,9 @@ const Home = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
-    }, 4000); 
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
-
-  const getCardStyle = (index) => {
-    const length = TESTIMONIALS.length;
-    let diff = (index - activeTestimonial + length) % length;
-    if (diff > length / 2) diff -= length;
-
-    if (diff === 0) {
-      return { x: 0, scale: 1, opacity: 1, zIndex: 10, blur: '0px', brightness: 1 };
-    } else if (diff > 0) {
-       const isFirst = diff === 1;
-       return { x: isFirst ? '50%' : '100%', scale: isFirst ? 0.85 : 0.7, opacity: isFirst ? 0.4 : 0, zIndex: 10 - diff, blur: '2px', brightness: 0.8 };
-    } else {
-       const isFirst = diff === -1;
-       return { x: isFirst ? '-50%' : '-100%', scale: isFirst ? 0.85 : 0.7, opacity: isFirst ? 0.4 : 0, zIndex: 10 + diff, blur: '2px', brightness: 0.8 };
-    }
-  };
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -305,186 +263,141 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 font-sans min-h-screen">
-      
+
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-10 lg:pt-40 lg:pb-20 overflow-hidden min-h-[90vh] flex items-center">
-  
+      <section className="relative pt-28 pb-10 lg:pt-36 lg:pb-16 overflow-hidden min-h-[85vh] flex items-center">
+
         <AntiGravityBackground />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
             {/* LEFT SIDE: Text */}
-            <motion.div 
-              initial="hidden" 
-              animate="visible" 
-              variants={fadeInUp} 
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
               className="text-center lg:text-left z-20"
             >
               {/* BRAND LOGO HEADER */}
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-8 group cursor-default">
-                  {/* Logo Container */}
-                  {/* Replaced Terminal Icon with Image */}
-                              <img 
-                                  src={logo} 
-                                  alt="AshSoft Logo" 
-                                  className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
-                              />
-
-                  {/* Brand Name Text */}
-                  <div className="text-left">
-                      <div className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white leading-none">
-                          Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
-                      </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6 group cursor-default">
+                <img
+                  src={logo}
+                  alt="AshSoft Logo"
+                  className="w-8 h-8 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="text-left">
+                  <div className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white leading-none">
+                    Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f]">Soft</span>
                   </div>
+                </div>
               </div>
 
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase tracking-wider mb-6 cursor-default shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-wider mb-6 cursor-default shadow-sm hover:scale-105 transition-transform">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
                 </span>
-                Version 2.0 Now Live
+                Full-Cycle Tech Startup
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6">
-                Intelligent Systems.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
-                    Maximum Efficiency.
+              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6">
+                We Build Digital <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
+                  Growth Engines.
                 </span>
               </h1>
 
-              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                We design bespoke software ecosystems that eliminate manual bottlenecks. Scale your operations without scaling your headcount through <strong>intelligent automation</strong> and <strong>robust architecture</strong>.
+              <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                From <strong>MERN Stack Apps</strong> to <strong>AI Automation</strong> and <strong>Digital Marketing</strong>. We are the startup that powers your startup.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link to="/contact" className="px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:opacity-90 transition shadow-xl shadow-slate-500/20 flex items-center justify-center gap-2 group text-sm transform hover:-translate-y-1">
-                  Start Your Transformation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:opacity-90 transition shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 group text-sm"
+                  >
+                    Start Your Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
                 </Link>
-                <Link to="/services" className="px-8 py-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2 text-sm shadow-sm">
-                   View Solutions
+                <Link to="/services">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
+                  >
+                    Explore Services
+                  </motion.button>
                 </Link>
+              </div>
+
+              {/* Quick Tech Badges */}
+              <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start opacity-70">
+                {['MERN Stack', 'Java', 'Python AI', 'Google Automation', 'Supabase'].map((tech) => (
+                  <span key={tech} className="text-[10px] font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </motion.div>
 
             {/* RIGHT SIDE: Dashboard Card */}
             <motion.div
               style={{ x: cardX, y: cardY }}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
               className="relative hidden lg:block perspective-1000 max-w-md mx-auto z-10"
             >
-              <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-3xl border border-white/20 dark:border-slate-700/50 ring-1 ring-black/5 dark:ring-white/10 rounded-3xl p-6 shadow-2xl dark:shadow-indigo-500/10">
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-3xl border border-white/20 dark:border-slate-700/50 ring-1 ring-black/5 dark:ring-white/10 rounded-2xl p-5 shadow-2xl dark:shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500">
 
                 {/* Header */}
-                <div className="flex justify-between items-start mb-8 relative">
+                <div className="flex justify-between items-center mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                      <Zap size={18} fill="currentColor" className="text-white" />
+                    <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
+                      <Rocket size={16} />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-slate-800 dark:text-slate-100">
-                        Main Cluster Node
-                      </div>
-                      <div className="flex items-center gap-1.5 mt-0.5">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 tracking-wide">
-                          LIVE MONITORING
-                        </span>
-                      </div>
+                      <div className="text-xs font-bold text-slate-800 dark:text-slate-100">Growth Dashboard</div>
+                      <div className="text-[10px] text-emerald-500 font-bold">● System Active</div>
                     </div>
-                  </div>
-                  <button className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
-                    <MoreHorizontal size={20} />
-                  </button>
-                </div>
-
-                {/* Metrics */}
-                <div className="mb-6 p-1">
-                  <div className="flex justify-between items-end mb-2">
-                    <div>
-                        <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Revenue</div>
-                        <div className="text-3xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">
-                          $124,592
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-1 text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-lg border border-emerald-100 dark:border-emerald-900/30">
-                      <TrendingUp size={12} strokeWidth={3} />
-                      <span className="text-xs font-bold">+24.5%</span>
-                    </div>
-                  </div>
-                  
-                  {/* Sparkline */}
-                  <div className="h-16 w-full flex items-end gap-1">
-                    {[40, 65, 50, 80, 55, 90, 70, 95, 100].map((h, i) => (
-                      <motion.div 
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ delay: i * 0.05, duration: 0.5 }}
-                        className={`flex-1 rounded-t-sm ${i === 8 ? 'bg-indigo-500' : 'bg-indigo-100 dark:bg-slate-700/50'}`}
-                      />
-                    ))}
                   </div>
                 </div>
 
-                {/* Logs */}
-                <div className="space-y-3">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider pl-1">System Logs</div>
-                  
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <div className="text-[10px] text-slate-400 uppercase font-bold">Leads Generated</div>
+                    <div className="text-xl font-bold text-slate-900 dark:text-white mt-1">1,240</div>
+                    <div className="text-[10px] text-emerald-500 font-bold mt-1">↑ 12% vs last week</div>
+                  </div>
+                  <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <div className="text-[10px] text-slate-400 uppercase font-bold">Tasks Automated</div>
+                    <div className="text-xl font-bold text-slate-900 dark:text-white mt-1">8,502</div>
+                    <div className="text-[10px] text-indigo-500 font-bold mt-1">⚡ Saved 40hrs</div>
+                  </div>
+                </div>
+
+                {/* Automation Log */}
+                <div className="space-y-2">
                   {[
-                    { text: "Workflow #802 Executed", sub: "Payment Processed • Stripe API", time: "Just now", icon: ShieldCheck, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-900/20" },
-                    { text: "Database Sync", sub: "142 Records Updated • MongoDB", time: "2m ago", icon: Server, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-900/20" },
-                    { text: "Weekly Analytics PDF", sub: "Generated & Emailed", time: "1h ago", icon: FileCheck, color: "text-indigo-500", bg: "bg-indigo-50 dark:bg-indigo-900/20" },
+                    { icon: Table, text: "Google Sheets Sync", sub: "Data updated from CRM", color: "text-green-500", bg: "bg-green-100 dark:bg-green-900/20" },
+                    { icon: Megaphone, text: "Ad Campaign Live", sub: "Facebook & Instagram", color: "text-blue-500", bg: "bg-blue-100 dark:bg-blue-900/20" },
+                    { icon: Database, text: "Supabase Backup", sub: "Secure encryption", color: "text-purple-500", bg: "bg-purple-100 dark:bg-purple-900/20" }
                   ].map((item, i) => (
-                    <motion.div 
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + (i * 0.1) }}
-                      className="group flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all cursor-default"
-                    >
-                      <div className={`w-10 h-10 rounded-full ${item.bg} flex items-center justify-center ${item.color} shadow-sm`}>
-                        <item.icon size={18} />
+                    <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer">
+                      <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.color} flex items-center justify-center`}>
+                        <item.icon size={14} />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">
-                          {item.text}
-                        </div>
-                        <div className="text-[10px] text-slate-500 truncate">
-                          {item.sub}
-                        </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{item.text}</div>
+                        <div className="text-[10px] text-slate-400">{item.sub}</div>
                       </div>
-                      <div className="text-[10px] font-mono text-slate-400 whitespace-nowrap">
-                        {item.time}
-                      </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-
-                {/* Notification */}
-                <motion.div 
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  className="absolute -right-6 top-24 bg-white dark:bg-slate-800 p-3 pr-4 rounded-xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] border border-slate-100 dark:border-slate-700 flex items-center gap-3"
-                >
-                  <div className="relative">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full absolute top-0 right-0 border-2 border-white dark:border-slate-800"></div>
-                    <div className="bg-slate-100 dark:bg-slate-700 p-2 rounded-lg text-slate-600 dark:text-slate-300">
-                       <Bell size={16} />
-                    </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase">Status</span>
-                    <span className="text-xs font-bold text-slate-900 dark:text-white">All Systems Go</span>
-                  </div>
-                </motion.div>
 
               </div>
             </motion.div>
@@ -493,278 +406,260 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 2. STATS SECTION (Transparent) */}
-      <section className="py-12 bg-transparent relative z-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-3xl border border-slate-200/50 dark:border-slate-800/50 p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-200/50 dark:divide-slate-800/50">
-                {[
-                    { label: "Reliability Uptime", val: 99.99, suffix: "%" },
-                    { label: "Monthly Operations", val: 1.2, suffix: "M+" },
-                    { label: "Annual Client Savings", val: 4.5, prefix: "$", suffix: "M+" },
-                    { label: "Avg. ROI / Project", val: 800, suffix: "%" }
-                ].map((stat, i) => (
-                    <div key={i} className="flex flex-col items-center justify-center text-center">
-                        <div className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">
-                            <Counter value={stat.val} suffix={stat.suffix} prefix={stat.prefix} decimals={stat.val % 1 !== 0 ? 1 : 2} />
-                        </div>
-                        <div className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{stat.label}</div>
-                    </div>
-                ))}
-            </div>
+      {/* 2. STATS SECTION (Compact) */}
+      <section className="py-10 bg-transparent relative z-10 border-y border-slate-100 dark:border-slate-800/50">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { label: "Projects Shipped", val: 150, suffix: "+" },
+              { label: "Lines of Code", val: 2.5, suffix: "M+" },
+              { label: "Hours Saved", val: 50, suffix: "k+" },
+              { label: "Happy Clients", val: 98, suffix: "%" }
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center justify-center text-center group">
+                <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-1 tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <Counter value={stat.val} suffix={stat.suffix} decimals={stat.val % 1 !== 0 ? 1 : 0} />
+                </div>
+                <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 3. EXPERTISE SECTION */}
-      <section className="py-24 px-4 relative overflow-hidden bg-transparent">
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">Our Core Capabilities</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-xl max-w-2xl mx-auto">
-                  We don't just write code; we architect solutions that drive measurable business outcomes.
-              </p>
+      {/* 3. EXPERTISE SECTION (Expanded Services) */}
+      <section className="py-20 px-4 relative overflow-hidden bg-transparent">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">Our Expertise</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Complete Digital Solutions</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
+              From coding complex backends to running high-ROI marketing campaigns. We do it all.
+            </p>
           </div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
-            <SpotlightCard 
-                to="/services/automation"
-                icon={FileSpreadsheet}
-                title="Google Apps Automation"
-                desc="Stop doing manual data entry. We write scripts to automate your Google Sheets, Gmail, and Docs so they talk to each other perfectly."
-                techs={['Google Apps Script', 'Sheets API', 'Gmail Automation']}
-                color="emerald"
+            {/* 1. MERN Stack */}
+            <SpotlightCard
+              to="/services/development"
+              icon={Code2}
+              title="Full-Stack Dev"
+              desc="Scalable web apps using React, Node.js, and MongoDB. Fast, secure, and built for growth."
+              techs={['React', 'Node.js', 'MongoDB', 'Express']}
+              color="blue"
             />
-            <SpotlightCard 
-                to="/services/web"
-                icon={Globe}
-                title="Modern Web Development"
-                desc="Get a professional website that loads fast. We build custom sites that look great on mobile and help your business grow."
-                techs={['React / Next.js', 'Tailwind CSS', 'TypeScript']}
-                color="blue"
+
+            {/* 2. Java & Enterprise */}
+            <SpotlightCard
+              to="/services/enterprise"
+              icon={Coffee}
+              title="Java Enterprise"
+              desc="Robust backend systems powered by Java Spring Boot. Perfect for large-scale transaction processing."
+              techs={['Java', 'Spring Boot', 'Microservices']}
+              color="orange"
             />
-            <SpotlightCard 
-                to="/services/enterprise"
-                icon={Database}
-                title="Scalable Infrastructure"
-                desc="Backend systems designed for resilience. From microservices to serverless architectures, we build foundations that handle millions of requests securely."
-                techs={['Node.js / Express.js', 'AWS / Docker', 'PostgreSQL','Java / SpringBoot']}
-                color="violet"
+
+            {/* 3. Automation */}
+            <SpotlightCard
+              to="/services/automation"
+              icon={Table}
+              title="Google Automation"
+              desc="Automate your workflow. We script Google Sheets, Gmail & Docs to save you hours of manual work."
+              techs={['Apps Script', 'Sheets API', 'Gmail Automations']}
+              color="green"
+            />
+
+            {/* 4. Supabase & Database */}
+            <SpotlightCard
+              to="/services/cloud"
+              icon={Database}
+              title="Supabase & Cloud"
+              desc="Real-time databases and authentication using Supabase. Serverless power without the headache."
+              techs={['Supabase', 'PostgreSQL', 'Auth', 'Edge Functions']}
+              color="emerald"
+            />
+
+            {/* 5. AI Solutions */}
+            <SpotlightCard
+              to="/services/ai"
+              icon={Bot}
+              title="AI Integration"
+              desc="Smart chatbots and predictive analytics using Python and OpenAI. Make your data work for you."
+              techs={['Python', 'OpenAI API', 'TensorFlow', 'Chatbots']}
+              color="violet"
+            />
+
+            {/* 6. Digital Marketing */}
+            <SpotlightCard
+              to="/services/marketing"
+              icon={Megaphone}
+              title="Digital Marketing"
+              desc="Data-driven SEO, Google Ads, and Social Media campaigns to acquire customers for your startup."
+              techs={['SEO/SEM', 'Google Ads', 'Content Strategy', 'Analytics']}
+              color="pink"
             />
           </motion.div>
         </div>
       </section>
 
-      {/* 4. PROCESS SECTION */}
-      <section className="py-24 px-4 bg-transparent relative">
-        <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-20">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                    The Blueprint
-                </div>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
-                    Engineering Methodology
-                </h2>
-                <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-                    We don't guess. We follow a battle-tested architecture process to ensure scalability from Day 1.
-                </p>
-            </div>
-            {/* Process Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                
-                {/* Connecting Line (Desktop Only) */}
-                <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent z-0"></div>
-
-                {[
-                    { 
-                        number: "01",
-                        title: "Deep-Dive Discovery", 
-                        desc: "We audit your current workflow, identify data silos, and map out a technical architecture aligned with your revenue goals.",
-                        icon: Search,
-                        color: "text-blue-600 dark:text-blue-400",
-                        bg: "bg-blue-100 dark:bg-blue-900/20",
-                        border: "group-hover:border-blue-500/50"
-                    },
-                    { 
-                        number: "02", 
-                        title: "Iterative Build", 
-                        desc: "Two-week agile sprints. You get testable prototypes early, ensuring the logic fits your business needs perfectly before finalization.",
-                        icon: Code,
-                        color: "text-violet-600 dark:text-violet-400",
-                        bg: "bg-violet-100 dark:bg-violet-900/20",
-                        border: "group-hover:border-violet-500/50"
-                    },
-                    { 
-                        number: "03", 
-                        title: "Launch & Handoff", 
-                        desc: "Zero-downtime deployment. We provide comprehensive API documentation and train your internal team for total ownership.",
-                        icon: Rocket,
-                        color: "text-emerald-600 dark:text-emerald-400",
-                        bg: "bg-emerald-100 dark:bg-emerald-900/20",
-                        border: "group-hover:border-emerald-500/50"
-                    }
-                ].map((step, i) => (
-                    <div key={i} className={`group relative bg-white dark:bg-slate-900/50 backdrop-blur-sm p-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-none ${step.border} z-10`}>
-                        <div className="absolute top-4 right-8 text-6xl font-black text-slate-100 dark:text-slate-800/50 -z-10 select-none transition-colors group-hover:text-slate-200 dark:group-hover:text-slate-800">
-                            {step.number}
-                        </div>
-                        <div className={`w-14 h-14 rounded-2xl ${step.bg} ${step.color} flex items-center justify-center mb-6 shadow-sm transition-transform group-hover:scale-110 duration-300`}>
-                            <step.icon size={28} />
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
-                            {step.title}
-                        </h3>
-                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm">
-                            {step.desc}
-                        </p>
-                    </div>
-                ))}
-            </div>
-        </div>
-      </section>
-
-    {/* --- 5. TECH STACK MARQUEE --- */}
-      <section className="py-24 bg-transparent border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
-             style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      {/* 4. TECH STACK MARQUEE */}
+      <section className="py-16 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 text-center mb-10 relative z-10">
+          <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
+            Powered by Modern Tech
+          </h2>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 text-center mb-12 relative z-10">
-            <span className="inline-block py-1 px-3 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest mb-2">
-                The Engine Room
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-                Enterprise-Grade Technology Stack
-            </h2>
-            <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mt-4">
-                We leverage a battle-tested suite of modern technologies designed for speed, security, and scalability. No bloat, just performance.
-            </p>
-        </div>
-        
-        {/* Marquee Container */}
         <div className="relative flex overflow-x-hidden group">
-            <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent"></div>
 
-            <motion.div 
-                className="flex gap-6 items-center whitespace-nowrap"
-                animate={{ x: "-50%" }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
-            >
-                {[...Array(2)].map((_, groupIndex) => (
-                    <React.Fragment key={groupIndex}>
-                       {[
-                          { name: "React", icon: Code2, color: "text-blue-500", shadow: "group-hover:shadow-blue-500/20", border: "group-hover:border-blue-500/50" },
-                          { name: "Node.js", icon: Server, color: "text-green-500", shadow: "group-hover:shadow-green-500/20", border: "group-hover:border-green-500/50" },
-                          { name: "AWS Cloud", icon: Cloud, color: "text-orange-500", shadow: "group-hover:shadow-orange-500/20", border: "group-hover:border-orange-500/50" },
-                          { name: "MongoDB", icon: Database, color: "text-emerald-500", shadow: "group-hover:shadow-emerald-500/20", border: "group-hover:border-emerald-500/50" },
-                          { name: "Python", icon: FileSpreadsheet, color: "text-yellow-500", shadow: "group-hover:shadow-yellow-500/20", border: "group-hover:border-yellow-500/50" },
-                          { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white", shadow: "group-hover:shadow-slate-500/20", border: "group-hover:border-slate-500/50" },
-                          { name: "Docker", icon: Globe, color: "text-blue-400", shadow: "group-hover:shadow-blue-400/20", border: "group-hover:border-blue-400/50" },
-                          { name: "Tailwind", icon: Layout, color: "text-cyan-500", shadow: "group-hover:shadow-cyan-500/20", border: "group-hover:border-cyan-500/50" }
-                        ].map((tech, i) => (
-                           <div key={i} className={`group relative flex items-center gap-4 px-8 py-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${tech.border} ${tech.shadow}`}>
-                             <div className={`w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${tech.color}`}>
-                                 <tech.icon size={22} />
-                             </div>
-                             <div className="flex flex-col">
-                                 <span className="text-lg font-bold text-slate-700 dark:text-slate-200">{tech.name}</span>
-                                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Production Ready</span>
-                             </div>
-                             <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-current ${tech.color}`}></div>
-                           </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </motion.div>
-        </div>
-      </section>
-
-      {/* --- 6. FOCUS CAROUSEL TESTIMONIALS --- */}
-      <section className="py-16 px-4 bg-transparent overflow-hidden">
-        <div className="max-w-4xl mx-auto mb-10 px-4 text-center">
-             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Trusted by Industry Leaders</h2>
-             <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-6">
-               Real results from real partners. We measure our success by the growth of our clients.
-             </p>
-             <div className="flex items-center justify-center gap-2">
-                 <div className="flex">
-                     {[1,2,3,4,5].map(s => <Star key={s} size={16} className="text-yellow-400 fill-yellow-400" />)}
-                 </div>
-                 <span className="text-slate-700 dark:text-white text-sm font-bold">5.0/5 Average Client Rating</span>
-             </div>
-        </div>
-
-        {/* Carousel Container */}
-        <div className="relative h-[300px] w-full max-w-4xl mx-auto perspective-1000">
-            {TESTIMONIALS.map((t, index) => {
-              const style = getCardStyle(index);
-              
-              return (
-                <motion.div 
-                  key={t.id}
-                  className="absolute top-0 left-0 right-0 mx-auto w-full max-w-lg md:max-w-xl"
-                  initial={style}
-                  animate={style}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  style={{
-                    filter: `blur(${style.blur}) brightness(${style.brightness})`
-                  }}
-                >
-                  <div className="relative bg-white dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col items-center text-center h-full">
-                      
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center shadow-lg mb-4`}>
-                         <Quote size={20} className="text-white fill-white/20" />
-                      </div>
-
-                      <div className="flex-1">
-                         <p className="text-lg font-medium text-slate-800 dark:text-slate-100 leading-relaxed mb-6">
-                            "{t.quote}"
-                         </p>
-                         <div className="flex flex-col items-center">
-                            <div className="font-bold text-slate-900 dark:text-white text-base">{t.author}</div>
-                            <div className="text-xs text-slate-500 dark:text-slate-400">{t.role} @ <span className="text-indigo-600 dark:text-indigo-400 font-semibold">{t.company}</span></div>
-                         </div>
-                      </div>
+          <motion.div
+            className="flex gap-8 items-center whitespace-nowrap"
+            animate={{ x: "-50%" }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+          >
+            {[...Array(2)].map((_, groupIndex) => (
+              <React.Fragment key={groupIndex}>
+                {[
+                  { name: "React", icon: Code2, color: "text-blue-500" },
+                  { name: "Node.js", icon: Server, color: "text-green-500" },
+                  { name: "Supabase", icon: Database, color: "text-emerald-500" },
+                  { name: "Java", icon: Coffee, color: "text-orange-500" },
+                  { name: "Python", icon: FileSpreadsheet, color: "text-yellow-500" },
+                  { name: "Google Sheets", icon: Table, color: "text-green-600" },
+                  { name: "Tailwind", icon: Layout, color: "text-cyan-500" },
+                  { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white" },
+                  { name: "Docker", icon: Globe, color: "text-blue-400" }
+                ].map((tech, i) => (
+                  <div key={i} className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 hover:scale-110 cursor-pointer px-4">
+                    <tech.icon size={24} className={tech.color} />
+                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{tech.name}</span>
                   </div>
-                </motion.div>
-              );
-            })}
-        </div>
-
-        {/* Manual Navigation Dots */}
-        <div className="flex justify-center gap-2 mt-4">
-           {TESTIMONIALS.map((_, i) => (
-             <button
-               key={i}
-               onClick={() => setActiveTestimonial(i)}
-               className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === activeTestimonial ? 'w-6 bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700 hover:bg-slate-400'}`}
-             />
-           ))}
+                ))}
+              </React.Fragment>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* 7. CTA SECTION */}
-      <section className="py-20 px-3 bg-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block p-4 rounded-full bg-indigo-50 dark:bg-indigo-900/20 mb-6">
-                <Cpu size={32} className="text-indigo-600 dark:text-indigo-400" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6">Ready to scale securely?</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-xl mb-10">
-                Stop patching together temporary fixes. Let's build a system that grows with you.
-            </p>
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-indigo-600 text-white font-bold px-10 py-4 rounded-full hover:bg-indigo-700 transition shadow-xl shadow-indigo-500/30 text-lg">
-              Get a Free Consultation <ArrowRight size={20} />
-            </Link>
+      {/* 5. TRUSTED BY INDUSTRY LEADERS SECTION (Compact & Animated) */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-3"
+            >
+              <Star size={14} />
+              <span>Client Success Stories</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+            >
+              Trusted by Industry Leaders
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5 mb-12">
+            {TESTIMONIALS.map((t, i) => (
+              <motion.div
+                key={t.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, boxShadow: "0 20px 40px -15px rgba(0,0,0,0.1)" }}
+                className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col hover:border-indigo-500/30 transition-colors"
+              >
+                <Quote className="text-indigo-200 dark:text-indigo-800 mb-4" size={32} />
+                <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 italic mb-6 flex-grow leading-relaxed">"{t.quote}"</p>
+                <div className="flex items-center gap-3 mt-auto">
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-bold text-lg shadow-md`}>
+                    {t.author[0]}
+                  </div>
+                  <div>
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">{t.author}</div>
+                    <div className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Animated Logo Marquee */}
+          <div className="relative overflow-hidden group">
+            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-white dark:from-slate-950 to-transparent"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-white dark:from-slate-950 to-transparent"></div>
+
+            <motion.div
+              className="flex gap-16 items-center whitespace-nowrap"
+              animate={{ x: "-50%" }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+            >
+              {[...Array(4)].map((_, groupIndex) =>
+                ['FinTech Inc', 'HealthPlus', 'EduLearn', 'LogiChain', 'RetailAI', 'AgriTech', 'BuildOps', 'SecureNet'].map((company, i) => (
+                  <div key={`${groupIndex}-${i}`} className="text-xl font-black text-slate-300 dark:text-slate-700 hover:text-indigo-500 transition-colors cursor-default select-none">
+                    {company}
+                  </div>
+                ))
+              )}
+            </motion.div>
+          </div>
         </div>
+      </section>
+
+      {/* 6. CTA SECTION */}
+      <section className="py-20 px-4 bg-transparent relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center bg-gradient-to-r from-indigo-500/5 to-purple-500/5 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl p-10 border border-indigo-100 dark:border-indigo-800/30 relative"
+        >
+          <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
+            <Rocket size={100} className="text-indigo-500" />
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 relative z-10">
+            Have a Project in Mind?
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400 text-lg mb-10 max-w-xl mx-auto relative z-10">
+            Whether you need a full-stack app, automation scripts, or a digital marketing push, we are your all-in-one technical partner.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center gap-2 bg-indigo-600 text-white font-bold px-8 py-4 rounded-2xl hover:bg-indigo-700 transition shadow-xl shadow-indigo-500/30 text-base"
+              >
+                Get Free Consultation <ArrowRight size={20} />
+              </motion.button>
+            </Link>
+            <Link to="/pricing">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-white font-bold px-8 py-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700 text-base"
+              >
+                View Pricing
+              </motion.button>
+            </Link>
+          </div>
+        </motion.div>
       </section>
 
     </div>
@@ -773,72 +668,79 @@ const Home = () => {
 
 // --- SUB-COMPONENT: SPOTLIGHT EXPERTISE CARD ---
 const SpotlightCard = ({ to, icon: Icon, title, desc, techs, color }) => {
-    let mouseX = useMotionValue(0);
-    let mouseY = useMotionValue(0);
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
 
-    function handleMouseMove({ currentTarget, clientX, clientY }) {
-        let { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
-    const textColors = {
-        emerald: 'text-emerald-600 dark:text-emerald-400',
-        blue: 'text-blue-600 dark:text-blue-400',
-        violet: 'text-violet-600 dark:text-violet-400'
-    };
+  const mouseXSpring = useSpring(mouseX);
+  const mouseYSpring = useSpring(mouseY);
+  const rotateX = useTransform(mouseYSpring, [0, 400], [5, -5]);
+  const rotateY = useTransform(mouseXSpring, [0, 300], [-5, 5]);
 
-    const iconBg = {
-        emerald: 'bg-emerald-100 dark:bg-emerald-900/30',
-        blue: 'bg-blue-100 dark:bg-blue-900/30',
-        violet: 'bg-violet-100 dark:bg-violet-900/30'
-    };
+  const colorClasses = {
+    emerald: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 group-hover:border-emerald-500/30',
+    blue: 'text-blue-500 bg-blue-50 dark:bg-blue-900/20 group-hover:border-blue-500/30',
+    violet: 'text-violet-500 bg-violet-50 dark:bg-violet-900/20 group-hover:border-violet-500/30',
+    orange: 'text-orange-500 bg-orange-50 dark:bg-orange-900/20 group-hover:border-orange-500/30',
+    pink: 'text-pink-500 bg-pink-50 dark:bg-pink-900/20 group-hover:border-pink-500/30',
+    green: 'text-green-600 bg-green-50 dark:bg-green-900/20 group-hover:border-green-600/30',
+  };
 
-    return (
-        <Link to={to} className="block h-full">
-            <motion.div 
-                variants={fadeInUp} 
-                className="group relative h-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden"
-                onMouseMove={handleMouseMove}
-            >
-                <motion.div
-                    className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
-                    style={{
-                        background: useMotionTemplate`
-                            radial-gradient(
-                                650px circle at ${mouseX}px ${mouseY}px,
-                                rgba(14, 165, 233, 0.1),
-                                transparent 80%
-                            )
-                        `
-                    }}
-                />
-                
-                <div className="relative p-8 h-full flex flex-col">
-                    <div className={`w-14 h-14 rounded-2xl ${iconBg[color]} ${textColors[color]} flex items-center justify-center mb-6 transition-transform group-hover:scale-110 duration-300`}>
-                        <Icon size={28} />
-                    </div>
+  return (
+    <Link to={to} className="block h-full group perspective-1000">
+      <motion.div
+        variants={fadeInUp}
+        onMouseMove={handleMouseMove}
+        whileHover={{ y: -5 }}
+        className={`relative h-full bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-none overflow-hidden z-10 ${colorClasses[color].split(' ').pop()}`}
+      >
+        {/* Spotlight Gradient */}
+        <motion.div
+          className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
+          style={{
+            background: useMotionTemplate`
+                      radial-gradient(
+                        400px circle at ${mouseX}px ${mouseY}px,
+                        rgba(99, 102, 241, 0.1),
+                        transparent 80%
+                      )
+                    `,
+          }}
+        />
 
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{title}</h3>
-                    <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed text-sm">
-                        {desc}
-                    </p>
+        <div className={`w-12 h-12 rounded-xl ${colorClasses[color].split(' ').slice(0, 3).join(' ')} flex items-center justify-center mb-4 transition-transform group-hover:scale-110 duration-500`}>
+          <Icon size={24} />
+        </div>
 
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                        {techs.map((t, i) => (
-                            <span key={i} className="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold rounded-lg uppercase tracking-wide">
-                                {t}
-                            </span>
-                        ))}
-                    </div>
-                    
-                    <div className={`absolute top-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 ${textColors[color]}`}>
-                        <ArrowRight />
-                    </div>
-                </div>
-            </motion.div>
-        </Link>
-    );
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+          {title}
+        </h3>
+
+        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+          {desc}
+        </p>
+
+        <div className="mt-auto">
+          <div className="flex flex-wrap gap-2">
+            {techs.map((tech, i) => (
+              <span key={i} className="text-[10px] font-medium px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
+          <ArrowRight size={16} className="text-indigo-500" />
+        </div>
+      </motion.div>
+    </Link>
+  );
 };
 
 export default Home;
