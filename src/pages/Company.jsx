@@ -184,7 +184,8 @@ const Company = () => {
                             <div className="text-center">
                                 <MapPin className="mx-auto mb-3" size={32} />
                                 <p className="font-semibold mb-1">Location</p>
-                                <p className="text-indigo-100">San Francisco, CA</p>
+                                <p className="text-indigo-100">Anuppur, Madhya Pradesh</p>
+                                <p className="text-indigo-200 text-sm mt-1">Working Remotely</p>
                             </div>
                         </div>
 

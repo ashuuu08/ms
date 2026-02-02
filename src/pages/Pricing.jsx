@@ -137,10 +137,10 @@ const Pricing = () => {
                             whileHover={{
                                 y: -12,
                                 scale: 1.02,
-                                transition: { type: "spring", stiffness: 300, damping: 20 }
+                                transition: { type: "spring", stiffness: 400, damping: 15, duration: 0.2 }
                             }}
                             className={`relative rounded-2xl transition-all duration-300 group overflow-hidden ${plan.popular
-                                ? 'bg-white dark:bg-slate-900 shadow-2xl scale-105 border-2 border-indigo-500 dark:border-indigo-400'
+                                ? 'bg-white dark:bg-slate-900 shadow-2xl scale-105 border-2 border-indigo-500 dark:border-indigo-400 ring-2 ring-indigo-200 dark:ring-indigo-800'
                                 : 'bg-white dark:bg-slate-900 shadow-lg hover:shadow-2xl border-2 border-slate-200 dark:border-slate-800'
                                 }`}
                         >
@@ -156,16 +156,8 @@ const Pricing = () => {
 
                             {/* Glow effect on hover */}
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-all duration-300 pointer-events-none"></div>
-                            {/* Popular Badge */}
-                            {plan.popular && (
-                                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                                    <div className="px-3 py-1 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold shadow-lg">
-                                        Most Popular
-                                    </div>
-                                </div>
-                            )}
 
-                            <div className="p-6">
+                            <div className="p-6 relative">
                                 {/* Icon - Smaller */}
                                 <div className={`inline-flex p-2.5 rounded-lg bg-gradient-to-r ${plan.gradient} mb-4`}>
                                     <Icon className="text-white" size={20} />
@@ -229,6 +221,165 @@ const Pricing = () => {
                     );
                 })}
             </div>
+
+            {/* Why Choose Our Pricing - Animated Facts */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mt-16 mb-12"
+            >
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                        Why Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Pricing Works</span>
+                    </h2>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                        Transparent, flexible, and designed to grow with your business
+                    </p>
+                </div>
+
+                {/* Animated Facts Grid */}
+                <div className="grid md:grid-cols-4 gap-6 mb-12">
+                    {[
+                        {
+                            number: "100%",
+                            label: "Transparent",
+                            description: "No hidden fees or surprise charges",
+                            gradient: "from-blue-500 to-cyan-500"
+                        },
+                        {
+                            number: "24/7",
+                            label: "Support",
+                            description: "Round-the-clock assistance for all plans",
+                            gradient: "from-indigo-500 to-purple-500"
+                        },
+                        {
+                            number: "30-Day",
+                            label: "Guarantee",
+                            description: "Money-back if you're not satisfied",
+                            gradient: "from-purple-500 to-pink-500"
+                        },
+                        {
+                            number: "Custom",
+                            label: "Solutions",
+                            description: "Tailored to your specific needs",
+                            gradient: "from-green-500 to-emerald-500"
+                        }
+                    ].map((fact, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -8, scale: 1.05 }}
+                            className="bg-white dark:bg-slate-900 rounded-2xl p-6 border-2 border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all shadow-lg hover:shadow-2xl"
+                        >
+                            <div className={`inline-flex px-4 py-2 rounded-lg bg-gradient-to-r ${fact.gradient} mb-4`}>
+                                <span className="text-2xl font-bold text-white">{fact.number}</span>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{fact.label}</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{fact.description}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* What's Included Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-indigo-100 dark:border-indigo-800/50 mb-12"
+                >
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">
+                        What's Included in Every Plan
+                    </h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "Quality Assurance",
+                                items: ["Code review", "Testing", "Bug fixes", "Performance optimization"]
+                            },
+                            {
+                                title: "Documentation",
+                                items: ["Technical docs", "User guides", "API documentation", "Video tutorials"]
+                            },
+                            {
+                                title: "Deployment",
+                                items: ["Cloud setup", "SSL certificate", "Domain configuration", "Launch support"]
+                            }
+                        ].map((section, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800"
+                            >
+                                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{section.title}</h4>
+                                <ul className="space-y-2">
+                                    {section.items.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                                            <Check size={16} className="text-green-500 shrink-0" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Pricing Philosophy */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="bg-white dark:bg-slate-900 rounded-2xl p-8 border-2 border-slate-200 dark:border-slate-800 mb-12"
+                >
+                    <div className="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                                Our Pricing Philosophy
+                            </h3>
+                            <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                                We believe in fair, transparent pricing that scales with your business. Every project is unique,
+                                and we take the time to understand your specific requirements before providing a quote.
+                            </p>
+                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                No one-size-fits-all packages. No hidden fees. Just honest pricing based on the value we deliver.
+                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            {[
+                                { icon: "💰", title: "Value-Based", desc: "Pay for results, not hours" },
+                                { icon: "📊", title: "Scalable", desc: "Pricing that grows with you" },
+                                { icon: "🤝", title: "Flexible", desc: "Payment plans available" },
+                                { icon: "✅", title: "All-Inclusive", desc: "No surprise charges" }
+                            ].map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                                    className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700"
+                                >
+                                    <span className="text-3xl">{item.icon}</span>
+                                    <div>
+                                        <h4 className="font-bold text-slate-900 dark:text-white mb-1">{item.title}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-400">{item.desc}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
+            </motion.div>
 
             {/* CTA Section - Compact */}
             <div className="text-center bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-8 border border-indigo-100 dark:border-indigo-800/50">

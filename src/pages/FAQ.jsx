@@ -50,7 +50,7 @@ const FAQ = () => {
                 },
                 {
                     question: 'How can I get started with AshbitSoft?',
-                    answer: 'Simply reach out through our contact page or book a call. We\'ll schedule an initial consultation to understand your needs and provide a custom proposal for your project.'
+                    answer: 'Simply reach out through our contact page or click "Let\'s Talk". We\'ll schedule an initial consultation to understand your needs and provide a custom proposal for your project.'
                 },
                 {
                     question: 'Do you work with startups or only established companies?',
@@ -133,22 +133,57 @@ const FAQ = () => {
                     </div>
                 ))}
 
-                {/* Contact CTA */}
-                <div className="mt-16 text-center p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50">
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                        Still have questions?
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-400 mb-6">
-                        Our team is here to help. Get in touch with us for personalized assistance.
-                    </p>
-                    <a
-                        href="/contact"
-                        className="inline-block px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                    >
-                        Contact Us
-                    </a>
-                </div>
+                {/* Quick Stats Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mt-16 grid md:grid-cols-3 gap-8"
+                >
+                    {[
+                        { value: "2-4 Weeks", label: "Average Project Start", icon: "🚀" },
+                        { value: "100%", label: "Client Satisfaction", icon: "⭐" },
+                        { value: "24/7", label: "Support Available", icon: "💬" }
+                    ].map((stat, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -8, scale: 1.05, transition: { duration: 0.2 } }}
+                            className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-indigo-100 dark:border-indigo-800/50 text-center"
+                        >
+                            <div className="text-5xl mb-4">{stat.icon}</div>
+                            <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">{stat.value}</div>
+                            <div className="text-sm font-medium text-slate-600 dark:text-slate-400">{stat.label}</div>
+                        </motion.div>
+                    ))}
+                </motion.div>
 
+                {/* Still Have Questions CTA */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mt-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-12 text-white"
+                >
+                    <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
+                    <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+                        Our team is here to help. Reach out and we'll get back to you within 24 hours.
+                    </p>
+                    <a href="/contact">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-4 bg-white text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition-all shadow-xl"
+                        >
+                            Contact Us
+                        </motion.button>
+                    </a>
+                </motion.div>
             </div>
         </div>
     );

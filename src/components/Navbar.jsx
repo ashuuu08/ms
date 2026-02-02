@@ -134,20 +134,22 @@ const Navbar = () => {
                 </span>
               </Link>
 
-              {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-                {solutionsDropdownItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap ${location.pathname === item.path
-                      ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
-                      }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              {/* Dropdown Menu - Simple & Clean */}
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                <div className="py-2">
+                  {solutionsDropdownItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`block px-5 py-3 text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 ${location.pathname === item.path
+                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+                        }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -183,20 +185,22 @@ const Navbar = () => {
                 </span>
               </button>
 
-              {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-                {companyDropdownItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap ${location.pathname === item.path
-                      ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
-                      }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              {/* Dropdown Menu - Simple & Clean */}
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                <div className="py-2">
+                  {companyDropdownItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`block px-5 py-3 text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 ${location.pathname === item.path
+                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+                        }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -223,7 +227,7 @@ const Navbar = () => {
                 <div className="absolute inset-0 bg-slate-900 dark:bg-white transition-transform duration-300"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative flex items-center gap-2 text-white dark:text-slate-900 group-hover:text-white transition-colors">
-                  Book Call
+                  Let's Talk
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </motion.button>

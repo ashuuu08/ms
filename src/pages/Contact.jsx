@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle, DollarSign, Clock, Shield } from 'lucide-react';
+import { Mail, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle, DollarSign, Clock, Shield, Phone } from 'lucide-react';
 import AntiGravityBackground from '../components/AntiGravityBackground';
 
 const Contact = () => {
@@ -9,7 +9,6 @@ const Contact = () => {
     name: '',
     email: '',
     projectType: 'Web Dev',
-    budget: 'Not sure',
     message: ''
   });
 
@@ -22,9 +21,7 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, projectType: type }));
   };
 
-  const handleBudgetChange = (budget) => {
-    setFormData(prev => ({ ...prev, budget }));
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +40,7 @@ const Contact = () => {
 
       if (data.success) {
         setFormStatus('success');
-        setFormData({ name: '', email: '', projectType: 'Web Dev', budget: 'Not sure', message: '' });
+        setFormData({ name: '', email: '', projectType: 'Web Dev', message: '' });
       } else {
         console.error("Error:", data);
         setFormStatus('error');
@@ -144,6 +141,10 @@ const Contact = () => {
             </div>
 
             <div className="relative z-10 space-y-4 mt-6">
+              <a href="tel:+919691207533" className="flex items-center gap-2.5 text-sm hover:text-white/80 transition group">
+                <div className="w-9 h-9 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Phone size={16} /></div>
+                <span className="font-medium text-sm">+91 9691207533</span>
+              </a>
               <a href="mailto:contact@ashsoft.com" className="flex items-center gap-2.5 text-sm hover:text-white/80 transition group">
                 <div className="w-9 h-9 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Mail size={16} /></div>
                 <span className="font-medium text-sm">contact@ashsoft.com</span>
@@ -202,7 +203,6 @@ const Contact = () => {
                 >
                   {/* HIDDEN INPUTS */}
                   <input type="hidden" name="project_type" value={formData.projectType} />
-                  <input type="hidden" name="budget_range" value={formData.budget} />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -214,7 +214,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         type="text"
                         className="w-full px-3 py-2.5 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
-                        placeholder="John Doe"
+                        placeholder="Ashish Rathour"
                       />
                     </div>
                     <div>
@@ -226,7 +226,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         type="email"
                         className="w-full px-3 py-2.5 text-sm rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
-                        placeholder="john@example.com"
+                        placeholder="ashish@ashbit.in"
                       />
                     </div>
                   </div>
@@ -245,20 +245,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  {/* Budget Range - New Field */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Budget Range (Optional)</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {['< $5K', '$5K-$15K', '$15K-$50K', 'Not sure'].map((budget) => (
-                        <div key={budget} onClick={() => handleBudgetChange(budget)} className={`cursor-pointer text-center py-2.5 px-2 rounded-lg border text-xs font-bold transition-all duration-200 ${formData.budget === budget
-                          ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-500 text-indigo-600 dark:text-indigo-400 shadow-sm ring-1 ring-indigo-500'
-                          : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-indigo-300 dark:hover:border-indigo-700'
-                          }`}>
-                          {budget}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+
 
                   <div>
                     <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Project Details</label>
