@@ -81,7 +81,7 @@ const Features = () => {
     ];
 
     return (
-        <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+        <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
             <AntiGravityBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">

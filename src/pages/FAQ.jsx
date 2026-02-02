@@ -80,7 +80,7 @@ const FAQ = () => {
             faqs: [
                 {
                     question: 'What technologies do you specialize in?',
-                    answer: 'We specialize in modern web technologies including React, Node.js, Next.js, cloud platforms (AWS, Azure, Google Cloud), and mobile development. We choose the best technology stack for each project.'
+                    answer: 'We specialize in modern web technologies including React, Node.js, Next.js, major cloud platforms (AWS, Azure), and mobile development. We choose the best technology stack for each project.'
                 },
                 {
                     question: 'Can you integrate with our existing systems?',
@@ -95,7 +95,7 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+        <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
             <AntiGravityBackground />
             <div className="max-w-4xl mx-auto relative z-10">
 

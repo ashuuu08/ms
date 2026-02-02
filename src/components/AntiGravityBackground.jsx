@@ -128,7 +128,8 @@ const AntiGravityBackground = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply dark:mix-blend-screen"
+            className="absolute inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply dark:mix-blend-screen w-full h-full max-w-full"
+            style={{ display: 'block', maxWidth: '100%' }}
         />
     );
 };

@@ -135,12 +135,12 @@ const Navbar = () => {
               </Link>
 
               {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-48 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+              <div className={`absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                 {solutionsDropdownItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 ${location.pathname === item.path
+                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap ${location.pathname === item.path
                       ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
                       : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
                       }`}
@@ -184,12 +184,12 @@ const Navbar = () => {
               </button>
 
               {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-48 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+              <div className={`absolute top-full left-0 mt-2 w-64 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                 {companyDropdownItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 ${location.pathname === item.path
+                    className={`block px-4 py-3 text-sm font-medium transition-all duration-200 whitespace-nowrap ${location.pathname === item.path
                       ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
                       : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400'
                       }`}

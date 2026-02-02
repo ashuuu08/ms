@@ -110,7 +110,7 @@ const About = () => {
             </p>
 
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-              What began as automating simple Google Sheets has evolved into a powerhouse agency building <strong>Enterprise-grade Systems</strong> and <strong>Social Media Bots</strong>. We don't just write code; we engineer time.
+              What began as automating simple workflows has evolved into a powerhouse agency building <strong>Enterprise-grade Systems</strong> and <strong>Social Media Bots</strong>. We don't just write code; we engineer time.
             </p>
 
             <div className="flex flex-wrap gap-8 sm:gap-12 border-t border-slate-200 dark:border-slate-800 pt-8">
@@ -148,6 +148,201 @@ const About = () => {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* --- COMPANY TIMELINE --- */}
+      <div className="py-20 bg-white dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-indigo-500 uppercase tracking-widest mb-3">Our Journey</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Milestones That Shaped Us</h3>
+          </div>
+
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+
+            {/* Timeline Items */}
+            {[
+              {
+                year: '2023',
+                title: 'The Beginning',
+                description: 'Started with a simple mission: automate repetitive tasks for small businesses. First project was a workflow automation that saved 30 hours per week.',
+                side: 'left'
+              },
+              {
+                year: '2023 Q3',
+                title: 'First Enterprise Client',
+                description: 'Landed our first enterprise contract, building a custom CRM system that handled 10,000+ customer records with real-time synchronization.',
+                side: 'right'
+              },
+              {
+                year: '2024',
+                title: 'Team Expansion',
+                description: 'Grew from 2 founders to a team of 10+ engineers, designers, and consultants. Expanded service offerings to include mobile development and cloud architecture.',
+                side: 'left'
+              },
+              {
+                year: '2024 Q3',
+                title: '100+ Projects Milestone',
+                description: 'Completed our 100th project with a 98% client satisfaction rate. Established partnerships with leading cloud providers and technology platforms.',
+                side: 'right'
+              },
+              {
+                year: '2025',
+                title: 'Innovation & Scale',
+                description: 'Launched AI-powered automation solutions and expanded into international markets. Now serving clients across 15+ countries with 24/7 support.',
+                side: 'left'
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: item.side === 'left' ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className={`relative mb-12 md:mb-16 ${item.side === 'left' ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2 md:ml-auto md:text-left'} md:w-1/2`}
+              >
+                {/* Timeline Dot */}
+                <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white dark:border-slate-950 z-10"></div>
+
+                <div className={`bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all ${item.side === 'left' ? 'md:mr-8' : 'md:ml-8'}`}>
+                  <div className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold mb-3">
+                    {item.year}
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{item.title}</h4>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* --- CORE VALUES --- */}
+      <div className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-indigo-500 uppercase tracking-widest mb-3">What Drives Us</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Our Core Values</h3>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              These principles guide every decision we make and every line of code we write.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Zap,
+                title: 'Speed & Efficiency',
+                description: 'We move fast without breaking things. Agile sprints, rapid prototyping, and quick iterations are in our DNA.',
+                color: 'from-yellow-500 to-orange-500'
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Quality First',
+                description: 'Every project undergoes rigorous testing and code review. We deliver production-ready solutions, not prototypes.',
+                color: 'from-emerald-500 to-teal-500'
+              },
+              {
+                icon: Users,
+                title: 'Client Partnership',
+                description: 'We\'re not just vendors—we\'re partners in your success. Your wins are our wins, and we\'re invested in your growth.',
+                color: 'from-blue-500 to-cyan-500'
+              },
+              {
+                icon: Terminal,
+                title: 'Technical Excellence',
+                description: 'We stay ahead of the curve with continuous learning and adoption of cutting-edge technologies and best practices.',
+                color: 'from-purple-500 to-pink-500'
+              },
+              {
+                icon: Globe,
+                title: 'Transparency',
+                description: 'No hidden fees, no surprises. Clear communication, honest timelines, and upfront pricing on every project.',
+                color: 'from-indigo-500 to-purple-500'
+              },
+              {
+                icon: Rocket,
+                title: 'Innovation Mindset',
+                description: 'We don\'t just follow trends—we create solutions that push boundaries and solve real business problems.',
+                color: 'from-rose-500 to-red-500'
+              }
+            ].map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-2xl transition-all"
+                >
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${value.color} flex items-center justify-center mb-6`}>
+                    <Icon size={28} className="text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{value.title}</h4>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{value.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* --- MISSION & VISION --- */}
+      <div className="py-20 bg-white dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Mission */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-indigo-100 dark:bg-indigo-900/20 rounded-full blur-2xl"></div>
+              <div className="relative bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-indigo-100 dark:border-indigo-800/30">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center mb-6">
+                  <Rocket size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Our Mission</h3>
+                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                  To empower businesses of all sizes with technology that drives growth, efficiency, and innovation.
+                </p>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  We believe every business deserves access to enterprise-grade solutions without enterprise-level complexity or cost. Our mission is to democratize technology and make powerful automation, custom development, and digital transformation accessible to startups, SMEs, and enterprises alike.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Vision */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-100 dark:bg-purple-900/20 rounded-full blur-2xl"></div>
+              <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-3xl p-8 border border-purple-100 dark:border-purple-800/30">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center mb-6">
+                  <Globe size={32} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Our Vision</h3>
+                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                  To become the most trusted technology partner for businesses worldwide, known for delivering exceptional results.
+                </p>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  We envision a future where every business, regardless of size or industry, can leverage cutting-edge technology to compete globally. We're building a world where manual processes are obsolete, data drives decisions, and technology amplifies human potential.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 

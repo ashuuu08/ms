@@ -25,9 +25,9 @@ const ServiceDetail = () => {
       bg: "bg-white dark:bg-slate-900",
       accent: "border-green-500",
       ctaColor: "bg-green-600 hover:bg-green-700",
-      description: "We build custom scripts that live inside your Google Workspace. Imagine your Spreadsheets talking to your Email, or your Forms automatically generating Invoices. We remove the 'boring' from your business.",
+      description: "We build custom scripts that automate your workspace. Imagine your spreadsheets talking to your email, or your forms automatically generating invoices. We remove the 'boring' from your business.",
       features: [
-        "Google Apps Script Development",
+        "Workspace Automation Development",
         "Automated PDF Generation",
         "Gmail & Drive Organization Bots",
         "Custom Slack/Discord Notifications",
@@ -59,7 +59,7 @@ const ServiceDetail = () => {
       bg: "bg-white dark:bg-slate-900",
       accent: "border-indigo-500",
       ctaColor: "bg-indigo-600 hover:bg-indigo-700",
-      description: "Speed and aesthetics matter. We build high-performance React websites that rank high on Google and look stunning on mobile. No clunky page builders—just pure, optimized code.",
+      description: "Speed and aesthetics matter. We build high-performance React websites that rank high on search engines and look stunning on mobile. No clunky page builders—just pure, optimized code.",
       features: [
         "Custom React.js Development",
         "High-End Portfolio Sites",
@@ -95,7 +95,7 @@ const ServiceDetail = () => {
       ctaColor: "bg-indigo-600 hover:bg-indigo-700",
       description: "When you have outgrown Excel and standard SaaS tools, you need custom architecture. We build secure, scalable cloud systems capable of handling millions of database transactions.",
       features: [
-        "AWS / Google Cloud Architecture",
+        "AWS / Cloud Architecture",
         "Scalable SaaS Backends",
         "Database Design & Optimization",
         "API Development & Integration",
@@ -144,9 +144,9 @@ const ServiceDetail = () => {
       bg: "bg-white dark:bg-slate-900",
       accent: "border-orange-500",
       ctaColor: "bg-orange-600 hover:bg-orange-700",
-      description: "Tech-enabled marketing strategies. We combine data analytics with creativity to run high-ROI campaigns on Google, Facebook, and LinkedIn. We track every click to ensure profitability.",
+      description: "Tech-enabled marketing strategies. We combine data analytics with creativity to run high-ROI campaigns on major platforms. We track every click to ensure profitability.",
       features: [
-        "Google Ads Management",
+        "PPC Advertising Management",
         "Facebook/Instagram Ad Scaling",
         "Conversion Rate Optimization (CRO)",
         "B2B Lead Generation",
@@ -161,11 +161,11 @@ const ServiceDetail = () => {
       bg: "bg-blue-50 dark:bg-blue-900",
       accent: "border-blue-500",
       ctaColor: "bg-blue-600 hover:bg-blue-700",
-      description: "A beautiful website is useless if no one visits it. We optimize your technical SEO structure to rank higher on Google. Plus, we set up advanced analytics so you can see exactly who is visiting and what they are clicking.",
+      description: "A beautiful website is useless if no one visits it. We optimize your technical SEO structure to rank higher on search engines. Plus, we set up advanced analytics so you can see exactly who is visiting and what they are clicking.",
       features: [
-        "Technical SEO Audits",
+        "Technical SEO Optimization",
         "Core Web Vitals Optimization",
-        "Google Analytics 4 Setup",
+        "Analytics Setup & Configuration",
         "Conversion Rate Optimization",
         "Competitor Analysis"
       ]

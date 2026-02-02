@@ -20,7 +20,7 @@ import Enterprises from './pages/Enterprises';
 function App() {
   return (
     <Router>
-      <div className="w-full overflow-x-hidden min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 font-sans">
+      <div className="w-full max-w-[100vw] overflow-x-hidden min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 font-sans">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -57,7 +57,7 @@ const TESTIMONIALS = [
   },
   {
     id: 3,
-    quote: "Our marketing campaigns are now fully automated. The Google Sheets integration they built syncs perfectly with our CRM.",
+    quote: "Our marketing campaigns are now fully automated. The spreadsheet integration they built syncs perfectly with our CRM and saves us hours every week.",
     author: "Jessica Li",
     role: "Marketing Head",
     company: "Growth Hacking Co",
@@ -335,7 +335,7 @@ const Home = () => {
 
               {/* Quick Tech Badges */}
               <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start opacity-70">
-                {['MERN Stack', 'Java', 'Python AI', 'Google Automation', 'Supabase'].map((tech) => (
+                {['MERN Stack', 'Java', 'Python AI', 'Workflow Automation', 'Supabase'].map((tech) => (
                   <span key={tech} className="text-[10px] font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
                     {tech}
                   </span>
@@ -383,7 +383,7 @@ const Home = () => {
                 {/* Automation Log */}
                 <div className="space-y-2">
                   {[
-                    { icon: Table, text: "Google Sheets Sync", sub: "Data updated from CRM", color: "text-green-500", bg: "bg-green-100 dark:bg-green-900/20" },
+                    { icon: Table, text: "Spreadsheet Sync", sub: "Data updated from CRM", color: "text-green-500", bg: "bg-green-100 dark:bg-green-900/20" },
                     { icon: Megaphone, text: "Ad Campaign Live", sub: "Facebook & Instagram", color: "text-blue-500", bg: "bg-blue-100 dark:bg-blue-900/20" },
                     { icon: Database, text: "Supabase Backup", sub: "Secure encryption", color: "text-purple-500", bg: "bg-purple-100 dark:bg-purple-900/20" }
                   ].map((item, i) => (
@@ -469,8 +469,8 @@ const Home = () => {
             <SpotlightCard
               to="/services/automation"
               icon={Table}
-              title="Google Automation"
-              desc="Automate your workflow. We script Google Sheets, Gmail & Docs to save you hours of manual work."
+              title="Workflow Automation"
+              desc="Automate your workflow. We build custom scripts for spreadsheets, email & documents to save you hours of manual work."
               techs={['Apps Script', 'Sheets API', 'Gmail Automations']}
               color="green"
             />
@@ -500,8 +500,8 @@ const Home = () => {
               to="/services/marketing"
               icon={Megaphone}
               title="Digital Marketing"
-              desc="Data-driven SEO, Google Ads, and Social Media campaigns to acquire customers for your startup."
-              techs={['SEO/SEM', 'Google Ads', 'Content Strategy', 'Analytics']}
+              desc="Data-driven SEO, PPC advertising, and Social Media campaigns to acquire customers for your startup."
+              techs={['SEO/SEM', 'PPC Ads', 'Content Strategy', 'Analytics']}
               color="pink"
             />
           </motion.div>
@@ -533,7 +533,7 @@ const Home = () => {
                   { name: "Supabase", icon: Database, color: "text-emerald-500" },
                   { name: "Java", icon: Coffee, color: "text-orange-500" },
                   { name: "Python", icon: FileSpreadsheet, color: "text-yellow-500" },
-                  { name: "Google Sheets", icon: Table, color: "text-green-600" },
+                  { name: "Spreadsheets", icon: Table, color: "text-green-600" },
                   { name: "Tailwind", icon: Layout, color: "text-cyan-500" },
                   { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white" },
                   { name: "Docker", icon: Globe, color: "text-blue-400" }
@@ -618,6 +618,163 @@ const Home = () => {
               )}
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* WHO WE ARE SECTION */}
+      <section className="py-20 px-4 bg-white dark:bg-slate-950 relative overflow-hidden w-full max-w-full">
+        <div className="max-w-7xl mx-auto relative z-10">
+
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-4">
+              <Star size={16} />
+              <span>About AshbitSoft</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              Who <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">We Are</span>
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+              We're a team of passionate developers, designers, and strategists dedicated to transforming your digital vision into reality.
+            </p>
+          </motion.div>
+
+          {/* Company Overview Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+
+            {/* Our Mission */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ y: -8 }}
+              className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl p-8 border border-indigo-100 dark:border-indigo-800/30 shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center mb-6">
+                <Rocket size={28} className="text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Our Mission</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                To empower businesses of all sizes with cutting-edge technology solutions that drive growth, efficiency, and innovation. We believe in building long-term partnerships, not just delivering projects.
+              </p>
+            </motion.div>
+
+            {/* Our Approach */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ y: -8 }}
+              className="bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-900/20 dark:to-cyan-900/20 rounded-3xl p-8 border border-emerald-100 dark:border-emerald-800/30 shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center mb-6">
+                <ShieldCheck size={28} className="text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Our Approach</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                We combine agile methodologies with proven best practices to deliver solutions that are scalable, secure, and tailored to your unique needs. Every project is treated as our own.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Work Process */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <h3 className="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Work Process</span>
+            </h3>
+
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { step: '01', title: 'Discovery', desc: 'We dive deep into your business goals and challenges', icon: Search, color: 'from-blue-500 to-cyan-500' },
+                { step: '02', title: 'Strategy', desc: 'We craft a tailored roadmap for your success', icon: FileCheck, color: 'from-indigo-500 to-purple-500' },
+                { step: '03', title: 'Development', desc: 'We build with precision, quality, and speed', icon: Code, color: 'from-purple-500 to-pink-500' },
+                { step: '04', title: 'Launch & Support', desc: 'We deploy and provide ongoing optimization', icon: Rocket, color: 'from-pink-500 to-rose-500' }
+              ].map((process, index) => {
+                const Icon = process.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className="relative bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all group"
+                  >
+                    <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${process.color} opacity-10 rounded-bl-full`}></div>
+                    <div className="relative">
+                      <div className={`text-5xl font-bold bg-gradient-to-r ${process.color} bg-clip-text text-transparent mb-4`}>
+                        {process.step}
+                      </div>
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${process.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                        <Icon size={24} className="text-white" />
+                      </div>
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{process.title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">{process.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Stats Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-gradient-to-br from-slate-900 to-indigo-900 dark:from-slate-950 dark:to-indigo-950 rounded-3xl p-12 text-white relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-grid-white/5"></div>
+            <div className="relative z-10">
+              <h3 className="text-3xl font-bold text-center mb-12">
+                Trusted by Businesses <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Worldwide</span>
+              </h3>
+
+              <div className="grid md:grid-cols-4 gap-8">
+                {[
+                  { number: '500+', label: 'Projects Delivered', icon: FileCheck },
+                  { number: '250+', label: 'Happy Clients', icon: Star },
+                  { number: '98%', label: 'Client Satisfaction', icon: TrendingUp },
+                  { number: '24/7', label: 'Support Available', icon: ShieldCheck }
+                ].map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="text-center"
+                    >
+                      <Icon size={32} className="mx-auto mb-4 text-indigo-400" />
+                      <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
+                        {stat.number}
+                      </div>
+                      <div className="text-slate-300">{stat.label}</div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
