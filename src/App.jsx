@@ -16,6 +16,7 @@ import Policy from './pages/Policy';
 import Startups from './pages/Startups';
 import SMEs from './pages/SMEs';
 import Enterprises from './pages/Enterprises';
+import ChatBot from './components/ChatBot';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/services/:id" element={<ServiceDetail />} />
         </Routes>
         <Footer />
+        <ChatBot />
       </div>
     </Router>
   );

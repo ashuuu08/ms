@@ -135,13 +135,13 @@ const Navbar = () => {
               </Link>
 
               {/* Dropdown Menu - Simple & Clean */}
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-auto min-w-[200px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
                 <div className="py-2">
                   {solutionsDropdownItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`block px-5 py-3 text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 ${location.pathname === item.path
+                      className={`block px-6 py-3 text-sm font-medium whitespace-nowrap transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50 ${location.pathname === item.path
                         ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20'
                         : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400'
                         }`}

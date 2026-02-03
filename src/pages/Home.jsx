@@ -411,13 +411,13 @@ const Home = () => {
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { label: "Projects Shipped", val: 150, suffix: "+" },
-              { label: "Lines of Code", val: 2.5, suffix: "M+" },
-              { label: "Hours Saved", val: 50, suffix: "k+" },
-              { label: "Happy Clients", val: 98, suffix: "%" }
+              { label: "Projects Shipped", val: 500, suffix: "+", color: "from-blue-600 to-cyan-500" },
+              { label: "Lines of Code", val: 2.5, suffix: "M+", color: "from-purple-600 to-pink-500" },
+              { label: "Hours Saved", val: 50, suffix: "k+", color: "from-amber-500 to-orange-500" },
+              { label: "Happy Clients", val: 98, suffix: "%", color: "from-emerald-500 to-teal-500" }
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center group">
-                <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-1 tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                <div className={`text-2xl md:text-3xl font-black mb-1 tracking-tight bg-gradient-to-r ${stat.color} text-transparent bg-clip-text`}>
                   <Counter value={stat.val} suffix={stat.suffix} decimals={stat.val % 1 !== 0 ? 1 : 0} />
                 </div>
                 <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{stat.label}</div>
@@ -511,8 +511,8 @@ const Home = () => {
       {/* 4. TECH STACK MARQUEE */}
       <section className="py-16 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 text-center mb-10 relative z-10">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
-            Powered by Modern Tech
+          <h2 className="text-xl md:text-2xl font-bold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-900 to-red-300 dark:from-red-300 dark:to-red-900">Powered by</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-emerald-500">Modern Tech</span>
           </h2>
         </div>
 
@@ -521,11 +521,11 @@ const Home = () => {
           <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent"></div>
 
           <motion.div
-            className="flex gap-8 items-center whitespace-nowrap"
-            animate={{ x: "-50%" }}
+            className="flex gap-8 items-center whitespace-nowrap pr-8"
+            animate={{ x: "-25%" }}
             transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
           >
-            {[...Array(2)].map((_, groupIndex) => (
+            {[...Array(4)].map((_, groupIndex) => (
               <React.Fragment key={groupIndex}>
                 {[
                   { name: "React", icon: Code2, color: "text-blue-500" },
@@ -538,9 +538,9 @@ const Home = () => {
                   { name: "Next.js", icon: Zap, color: "text-slate-900 dark:text-white" },
                   { name: "Docker", icon: Globe, color: "text-blue-400" }
                 ].map((tech, i) => (
-                  <div key={i} className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 hover:scale-110 cursor-pointer px-4">
+                  <div key={i} className="flex items-center gap-2 transition-all duration-300 hover:scale-110 cursor-pointer px-4">
                     <tech.icon size={24} className={tech.color} />
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{tech.name}</span>
+                    <span className={`text-sm font-bold ${tech.color}`}>{tech.name}</span>
                   </div>
                 ))}
               </React.Fragment>

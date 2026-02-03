@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import {
-  CheckCircle2, Award, Users, Zap, Terminal, Globe, Cpu, Coffee, ArrowRight,
+  CheckCircle2, Award, Users, Zap, Terminal, Globe, Code2, Cpu, Coffee, ArrowRight,
   Search, PenTool, Rocket, ChevronDown, XCircle, Lock, MessageSquare, CreditCard, ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -138,84 +138,232 @@ const About = () => {
               whileHover={{ rotate: 0, scale: 1.02 }}
               className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 transform rotate-2 transition-transform duration-500"
             >
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Team working" className="rounded-xl w-full h-auto grayscale hover:grayscale-0 transition-all duration-500" />
-              <div className="absolute bottom-6 left-6 bg-white/95 dark:bg-slate-800/95 backdrop-blur p-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center gap-3">
-                <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full text-green-600"><Users size={20} /></div>
-                <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Team Size</div>
-                  <div className="font-bold text-slate-900 dark:text-white">10+ Engineers</div>
+              {/* Animated Growth Graph - Ultra Realistic */}
+              <motion.div
+                className="relative w-full h-full min-h-[320px] bg-white dark:bg-slate-900 rounded-xl p-6 flex flex-col shadow-inner border border-slate-100 dark:border-slate-800 overflow-hidden group"
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+              >
+                {/* Header */}
+                <div className="flex justify-between items-start mb-6 z-10">
+                  <div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Active Clients</div>
+                    <div className="text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                      50+
+                      <span className="text-xs font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded-full flex items-center gap-1">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        +2400%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="px-3 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-900/50 text-xs font-semibold text-indigo-600 dark:text-indigo-400">2023-2026</div>
+                  </div>
                 </div>
-              </div>
+
+                {/* The Graph Container */}
+                <div className="relative flex-grow w-full">
+                  {/* Y-Axis Labels */}
+                  <div className="absolute left-0 top-0 bottom-6 w-8 flex flex-col justify-between text-[10px] font-medium text-slate-400 text-right pr-2">
+                    <span>50</span>
+                    <span>40</span>
+                    <span>30</span>
+                    <span>20</span>
+                    <span>10</span>
+                    <span>0</span>
+                  </div>
+
+                  {/* Graph Area */}
+                  <div className="absolute left-10 right-0 top-2 bottom-6">
+                    {/* Horizontal Grid */}
+                    {[0, 20, 40, 60, 80, 100].map((p, i) => (
+                      <div key={i} className="absolute w-full h-px bg-slate-300 dark:bg-slate-600" style={{ top: `${p}%` }}></div>
+                    ))}
+
+                    {/* SVG Chart */}
+                    <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 300 100">
+                      <defs>
+                        <linearGradient id="realGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Main Data Path (2 Clients -> 50 Clients) */}
+                      <motion.path
+                        d="M0,95 L50,85 L100,70 L150,65 L200,40 L250,25 L300,5"
+                        fill="none"
+                        stroke="#6366f1"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        filter="drop-shadow(0 4px 6px rgba(99, 102, 241, 0.3))"
+                        variants={{
+                          rest: { pathLength: 1, transition: { duration: 0.5 } },
+                          hover: { pathLength: [0, 1], transition: { duration: 1.5, ease: "easeInOut" } }
+                        }}
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: true }}
+                      />
+
+                      {/* Area Fill */}
+                      <motion.path
+                        d="M0,95 L50,85 L100,70 L150,65 L200,40 L250,25 L300,5 V100 H0 Z"
+                        fill="url(#realGradient)"
+                        stroke="none"
+                        variants={{
+                          rest: { opacity: 1, transition: { duration: 0.5 } },
+                          hover: { opacity: [0, 1], transition: { duration: 1.5, delay: 0.2 } }
+                        }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                      />
+
+                      {/* Interactive Vertical Line (Visible by default on mobile, Hover on Desktop) */}
+                      <line
+                        x1="300" y1="5" x2="300" y2="100"
+                        stroke="#cbd5e1"
+                        strokeWidth="1"
+                        strokeDasharray="4 4"
+                        className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+                      />
+
+                      {/* Data Point Dot */}
+                      <motion.circle
+                        cx="300" cy="5" r="5"
+                        fill="#4f46e5"
+                        stroke="white"
+                        strokeWidth="2"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ delay: 2.2, type: "spring" }}
+                      />
+
+                      {/* Start Point Dot (2 Clients) */}
+                      <circle cx="0" cy="95" r="3" fill="#cbd5e1" />
+
+                      {/* Tooltip Box (Visible by default on mobile, move on hover on desktop) */}
+                      <g className="transition-all duration-300 transform lg:group-hover:-translate-y-2">
+                        <rect x="230" y="15" width="70" height="35" rx="6" fill="#1e293b" className="shadow-xl" />
+                        <text x="265" y="30" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">50+ Clients</text>
+                        <text x="265" y="43" textAnchor="middle" fill="#4ade80" fontSize="8" fontWeight="bold">2026 Target</text>
+                      </g>
+                    </svg>
+                  </div>
+
+                  {/* X-Axis Labels */}
+                  <div className="absolute left-10 right-0 bottom-0 h-6 flex justify-between text-[10px] font-medium text-slate-400 pt-2 px-1">
+                    <span>2023</span>
+                    <span>2024</span>
+                    <span>2025</span>
+                    <span>Jan 2026</span>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* --- COMPANY TIMELINE --- */}
-      <div className="py-20 bg-white dark:bg-slate-950">
+      {/* --- COMPANY EVOLUTION (Bento Grid) --- */}
+      <div className="py-24 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-sm font-bold text-indigo-500 uppercase tracking-widest mb-3">Our Journey</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Milestones That Shaped Us</h3>
+            <h2 className="text-sm font-bold text-indigo-500 uppercase tracking-widest mb-3">Our Evolution</h2>
+            <h3 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">The Build Log</h3>
           </div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
 
-            {/* Timeline Items */}
-            {[
-              {
-                year: '2023',
-                title: 'The Beginning',
-                description: 'Started with a simple mission: automate repetitive tasks for small businesses. First project was a workflow automation that saved 30 hours per week.',
-                side: 'left'
-              },
-              {
-                year: '2023 Q3',
-                title: 'First Enterprise Client',
-                description: 'Landed our first enterprise contract, building a custom CRM system that handled 10,000+ customer records with real-time synchronization.',
-                side: 'right'
-              },
-              {
-                year: '2024',
-                title: 'Team Expansion',
-                description: 'Grew from 2 founders to a team of 10+ engineers, designers, and consultants. Expanded service offerings to include mobile development and cloud architecture.',
-                side: 'left'
-              },
-              {
-                year: '2024 Q3',
-                title: '100+ Projects Milestone',
-                description: 'Completed our 100th project with a 98% client satisfaction rate. Established partnerships with leading cloud providers and technology platforms.',
-                side: 'right'
-              },
-              {
-                year: '2025',
-                title: 'Innovation & Scale',
-                description: 'Launched AI-powered automation solutions and expanded into international markets. Now serving clients across 15+ countries with 24/7 support.',
-                side: 'left'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: item.side === 'left' ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`relative mb-12 md:mb-16 ${item.side === 'left' ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2 md:ml-auto md:text-left'} md:w-1/2`}
-              >
-                {/* Timeline Dot */}
-                <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white dark:border-slate-950 z-10"></div>
-
-                <div className={`bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all ${item.side === 'left' ? 'md:mr-8' : 'md:ml-8'}`}>
-                  <div className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold mb-3">
-                    {item.year}
-                  </div>
-                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{item.title}</h4>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.description}</p>
+            {/* Block 1: The Origin (Large, Spans 2 cols) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -5 }}
+              className="md:col-span-2 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+              <div className="relative z-10">
+                <div className="bg-white/20 backdrop-blur w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <Zap size={24} className="text-yellow-300" />
                 </div>
-              </motion.div>
-            ))}
+                <h4 className="text-2xl font-bold mb-3">The Spark (2023)</h4>
+                <p className="text-indigo-100 leading-relaxed max-w-lg">
+                  It started in a small garage with a big idea: specific, high-leverage automation. We launched "Script #1" and saved our first client 30 hours a week. That was the moment we knew this was big.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Block 2: Impact Stat (Square) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col justify-center items-center text-center group"
+            >
+              <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <CheckCircle2 size={32} className="text-emerald-500" />
+              </div>
+              <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-1">100+</h3>
+              <p className="text-slate-500 font-bold">Projects Shipped</p>
+            </motion.div>
+
+            {/* Block 3: Global Reach (Square) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -5 }}
+              className="bg-slate-900 dark:bg-black rounded-3xl p-8 border border-slate-800 shadow-lg text-white"
+            >
+              <Globe size={40} className="text-blue-500 mb-6" />
+              <h4 className="text-xl font-bold mb-2">Global Scale</h4>
+              <p className="text-slate-400 text-sm mb-4">From local startups to enterprises in 15+ countries.</p>
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4].map(i => (
+                  <div key={i} className="w-8 h-8 rounded-full bg-slate-700 border-2 border-slate-900"></div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Block 4: Core DNA (Large, Spans 2 cols) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ y: -5 }}
+              className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-lg relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+              <div className="flex flex-col md:flex-row gap-8 items-center h-full">
+                <div className="flex-1">
+                  <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Our Tech DNA</h4>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                    We don't just write code; we architect solutions. Our stack has evolved from simple scripts to a powerhouse of AI, Cloud, and Edge technologies.
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {['React', 'Node.js', 'Python', 'AI', 'Cloud'].map(tag => (
+                      <span key={tag} className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="w-full md:w-1/3 h-32 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center">
+                  <Code2 size={48} className="text-slate-300 dark:text-slate-600" />
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </div>
@@ -513,7 +661,7 @@ const About = () => {
         </div>
       </div>
 
-    </div>
+    </div >
   );
 };
 
