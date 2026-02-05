@@ -1,0 +1,45 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="digitalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#digitalGrad)"/>
+  
+  <!-- Transformation arrow -->
+  <g opacity="0.9">
+    <!-- Old building -->
+    <rect x="150" y="180" width="120" height="140" fill="#ffffff" opacity="0.3"/>
+    <rect x="160" y="195" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    <rect x="195" y="195" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    <rect x="230" y="195" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    <rect x="160" y="235" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    <rect x="195" y="235" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    <rect x="230" y="235" width="25" height="25" fill="#EC4899" opacity="0.5"/>
+    
+    <!-- Arrow -->
+    <path d="M 320 240 L 450 240 L 430 220 M 450 240 L 430 260" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.8"/>
+    
+    <!-- Digital building -->
+    <rect x="530" y="160" width="120" height="160" fill="#ffffff" opacity="0.4"/>
+    <circle cx="590" cy="200" r="15" fill="#8B5CF6" opacity="0.7"/>
+    <circle cx="590" cy="240" r="15" fill="#06B6D4" opacity="0.7"/>
+    <circle cx="590" cy="280" r="15" fill="#10B981" opacity="0.7"/>
+    
+    <!-- Digital waves -->
+    <path d="M 540 210 Q 560 205 580 210" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 540 250 Q 560 245 580 250" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 540 290 Q 560 285 580 290" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="#ffffff" opacity="0.1"/>
+  <circle cx="700" cy="350" r="60" fill="#ffffff" opacity="0.1"/>
+  
+  <!-- Title -->
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">Digital Transformation</text>
+  <text x="400" y="415" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" opacity="0.9">Modernize Your Business</text>
+</svg>

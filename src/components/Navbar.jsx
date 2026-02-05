@@ -18,6 +18,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Features', path: '/features' },
+    { name: 'Blog', path: '/blog' },
   ];
 
   // Solutions Dropdown Items

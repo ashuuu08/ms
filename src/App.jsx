@@ -16,6 +16,8 @@ import Policy from './pages/Policy';
 import Startups from './pages/Startups';
 import SMEs from './pages/SMEs';
 import Enterprises from './pages/Enterprises';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import ChatBot from './components/ChatBot';
 
 function App() {
@@ -39,6 +41,9 @@ function App() {
           <Route path="/company/security" element={<Security />} />
           <Route path="/company/policy" element={<Policy />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Blog Routes */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Keep old routes for backward compatibility */}
           <Route path="/services" element={<Services />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
