@@ -5,27 +5,27 @@ import { Quote, Star, BadgeCheck } from 'lucide-react';
 const Feedback = () => {
   const reviews = [
     {
-      name: "Sarah Jenkins",
+      name: "Priya Sharma",
       role: "COO, LogisticsFlow",
       text: "We were drowning in manual data entry. The Google AppScript bot ashSoft built now handles 500+ invoices daily automatically. It's like having a free employee that never sleeps.",
       stars: 5,
-      initial: "S",
+      initial: "P",
       color: "bg-purple-100 text-purple-600"
     },
     {
-      name: "David Chen",
+      name: "Arjun Mehta",
       role: "Founder, TechStart",
       text: "I needed a high-performance portfolio to pitch investors. They delivered a React site that scores 100/100 on Lighthouse. Fast, clean code, and stunning design.",
       stars: 5,
-      initial: "D",
+      initial: "A",
       color: "bg-blue-100 text-blue-600"
     },
     {
-      name: "Marcus Reid",
+      name: "Vikram Singh",
       role: "HR Director, CorpGlobal",
       text: "The Enterprise Leave Management system they architected on AWS is flawless. It handles our 5,000+ employee database without a stutter. Highly recommended for scalable systems.",
       stars: 5,
-      initial: "M",
+      initial: "V",
       color: "bg-emerald-100 text-emerald-600"
     }
   ];

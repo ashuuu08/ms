@@ -137,14 +137,14 @@ const Footer = () => {
                 <span className="font-medium">+91 96912 07533</span>
               </a>
 
-              <a href="mailto:contact@ashsoft.com" className="flex items-center gap-3 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors group">
+              <a href="mailto:contact@ashbitsoft.in" className="flex items-center gap-3 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors group">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: -10 }}
                   className="p-2 bg-slate-100 dark:bg-slate-900 rounded-lg group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 transition-colors"
                 >
                   <Mail size={16} className="group-hover:text-indigo-600" />
                 </motion.div>
-                <span className="font-medium">contact@ashsoft.com</span>
+                <span className="font-medium">contact@ashbitsoft.in</span>
               </a>
 
               <div className="flex items-center gap-3">

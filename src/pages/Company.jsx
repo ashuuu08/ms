@@ -38,25 +38,25 @@ const Company = () => {
 
     const team = [
         {
-            name: 'John Anderson',
+            name: 'Amit Verma',
             role: 'CEO & Founder',
             image: '👨‍💼',
             bio: 'Visionary leader with 15+ years in tech'
         },
         {
-            name: 'Sarah Mitchell',
+            name: 'Neha Kapoor',
             role: 'CTO',
             image: '👩‍💻',
             bio: 'Tech expert driving innovation'
         },
         {
-            name: 'Michael Chen',
+            name: 'Rohan Desai',
             role: 'Head of Design',
             image: '👨‍🎨',
             bio: 'Award-winning UX/UI designer'
         },
         {
-            name: 'Emily Rodriguez',
+            name: 'Kavya Reddy',
             role: 'VP of Operations',
             image: '👩‍💼',
             bio: 'Operations excellence specialist'
@@ -174,12 +174,12 @@ const Company = () => {
                             <div className="text-center">
                                 <Mail className="mx-auto mb-3" size={32} />
                                 <p className="font-semibold mb-1">Email</p>
-                                <p className="text-indigo-100">contact@ashbitsoft.com</p>
+                                <p className="text-indigo-100">contact@ashbitsoft.in</p>
                             </div>
                             <div className="text-center">
                                 <Phone className="mx-auto mb-3" size={32} />
                                 <p className="font-semibold mb-1">Phone</p>
-                                <p className="text-indigo-100">+1 (555) 123-4567</p>
+                                <p className="text-indigo-100">+91 96912 07533</p>
                             </div>
                             <div className="text-center">
                                 <MapPin className="mx-auto mb-3" size={32} />

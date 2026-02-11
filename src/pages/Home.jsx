@@ -42,25 +42,25 @@ const TESTIMONIALS = [
   {
     id: 1,
     quote: "They didn't just build a website; they re-engineered our entire client onboarding flow. We've saved ~40 hours/week in manual data entry.",
-    author: "Sarah Jenkins",
+    author: "Sneha Gupta",
     role: "Director of Operations",
-    company: "TechFlow Logistics",
+    company: "ShipFast Logistics",
     color: "from-purple-500 to-indigo-500"
   },
   {
     id: 2,
     quote: "The ROI was immediate. The custom ERP dashboard gave us visibility we never had before. Scaling from 10k to 100k users was seamless.",
-    author: "Michael Tran",
+    author: "Karan Malhotra",
     role: "Founder & CEO",
-    company: "StartUp Lab",
+    company: "VentureStack",
     color: "from-blue-500 to-cyan-500"
   },
   {
     id: 3,
     quote: "Our marketing campaigns are now fully automated. The spreadsheet integration they built syncs perfectly with our CRM and saves us hours every week.",
-    author: "Jessica Li",
+    author: "Riya Joshi",
     role: "Marketing Head",
-    company: "Growth Hacking Co",
+    company: "BrandBoost Media",
     color: "from-pink-500 to-rose-500"
   }
 ];
@@ -512,7 +512,7 @@ const Home = () => {
       <section className="py-16 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 text-center mb-10 relative z-10">
           <h2 className="text-xl md:text-2xl font-bold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-900 to-red-300 dark:from-red-300 dark:to-red-900">Powered by</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-emerald-500">Modern Tech</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Powered by</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400">Modern Tech</span>
           </h2>
         </div>
 
@@ -610,7 +610,7 @@ const Home = () => {
               transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
             >
               {[...Array(4)].map((_, groupIndex) =>
-                ['FinTech Inc', 'HealthPlus', 'EduLearn', 'LogiChain', 'RetailAI', 'AgriTech', 'BuildOps', 'SecureNet'].map((company, i) => (
+                ['PixelCraft', 'AppForge', 'DevSprint', 'CloudPeak', 'DataNest', 'CodeWave', 'BuildFast', 'LaunchPad'].map((company, i) => (
                   <div key={`${groupIndex}-${i}`} className="text-xl font-black text-slate-300 dark:text-slate-700 hover:text-indigo-500 transition-colors cursor-default select-none">
                     {company}
                   </div>
