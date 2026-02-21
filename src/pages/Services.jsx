@@ -371,8 +371,8 @@ const Services = () => {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${activeCategory === category.id
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                   }`}
               >
                 <Icon size={18} />
@@ -487,7 +487,7 @@ const Services = () => {
               {
                 icon: TrendingUp,
                 title: 'Proven Results',
-                description: '500+ successful projects with 98% client satisfaction'
+                description: '50+ successful projects with high client satisfaction'
               },
               {
                 icon: ShieldCheck,

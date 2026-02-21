@@ -153,10 +153,10 @@ const Features = () => {
 
                     <div className="grid md:grid-cols-4 gap-8">
                         {[
-                            { value: "99.9%", label: "Uptime", description: "Guaranteed availability", gradient: "from-green-500 to-emerald-500" },
-                            { value: "50ms", label: "Response Time", description: "Lightning fast performance", gradient: "from-blue-500 to-cyan-500" },
-                            { value: "500+", label: "Clients", description: "Businesses trust us", gradient: "from-purple-500 to-pink-500" },
-                            { value: "24/7", label: "Support", description: "Always here for you", gradient: "from-indigo-500 to-purple-500" }
+                            { value: "30-Day", label: "Guarantee", description: "Post-launch support included", gradient: "from-emerald-500 to-teal-500" },
+                            { value: "4–8 Wks", label: "Avg. Delivery", description: "Fast MVP to production", gradient: "from-blue-500 to-indigo-500" },
+                            { value: "50+", label: "Projects Done", description: "Delivered & live worldwide", gradient: "from-indigo-500 to-violet-500" },
+                            { value: "24h", label: "Response Time", description: "We reply within 24 hours", gradient: "from-violet-500 to-purple-500" }
                         ].map((stat, index) => (
                             <motion.div
                                 key={index}

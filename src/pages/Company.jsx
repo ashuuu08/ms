@@ -3,10 +3,10 @@ import { Building2, Target, Users, Heart, Award, Globe, TrendingUp, Lightbulb, M
 
 const Company = () => {
     const stats = [
-        { number: '500+', label: 'Happy Clients' },
-        { number: '1000+', label: 'Projects Completed' },
-        { number: '50+', label: 'Team Members' },
-        { number: '15+', label: 'Countries Served' }
+        { number: '50+', label: 'Happy Clients' },
+        { number: '80+', label: 'Projects Delivered' },
+        { number: '3', label: 'Core Team Members' },
+        { number: '2023', label: 'Year Founded' }
     ];
 
     const values = [
@@ -104,10 +104,10 @@ const Company = () => {
                             Our Story
                         </h2>
                         <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Founded in 2015, AshbitSoft began with a simple mission: to help businesses leverage technology to achieve extraordinary results. What started as a small team of developers has grown into a full-service digital solutions provider serving clients worldwide.
+                            Founded in 2023, AshbitSoft started with a clear mission: to help startups and SMBs build tech that actually moves the needle. What began as one developer with a laptop has grown into a lean, full-cycle team delivering apps, automation, and growth strategies.
                         </p>
                         <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Today, we combine cutting-edge technology with deep industry expertise to deliver solutions that not only meet but exceed our clients' expectations. Our commitment to innovation, quality, and customer success drives everything we do.
+                            We work with a small number of clients at a time intentionally — so every project gets our full focus. We don't outsource, we don't cut corners, and we don't disappear after launch.
                         </p>
                     </div>
                 </div>

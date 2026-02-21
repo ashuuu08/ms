@@ -5,7 +5,7 @@ import logo from '../assets/logoo.png';
 import { useNavigate } from 'react-router-dom';
 
 const KNOWLEDGE_BASE = [
-    { keys: ['who', 'what', 'company', 'about', 'ashbitsoft'], response: "AshbitSoft is a full-cycle tech startup that builds digital growth engines. We specialize in MERN stack development, AI automation, and digital marketing. Established in 2023, we've delivered 500+ projects globally." },
+    { keys: ['who', 'what', 'company', 'about', 'ashbitsoft'], response: "AshbitSoft is a full-cycle tech startup that builds digital growth engines. We specialize in MERN stack development, AI automation, and digital marketing. Established in 2023, we've delivered 50+ projects globally." },
     { keys: ['location', 'where', 'based', 'address', 'anuppur'], response: "We are based in Anuppur, Madhya Pradesh, India, and serve clients worldwide with dedicated remote teams and global standards." },
     { keys: ['founder', 'team', 'who runs', 'people'], response: "Our team includes expert Full-Stack Developers, UI/UX Designers, DevOps Engineers, and AI Specialists. We are a group of passionate innovators dedicated to bridging the gap between business and code." },
     { keys: ['services', 'offer', 'do you do', 'expertise'], response: "We offer Custom Web Apps (MERN/Java), Mobile Apps (React Native), Workflow Automation, AI Integration, Cloud services (AWS/GCP), and Digital Marketing." },
@@ -39,7 +39,7 @@ const KNOWLEDGE_BASE = [
     { keys: ['thanks', 'thank you'], response: "You're very welcome! 😊 Is there anything else I can help you with today?" },
     { keys: ['bye', 'goodbye'], response: "Goodbye! Have a great day! 👋" },
     { keys: ['experience', 'years'], response: "We have 3+ years of intensive experience in high-leverage automation and global software delivery." },
-    { keys: ['clients', 'who uses'], response: "We are trusted by 500+ businesses worldwide, including startups in FinTech, HealthTech, and E-commerce." },
+    { keys: ['clients', 'who uses'], response: "We work with startups, SMBs, and growing businesses — primarily in FinTech, HealthTech, E-commerce, and Logistics. We intentionally keep our client list small so every project gets our full attention." },
     { keys: ['mission', 'vision'], response: "Our mission is to democratize tech. We believe every business deserves enterprise-grade solutions without the complexity." },
     { keys: ['values'], response: "Our values: Speed, Quality, Partnership, Excellence, Transparency, and Innovation." },
     { keys: ['gdpr', 'privacy'], response: "We are 100% GDPR compliant. We take your data privacy and security very seriously with strict protocols." },
@@ -240,7 +240,7 @@ const ChatBot = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-white text-sm">Ashbit Support AI</h3>
-                                    <span className="text-[10px] text-emerald-200">Online | Typing...</span>
+                                    <span className="text-[10px] text-emerald-200">{isTyping ? 'Typing...' : 'Online · Typically replies instantly'}</span>
                                 </div>
                             </div>
                             <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors">
@@ -254,8 +254,8 @@ const ChatBot = () => {
                                 <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div
                                         className={`max-w-[85%] p-3 rounded-2xl shadow-sm text-sm leading-relaxed relative ${msg.sender === 'user'
-                                                ? 'bg-[#DCF8C6] dark:bg-emerald-900 text-slate-800 dark:text-emerald-50 rounded-tr-none'
-                                                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-tl-none'
+                                            ? 'bg-[#DCF8C6] dark:bg-emerald-900 text-slate-800 dark:text-emerald-50 rounded-tr-none'
+                                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-tl-none'
                                             }`}
                                     >
                                         {msg.text}

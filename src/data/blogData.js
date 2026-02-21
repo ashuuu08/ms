@@ -1,227 +1,164 @@
-// Blog Posts Data
-import cloudImage from '../assets/blog-cloud.svg';
-import securityImage from '../assets/blog-security.svg';
-import developmentImage from '../assets/blog-development.svg';
-import digitalImage from '../assets/blog-digital.svg';
-import aiImage from '../assets/blog-ai.svg';
-import mobileImage from '../assets/blog-mobile.svg';
+// Blog Posts Data — AshbitSoft Tech Blog
 
 export const blogPosts = [
     {
         id: 1,
-        title: "The Future of Cloud Computing: Trends to Watch in 2026",
-        slug: "future-of-cloud-computing-2026",
-        excerpt: "Explore the latest trends shaping cloud computing, from edge computing to serverless architectures, and how they're transforming businesses worldwide.",
-        content: `
-      <h2>Introduction</h2>
-      <p>Cloud computing continues to evolve at a rapid pace, bringing new opportunities and challenges for businesses of all sizes. As we move through 2026, several key trends are emerging that will shape the future of how we build, deploy, and manage applications.</p>
-      
-      <h2>1. Edge Computing Revolution</h2>
-      <p>Edge computing is moving processing power closer to data sources, reducing latency and improving performance. This is particularly crucial for IoT devices, autonomous vehicles, and real-time applications.</p>
-      
-      <h2>2. Serverless Architecture Maturity</h2>
-      <p>Serverless computing has matured significantly, offering developers the ability to build scalable applications without managing infrastructure. This trend is reducing operational costs and accelerating development cycles.</p>
-      
-      <h2>3. Multi-Cloud Strategies</h2>
-      <p>Organizations are increasingly adopting multi-cloud strategies to avoid vendor lock-in, improve resilience, and optimize costs. This approach requires sophisticated management tools and expertise.</p>
-      
-      <h2>4. AI and Machine Learning Integration</h2>
-      <p>Cloud providers are embedding AI and ML capabilities directly into their platforms, making advanced analytics accessible to businesses of all sizes.</p>
-      
-      <h2>Conclusion</h2>
-      <p>The cloud computing landscape is more dynamic than ever. Staying ahead of these trends will be crucial for businesses looking to maintain their competitive edge in the digital economy.</p>
-    `,
+        title: "How We Automated 500+ Invoices Daily with Google Apps Script",
+        slug: "automate-invoices-google-apps-script",
+        excerpt: "A step-by-step breakdown of how we replaced a manual invoicing process with a fully automated Google Apps Script solution — saving 30+ hours per week.",
+        content: `<h2>The Problem</h2><p>Our client was manually processing 500+ invoices daily using spreadsheets. It was error-prone, slow, and expensive. We built a Google Apps Script automation that triggers on form submission, generates PDFs, sends emails, and logs data — all automatically.</p><h2>The Solution</h2><p>Using Apps Script with the Drive, Gmail, and Sheets APIs, we built a trigger-based pipeline that runs every hour. The system pulls order data, generates templated PDF invoices, sends them to clients, and archives them in Drive.</p><h2>Results</h2><p>The client went from 3 full-time data entry staff to zero, saving ₹4.2L/year and eliminating all processing errors. The system now handles 700+ invoices daily without any manual input.</p>`,
         author: "Ashish Kumar",
-        authorRole: "Cloud Solutions Architect",
-        date: "2026-02-01",
-        readTime: "5 min read",
-        category: "Cloud Computing",
-        tags: ["Cloud", "Technology", "Innovation"],
-        image: cloudImage,
+        authorRole: "Founder, AshbitSoft",
+        date: "2026-02-15",
+        readTime: "6 min read",
+        category: "Automation",
+        tags: ["Google Apps Script", "Automation", "Sheets API"],
+        gradient: "from-emerald-600 to-teal-600",
+        icon: "⚡",
         featured: true
     },
     {
         id: 2,
-        title: "Cybersecurity Best Practices for SMEs in 2026",
-        slug: "cybersecurity-best-practices-smes-2026",
-        excerpt: "Small and medium enterprises face unique cybersecurity challenges. Learn essential practices to protect your business from evolving threats.",
-        content: `
-      <h2>Why SMEs Are Targets</h2>
-      <p>Small and medium-sized enterprises are increasingly targeted by cybercriminals because they often lack the robust security infrastructure of larger organizations. However, implementing the right practices can significantly reduce your risk.</p>
-      
-      <h2>Essential Security Measures</h2>
-      
-      <h3>1. Multi-Factor Authentication (MFA)</h3>
-      <p>Implement MFA across all business applications. This simple step can prevent up to 99.9% of automated attacks.</p>
-      
-      <h3>2. Regular Security Training</h3>
-      <p>Your employees are your first line of defense. Regular training on phishing, social engineering, and security best practices is essential.</p>
-      
-      <h3>3. Data Backup and Recovery</h3>
-      <p>Implement automated backup solutions with off-site storage. Test your recovery procedures regularly to ensure business continuity.</p>
-      
-      <h3>4. Network Security</h3>
-      <p>Use firewalls, VPNs, and network segmentation to protect your infrastructure. Regular security audits can identify vulnerabilities before they're exploited.</p>
-      
-      <h2>Conclusion</h2>
-      <p>Cybersecurity doesn't have to be overwhelming. By implementing these fundamental practices, SMEs can significantly improve their security posture and protect their valuable assets.</p>
-    `,
-        author: "Priya Sharma",
-        authorRole: "Security Consultant",
-        date: "2026-01-28",
-        readTime: "6 min read",
-        category: "Security",
-        tags: ["Security", "SME", "Best Practices"],
-        image: securityImage,
+        title: "Building a MERN Stack App That Scales to 100k Users",
+        slug: "mern-stack-scalable-app",
+        excerpt: "Architecture decisions, tech choices, and deployment strategies we used to take a MERN Stack SaaS from 0 to 100k users without rewriting a line of core code.",
+        content: `<h2>Starting Right</h2><p>Most MVPs fail at scale because of architectural shortcuts taken early. This post walks through the decisions we made from day one to ensure the foundation could hold under pressure.</p><h2>Key Decisions</h2><p>We chose MongoDB with proper indexing, Redis for session caching, and deployed to AWS EC2 with an NGINX reverse proxy. Horizontal scaling was built in from the start using PM2 cluster mode.</p><h2>API Design</h2><p>RESTful APIs with JWT auth, rate limiting via express-rate-limit, and Zod for input validation. Every endpoint was stress tested before going live.</p><h2>Results</h2><p>At 100k MAU, p95 response time is under 180ms. Zero downtime deployments via GitHub Actions CI/CD pipeline.</p>`,
+        author: "Ashish Kumar",
+        authorRole: "Founder, AshbitSoft",
+        date: "2026-02-10",
+        readTime: "9 min read",
+        category: "Development",
+        tags: ["MERN Stack", "Node.js", "Scalability", "React"],
+        gradient: "from-blue-600 to-indigo-600",
+        icon: "🚀",
         featured: true
     },
     {
         id: 3,
-        title: "Building Scalable Web Applications: A Complete Guide",
-        slug: "building-scalable-web-applications-guide",
-        excerpt: "Learn the architectural patterns and best practices for building web applications that can scale from hundreds to millions of users.",
-        content: `
-      <h2>Understanding Scalability</h2>
-      <p>Scalability is the ability of your application to handle growing amounts of work by adding resources. This guide covers both horizontal and vertical scaling strategies.</p>
-      
-      <h2>Key Architectural Patterns</h2>
-      
-      <h3>Microservices Architecture</h3>
-      <p>Breaking down your application into smaller, independent services allows for better scalability and maintainability. Each service can be scaled independently based on demand.</p>
-      
-      <h3>Database Optimization</h3>
-      <p>Implement caching strategies, database indexing, and consider NoSQL solutions for specific use cases. Connection pooling and query optimization are crucial for performance.</p>
-      
-      <h3>Load Balancing</h3>
-      <p>Distribute traffic across multiple servers to ensure no single server becomes a bottleneck. Modern load balancers can also provide health checking and automatic failover.</p>
-      
-      <h2>Performance Optimization</h2>
-      <ul>
-        <li>Implement CDN for static assets</li>
-        <li>Use lazy loading for images and components</li>
-        <li>Optimize bundle sizes and code splitting</li>
-        <li>Implement server-side rendering where appropriate</li>
-      </ul>
-      
-      <h2>Monitoring and Observability</h2>
-      <p>Implement comprehensive logging, monitoring, and alerting systems. Understanding your application's behavior under load is crucial for maintaining performance.</p>
-    `,
+        title: "Supabase vs Firebase: Which Should You Choose in 2026?",
+        slug: "supabase-vs-firebase-2026",
+        excerpt: "We've shipped production apps on both. Here's an honest, technical comparison of Supabase and Firebase to help you pick the right backend for your project.",
+        content: `<h2>Overview</h2><p>Supabase and Firebase are both Backend-as-a-Service platforms, but they have very different philosophies. Supabase is open-source and built on PostgreSQL. Firebase is Google's proprietary NoSQL platform.</p><h2>Where Supabase Wins</h2><p>If you need relational data, complex queries, row-level security, and the ability to self-host — Supabase is the clear winner. SQL power with real-time subscriptions and a great TypeScript SDK.</p><h2>Where Firebase Wins</h2><p>Firebase is unmatched for rapid prototyping, Google analytics integration, and push notifications. FCM is still the best mobile push solution available.</p><h2>Our Recommendation</h2><p>For most B2B SaaS apps: Supabase. For mobile-first consumer apps: Firebase. For anything that needs real SQL joins: always Supabase.</p>`,
         author: "Rahul Verma",
-        authorRole: "Senior Developer",
-        date: "2026-01-25",
-        readTime: "8 min read",
+        authorRole: "Backend Engineer, AshbitSoft",
+        date: "2026-02-05",
+        readTime: "7 min read",
         category: "Development",
-        tags: ["Web Development", "Architecture", "Scalability"],
-        image: developmentImage,
+        tags: ["Supabase", "Firebase", "Backend", "Database"],
+        gradient: "from-violet-600 to-purple-600",
+        icon: "🗄️",
         featured: false
     },
     {
         id: 4,
-        title: "Digital Transformation: A Roadmap for Traditional Businesses",
-        slug: "digital-transformation-roadmap",
-        excerpt: "Navigate the digital transformation journey with our comprehensive roadmap designed specifically for traditional businesses.",
-        content: `
-      <h2>What is Digital Transformation?</h2>
-      <p>Digital transformation is the integration of digital technology into all areas of a business, fundamentally changing how you operate and deliver value to customers.</p>
-      
-      <h2>Phase 1: Assessment and Planning</h2>
-      <p>Begin by assessing your current digital maturity. Identify pain points, opportunities, and set clear objectives for your transformation journey.</p>
-      
-      <h2>Phase 2: Building Digital Foundation</h2>
-      <p>Invest in core infrastructure: cloud computing, data analytics platforms, and modern collaboration tools. This foundation supports all future initiatives.</p>
-      
-      <h2>Phase 3: Process Digitization</h2>
-      <p>Automate manual processes, implement digital workflows, and integrate systems to improve efficiency and reduce errors.</p>
-      
-      <h2>Phase 4: Customer Experience Enhancement</h2>
-      <p>Leverage digital channels to improve customer engagement. Implement CRM systems, mobile apps, and personalized marketing strategies.</p>
-      
-      <h2>Phase 5: Data-Driven Decision Making</h2>
-      <p>Use analytics and business intelligence tools to gain insights from your data. Make informed decisions based on real-time information.</p>
-      
-      <h2>Common Challenges and Solutions</h2>
-      <p>Resistance to change, legacy systems, and skill gaps are common challenges. Address these through change management, phased migration strategies, and continuous training.</p>
-    `,
-        author: "Anjali Patel",
-        authorRole: "Digital Strategy Consultant",
-        date: "2026-01-20",
-        readTime: "7 min read",
-        category: "Business Strategy",
-        tags: ["Digital Transformation", "Business", "Strategy"],
-        image: digitalImage,
+        title: "AI Chatbots for Small Businesses: A Practical Guide",
+        slug: "ai-chatbots-small-business-guide",
+        excerpt: "You don't need an enterprise budget to deploy a smart AI chatbot. Here's how we build and deploy custom chatbots for small businesses using the OpenAI API.",
+        content: `<h2>Why Chatbots Matter for SMBs</h2><p>A well-built chatbot can handle 60-70% of support queries automatically. That's hours of your time returned every single day.</p><h2>Our Stack</h2><p>We use the OpenAI GPT-4 API with a custom system prompt trained on the client's product docs, FAQ, and business context. The chatbot is deployed via a Node.js backend and embedded as a widget on any website.</p><h2>What We Integrate</h2><p>WhatsApp via Twilio, Web chat via a custom React widget, and email fallback via SendGrid. All conversations are logged to a Supabase database for review and improvement.</p><h2>Real Costs</h2><p>For a small business handling 200 queries/day, the OpenAI API cost is typically $8-12/month. ROI is immediate when you consider the saved support time.</p>`,
+        author: "Ashish Kumar",
+        authorRole: "Founder, AshbitSoft",
+        date: "2026-01-30",
+        readTime: "6 min read",
+        category: "Artificial Intelligence",
+        tags: ["AI", "Chatbots", "OpenAI", "Automation"],
+        gradient: "from-indigo-600 to-blue-600",
+        icon: "🤖",
         featured: false
     },
     {
         id: 5,
-        title: "AI and Machine Learning: Practical Applications for Business",
-        slug: "ai-ml-practical-business-applications",
-        excerpt: "Discover how AI and machine learning can solve real business problems, from customer service automation to predictive analytics.",
-        content: `
-      <h2>Demystifying AI for Business</h2>
-      <p>Artificial Intelligence and Machine Learning are no longer just buzzwords. They're practical tools that businesses of all sizes can leverage to improve operations and customer experiences.</p>
-      
-      <h2>Customer Service Automation</h2>
-      <p>AI-powered chatbots can handle routine customer inquiries 24/7, freeing up human agents for complex issues. Modern chatbots use natural language processing to understand context and provide relevant responses.</p>
-      
-      <h2>Predictive Analytics</h2>
-      <p>Machine learning models can analyze historical data to predict future trends, helping businesses make proactive decisions about inventory, staffing, and resource allocation.</p>
-      
-      <h2>Personalization at Scale</h2>
-      <p>AI enables businesses to deliver personalized experiences to thousands or millions of customers simultaneously, improving engagement and conversion rates.</p>
-      
-      <h2>Process Automation</h2>
-      <p>From invoice processing to quality control, AI can automate repetitive tasks with high accuracy, reducing costs and minimizing errors.</p>
-      
-      <h2>Getting Started</h2>
-      <p>Start small with a specific use case. Collect quality data, choose the right tools, and measure results. Success with initial projects builds momentum for broader AI adoption.</p>
-    `,
-        author: "Vikram Singh",
-        authorRole: "AI Solutions Architect",
-        date: "2026-01-15",
-        readTime: "6 min read",
-        category: "Artificial Intelligence",
-        tags: ["AI", "Machine Learning", "Automation"],
-        image: aiImage,
+        title: "SEO in 2026: What Actually Moves the Needle for Startups",
+        slug: "seo-strategy-startups-2026",
+        excerpt: "Forget keyword stuffing and backlink farms. This is what we actually do to rank our startup clients on Google's first page — fast and sustainably.",
+        content: `<h2>The SEO Landscape Has Changed</h2><p>Google's AI-powered search results have fundamentally changed what SEO means in 2026. Thin content is penalized. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is everything.</p><h2>What Actually Works</h2><p>Topic clustering — building authoritative content hubs around your core service areas — consistently outperforms individual keyword targeting. We pair this with technical SEO: Core Web Vitals, proper schema markup, and mobile optimization.</p><h2>Quick Wins</h2><p>Fix broken links, compress images, add meta descriptions to every page, claim Google Business Profile. These take hours and have outsized impact on local rankings.</p><h2>Our Process</h2><p>Month 1: Technical audit + fixes. Month 2-3: Content creation + internal linking. Month 4+: Link building via PR and guest posting. Most clients see page-1 rankings within 90 days for long-tail keywords.</p>`,
+        author: "Priya Sharma",
+        authorRole: "Digital Marketing Lead, AshbitSoft",
+        date: "2026-01-22",
+        readTime: "8 min read",
+        category: "Digital Marketing",
+        tags: ["SEO", "Digital Marketing", "Content Strategy"],
+        gradient: "from-pink-600 to-rose-600",
+        icon: "📈",
         featured: false
     },
     {
         id: 6,
-        title: "Mobile-First Development: Why It Matters in 2026",
-        slug: "mobile-first-development-2026",
-        excerpt: "With mobile traffic dominating the web, mobile-first development is no longer optional. Learn why and how to implement it effectively.",
-        content: `
-      <h2>The Mobile-First Imperative</h2>
-      <p>Over 60% of web traffic now comes from mobile devices. Mobile-first development ensures your applications provide excellent experiences on the devices most people use.</p>
-      
-      <h2>Core Principles</h2>
-      
-      <h3>Progressive Enhancement</h3>
-      <p>Start with a solid mobile experience and enhance it for larger screens. This ensures all users get a functional experience regardless of their device.</p>
-      
-      <h3>Performance Optimization</h3>
-      <p>Mobile users often have slower connections. Optimize images, minimize JavaScript, and implement lazy loading to ensure fast load times.</p>
-      
-      <h3>Touch-Friendly Interfaces</h3>
-      <p>Design for touch interactions with appropriately sized buttons, adequate spacing, and intuitive gestures.</p>
-      
-      <h2>Responsive Design Best Practices</h2>
-      <ul>
-        <li>Use flexible grid layouts</li>
-        <li>Implement responsive images</li>
-        <li>Test on real devices</li>
-        <li>Consider mobile-specific features like GPS and camera access</li>
-      </ul>
-      
-      <h2>Tools and Frameworks</h2>
-      <p>Modern frameworks like React Native, Flutter, and Progressive Web Apps (PWAs) make it easier to build high-quality mobile experiences.</p>
-    `,
-        author: "Neha Gupta",
-        authorRole: "Mobile Development Lead",
-        date: "2026-01-10",
+        title: "Java Spring Boot vs Node.js: Which for Your Next Backend?",
+        slug: "java-spring-boot-vs-nodejs-backend",
+        excerpt: "Two of the most popular backend choices for enterprise apps. We break down performance, ecosystem, hiring costs, and when to use each.",
+        content: `<h2>The Core Difference</h2><p>Node.js is event-driven and non-blocking — ideal for I/O heavy applications. Java Spring Boot is mature, thread-based, and battle-tested for large enterprise systems.</p><h2>Performance</h2><p>For raw throughput, modern Node.js (v22+) is competitive with Spring Boot for most workloads. Spring Boot handles CPU-intensive tasks better due to native multi-threading.</p><h2>Ecosystem</h2><p>Both have mature ecosystems. Spring Boot's dependency injection and annotation-based config is incredibly powerful for complex enterprise apps. Node.js wins on NPM package availability and rapid iteration speed.</p><h2>When to Choose Each</h2><p>Node.js: Startups, real-time apps, REST APIs, microservices. Spring Boot: Banking, healthcare, government, large-scale enterprise with complex business rules and team of Java developers.</p>`,
+        author: "Rahul Verma",
+        authorRole: "Backend Engineer, AshbitSoft",
+        date: "2026-01-15",
+        readTime: "7 min read",
+        category: "Development",
+        tags: ["Java", "Node.js", "Spring Boot", "Backend"],
+        gradient: "from-amber-600 to-orange-600",
+        icon: "☕",
+        featured: false
+    },
+    {
+        id: 7,
+        title: "How to Build Your First SaaS MVP in 6 Weeks",
+        slug: "build-saas-mvp-6-weeks",
+        excerpt: "The exact blueprint we use to take a SaaS idea from a napkin sketch to a live, paying-customer product in 6 weeks flat — without cutting corners that matter.",
+        content: `<h2>Week 1: Define, Don't Build</h2><p>The biggest mistake founders make is coding before validating. Spend week 1 on user interviews, competitor analysis, and writing your product spec document.</p><h2>Week 2-3: Core Feature Development</h2><p>Pick your stack (we recommend MERN or Next.js + Supabase), implement auth, your single core feature, and basic billing via Razorpay or Stripe.</p><h2>Week 4: Polish & QA</h2><p>No new features. Fix bugs, improve load times, write error messages that humans can read, and set up basic monitoring with Sentry.</p><h2>Week 5: Soft Launch</h2><p>Invite your first 20 users. Do not run ads yet. Watch how they use your product. Record sessions with Hotjar. Talk to every user.</p><h2>Week 6: Iterate Fast</h2><p>Fix the top 3 friction points identified from real users. Then and only then, consider a broader launch.</p>`,
+        author: "Ashish Kumar",
+        authorRole: "Founder, AshbitSoft",
+        date: "2026-01-08",
+        readTime: "10 min read",
+        category: "Business Strategy",
+        tags: ["SaaS", "MVP", "Startup", "Product"],
+        gradient: "from-teal-600 to-emerald-600",
+        icon: "💡",
+        featured: false
+    },
+    {
+        id: 8,
+        title: "Google Apps Script: 5 Automations Every Business Needs",
+        slug: "google-apps-script-5-automations",
+        excerpt: "If your team uses Google Workspace, these 5 Apps Script automations will save you hours every week — no coding experience required to understand them.",
+        content: `<h2>1. Auto-Send Weekly Reports</h2><p>Pull data from Sheets, format it into a beautiful HTML email, and send it to your team every Monday at 9am — automatically. A time trigger + MailApp does it in under 50 lines.</p><h2>2. Form-to-CRM Sync</h2><p>When a Google Form is submitted, automatically append data to your CRM spreadsheet, send a welcome email, and assign a task in your project tracker.</p><h2>3. Invoice Generator</h2><p>Use a Docs template + Slides/Drive API to generate PDFs from spreadsheet rows. Trigger on new row, auto-name the file, and email it to the client.</p><h2>4. Calendar Event Reminders</h2><p>A daily trigger that scans your Calendar API for events in the next 24 hours and sends WhatsApp reminders via the WhatsApp Business API.</p><h2>5. Slack/WhatsApp Alerts</h2><p>Monitor a Sheet for specific conditions (e.g. stock below threshold) and fire a webhook to Slack or WhatsApp when triggered.</p>`,
+        author: "Ashish Kumar",
+        authorRole: "Founder, AshbitSoft",
+        date: "2026-01-02",
+        readTime: "6 min read",
+        category: "Automation",
+        tags: ["Google Apps Script", "Automation", "Google Workspace"],
+        gradient: "from-green-600 to-teal-600",
+        icon: "📊",
+        featured: false
+    },
+    {
+        id: 9,
+        title: "Why Your Website Is Losing Customers (And How to Fix It)",
+        slug: "website-losing-customers-ux-fixes",
+        excerpt: "Most business websites convert at under 2%. These are the UX and performance issues we fix in every client project that immediately move that number up.",
+        content: `<h2>The Number One Problem: Speed</h2><p>If your site takes more than 3 seconds to load, 53% of mobile visitors leave. This is not a design problem — it's a technical one. Compress images, eliminate render-blocking scripts, and use a CDN.</p><h2>No Clear Call to Action</h2><p>Visitors shouldn't have to think about what to do next. Every page needs one primary CTA — prominently placed, visually distinct, and action-oriented (e.g., "Get My Free Quote" not "Contact Us").</p><h2>Trust Signals Are Missing</h2><p>Add client logos, testimonials, review counts, and certifications above the fold. People need social proof before they trust you with their money.</p><h2>Mobile Experience is Broken</h2><p>Test on a real Android device on a 4G connection. If text is too small, buttons are too close together, or forms are hard to fill — fix these immediately.</p>`,
+        author: "Priya Sharma",
+        authorRole: "Digital Marketing Lead, AshbitSoft",
+        date: "2025-12-28",
         readTime: "5 min read",
-        category: "Mobile Development",
-        tags: ["Mobile", "Development", "UX"],
-        image: mobileImage,
+        category: "Digital Marketing",
+        tags: ["UX", "Conversion", "Web Design", "Performance"],
+        gradient: "from-indigo-600 to-violet-600",
+        icon: "🎯",
+        featured: false
+    },
+    {
+        id: 10,
+        title: "Securing Your Node.js API: A Production Checklist",
+        slug: "nodejs-api-security-checklist",
+        excerpt: "Before you ship that Node.js API to production, run through this security checklist. We've seen what happens when teams skip these steps — don't be next.",
+        content: `<h2>1. Helmet.js — Always</h2><p>Add helmet to every Express app. It sets 11 security-related HTTP headers in one line. There's no reason to skip this.</p><h2>2. Rate Limiting</h2><p>Use express-rate-limit to prevent brute force attacks on auth endpoints. Limit to 10 login attempts per 15 minutes per IP.</p><h2>3. Input Validation</h2><p>Use Zod or Joi to validate every incoming request body. Never trust client data. Sanitize against XSS with the xss-clean package.</p><h2>4. Environment Variables</h2><p>Use dotenv. Never commit .env files. Rotate secrets regularly. Use AWS Secrets Manager or Doppler for production secrets management.</p><h2>5. JWT Best Practices</h2><p>Short expiry times (15-60 min), refresh token rotation, and always verify the algorithm. Never use HS256 in production — use RS256.</p><h2>6. CORS Configuration</h2><p>Whitelist specific origins. Never use origin: '*' in production. Block credentials with wildcard origins — it's a security hole.</p>`,
+        author: "Rahul Verma",
+        authorRole: "Backend Engineer, AshbitSoft",
+        date: "2025-12-20",
+        readTime: "7 min read",
+        category: "Security",
+        tags: ["Node.js", "Security", "API", "Best Practices"],
+        gradient: "from-slate-700 to-slate-900",
+        icon: "🔒",
         featured: false
     }
 ];
@@ -260,7 +197,7 @@ export const getPostBySlug = (slug) => {
 
 // Get recent posts
 export const getRecentPosts = (limit = 3) => {
-    return blogPosts
+    return [...blogPosts]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, limit);
 };

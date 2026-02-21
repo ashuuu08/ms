@@ -403,17 +403,10 @@ const Pricing = () => {
                 </Link>
             </div>
 
-            {/* Trust Indicators - Compact */}
             <div className="mt-12 text-center">
                 <p className="text-xs text-slate-500 dark:text-slate-500 mb-3">
-                    Trusted by 500+ businesses worldwide
+                    Trusted by founders, startups &amp; growing businesses across India
                 </p>
-                <div className="flex justify-center items-center gap-6 flex-wrap opacity-50">
-                    <div className="text-lg font-bold text-slate-400">BRAND</div>
-                    <div className="text-lg font-bold text-slate-400">COMPANY</div>
-                    <div className="text-lg font-bold text-slate-400">STARTUP</div>
-                    <div className="text-lg font-bold text-slate-400">TECH</div>
-                </div>
             </div>
 
         </div>

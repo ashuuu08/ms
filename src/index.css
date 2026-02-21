@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Apply the default font globally */
+/* ═══════════════════════════════════════════════════════
+   GLOBAL BASE STYLES
+═══════════════════════════════════════════════════════ */
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -23,33 +25,37 @@
     padding: 0;
   }
 
-  /* Hide scrollbar but keep functionality */
-  body::-webkit-scrollbar {
-    width: 0px;
+  /* Custom scrollbar — thin & branded */
+  ::-webkit-scrollbar {
+    width: 5px;
     background: transparent;
   }
 
-  html::-webkit-scrollbar {
-    width: 0px;
+  ::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  /* For Firefox */
+  ::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5;
+  }
+
   html {
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 transparent;
   }
 
-  body {
-    scrollbar-width: none;
-  }
-
-  /* Prevent all elements from causing horizontal overflow */
+  /* Prevent horizontal overflow */
   * {
     max-width: 100%;
     box-sizing: border-box;
   }
 
-  /* Use Outfit for headings automatically */
+  /* Headings font */
   h1,
   h2,
   h3,
@@ -59,15 +65,146 @@
     font-family: 'Outfit', sans-serif;
   }
 
-  /* Ensure smooth dark mode transitions */
-  * {
-    transition-property: background-color, border-color, color;
+  /* Smooth color transitions for dark mode */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+    transition-duration: 200ms;
   }
 
-  /* Dark theme background gradient */
-  .dark {
-    background: linear-gradient(to bottom, #0b0f17 0%, #0f1419 100%);
+  /* Dark theme gradient background */
+  .dark body {
+    background: linear-gradient(to bottom, #030712 0%, #0b0f1c 100%);
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: #6366f1;
+    color: white;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITY COMPONENTS
+═══════════════════════════════════════════════════════ */
+@layer components {
+
+  /* Focus ring for accessibility */
+  .focus-ring {
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-950;
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 shadow-xl;
+  }
+
+  /* Section container standard */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400;
+  }
+
+  /* Subtle badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border;
+  }
+
+  .badge-indigo {
+    @apply badge bg-indigo-50 dark:bg-indigo-900/30 border-indigo-100 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400;
+  }
+
+  .badge-emerald {
+    @apply badge bg-emerald-50 dark:bg-emerald-900/30 border-emerald-100 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-500/20 text-sm;
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-95 transition-all text-sm;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-2;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ANIMATION UTILITIES
+═══════════════════════════════════════════════════════ */
+@layer utilities {
+
+  /* Perspective for 3D transforms */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* Shimmer loading state */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, #f0f4f8 0px, #e2e8f0 40px, #f0f4f8 80px);
+    background-size: 1000px;
+    animation: shimmer 2s infinite linear;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Gradient glow border */
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #06b6d4);
+    z-index: -1;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
   }
 }
