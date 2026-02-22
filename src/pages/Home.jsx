@@ -43,7 +43,6 @@ import {
   ChevronRight,
   MessageSquare,
   Phone,
-  Mail,
   Sparkles,
   BarChart3,
   LineChart,
@@ -797,9 +796,9 @@ const Home = () => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-white dark:hover:bg-slate-800 transition">
               <Phone size={16} className="text-indigo-500" /> +91 96912 07533
             </a>
-            <a href="mailto:contact@ashbitsoft.in"
+            <a href="https://wa.me/917697706427" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-white dark:hover:bg-slate-800 transition">
-              <Mail size={16} className="text-indigo-500" /> contact@ashbitsoft.in
+              <MessageSquare size={16} className="text-indigo-500" /> +91 76977 06427
             </a>
           </div>
         </div>

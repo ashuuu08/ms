@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle, DollarSign, Clock, Shield, Phone } from 'lucide-react';
+import { MessageSquare, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle, DollarSign, Clock, Shield, Phone } from 'lucide-react';
 import AntiGravityBackground from '../components/AntiGravityBackground';
 
 const Contact = () => {
@@ -145,9 +145,9 @@ const Contact = () => {
                 <div className="w-9 h-9 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Phone size={16} /></div>
                 <span className="font-medium text-sm">+91 9691207533</span>
               </a>
-              <a href="mailto:contact@ashsoft.com" className="flex items-center gap-2.5 text-sm hover:text-white/80 transition group">
-                <div className="w-9 h-9 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><Mail size={16} /></div>
-                <span className="font-medium text-sm">contact@ashsoft.com</span>
+              <a href="https://wa.me/917697706427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-sm hover:text-white/80 transition group">
+                <div className="w-9 h-9 bg-white/10 group-hover:bg-white/20 rounded-full flex items-center justify-center transition"><MessageSquare size={16} /></div>
+                <span className="font-medium text-sm">+91 76977 06427</span>
               </a>
               <div className="flex gap-2.5 pt-4 border-t border-white/10">
                 {[Linkedin, Github, Twitter].map((Icon, i) => (

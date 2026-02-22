@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, ArrowRight, ChevronDown } from 'lucide-react';
 import useTheme from '../hooks/useTheme';
 import logo from '../assets/logoo.png';
@@ -51,6 +51,18 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Body scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   // Zorvyn-inspired styling with your original colors
   const navBackgroundClass = scrolled
@@ -255,127 +267,192 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay - Enhanced design */}
-      <div className={`md:hidden absolute top-20 left-0 w-full bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-2xl transition-all duration-300 ease-in-out origin-top ${isOpen ? 'opacity-100 scale-y-100 max-h-screen' : 'opacity-0 scale-y-0 max-h-0'
-        }`}>
-        <div className="px-4 py-6 space-y-2">
-          {/* Home Link */}
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className={`flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === '/'
-              ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
-              : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
-              }`}
-          >
-            Home
-            {location.pathname === '/' && (
-              <div className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
-            )}
-          </Link>
+      {/* Mobile Sidebar Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] md:hidden"
+            />
 
-          {/* Solutions Dropdown in Mobile */}
-          <div className="space-y-1">
-            <button
-              onClick={() => setSolutionsDropdownOpen(!solutionsDropdownOpen)}
-              className={`w-full flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname.startsWith('/solutions')
-                ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
-                }`}
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 left-0 h-screen w-[280px] bg-white dark:bg-slate-950 z-[70] shadow-2xl md:hidden flex flex-col border-r border-slate-200 dark:border-slate-800 overflow-hidden"
             >
-              <span>Solutions</span>
-              <ChevronDown size={20} className={`transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-
-            {/* Dropdown Items */}
-            <div className={`overflow-hidden transition-all duration-300 ${solutionsDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-              {solutionsDropdownItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800/60">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center space-x-2 group">
+                  <div className="bg-slate-100 dark:bg-slate-800 p-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                    <img src={logo} alt="Logo" className="w-6 h-6 object-contain" />
+                  </div>
+                  <span className="font-bold text-lg text-slate-900 dark:text-white">
+                    Ashbit<span className="text-indigo-600 dark:text-indigo-400">Soft</span>
+                  </span>
+                </Link>
+                <button
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-5 py-3 ml-4 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === item.path
-                    ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
-                    : 'text-slate-500 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                  className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Sidebar Content - Scrollable */}
+              <div className="flex-1 overflow-y-auto px-4 py-6 space-y-2 custom-scrollbar">
+                {/* Home Link */}
+                <Link
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === '/'
+                    ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
                     }`}
                 >
-                  {item.name}
-                  {location.pathname === item.path && (
+                  Home
+                  {location.pathname === '/' && (
                     <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
                   )}
                 </Link>
-              ))}
-            </div>
-          </div>
 
-          {/* Company Dropdown in Mobile */}
-          <div className="space-y-1">
-            <button
-              onClick={() => setCompanyDropdownOpen(!companyDropdownOpen)}
-              className={`w-full flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname.startsWith('/company')
-                ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
-                }`}
-            >
-              <span>Company</span>
-              <ChevronDown size={20} className={`transition-transform duration-300 ${companyDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
+                {/* Solutions Accordion */}
+                <div className="space-y-1">
+                  <button
+                    onClick={() => setSolutionsDropdownOpen(!solutionsDropdownOpen)}
+                    className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname.startsWith('/solutions')
+                      ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                      }`}
+                  >
+                    <span>Solutions</span>
+                    <ChevronDown size={18} className={`transition-transform duration-300 ${solutionsDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
 
-            {/* Dropdown Items */}
-            <div className={`overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-              {companyDropdownItems.map((item) => (
+                  <AnimatePresence>
+                    {solutionsDropdownOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden space-y-1"
+                      >
+                        {solutionsDropdownItems.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            onClick={() => setIsOpen(false)}
+                            className={`flex items-center justify-between px-4 py-3 ml-4 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === item.path
+                              ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
+                              : 'text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                              }`}
+                          >
+                            {item.name}
+                            {location.pathname === item.path && (
+                              <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
+                            )}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Company Accordion */}
+                <div className="space-y-1">
+                  <button
+                    onClick={() => setCompanyDropdownOpen(!companyDropdownOpen)}
+                    className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname.startsWith('/company')
+                      ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                      }`}
+                  >
+                    <span>Company</span>
+                    <ChevronDown size={18} className={`transition-transform duration-300 ${companyDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {companyDropdownOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden space-y-1"
+                      >
+                        {companyDropdownItems.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            onClick={() => setIsOpen(false)}
+                            className={`flex items-center justify-between px-4 py-3 ml-4 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === item.path
+                              ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
+                              : 'text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                              }`}
+                          >
+                            {item.name}
+                            {location.pathname === item.path && (
+                              <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
+                            )}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Other Nav Items */}
+                {navs.filter(item => item.name !== 'Home').map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === item.path
+                      ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                      }`}
+                  >
+                    {item.name}
+                    {location.pathname === item.path && (
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
+                    )}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Sidebar Footer */}
+              <div className="p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/20">
                 <Link
-                  key={item.name}
-                  to={item.path}
+                  to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-5 py-3 ml-4 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === item.path
-                    ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
-                    : 'text-slate-500 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
-                    }`}
+                  className="group relative flex w-full items-center justify-center gap-2 py-4 rounded-xl font-semibold overflow-hidden shadow-lg transition-all duration-300 hover:shadow-indigo-500/25"
                 >
-                  {item.name}
-                  {location.pathname === item.path && (
-                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
-                  )}
+                  <div className="absolute inset-0 bg-slate-900 dark:bg-indigo-600 group-hover:bg-indigo-600 dark:group-hover:bg-indigo-500 transition-colors duration-300"></div>
+                  <span className="relative flex items-center justify-center gap-2 text-white">
+                    Start Project
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
                 </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Other Nav Items (Pricing, Features) after dropdowns */}
-          {navs.filter(item => item.name !== 'Home').map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === item.path
-                ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
-                }`}
-            >
-              {item.name}
-              {location.pathname === item.path && (
-                <div className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400"></div>
-              )}
-            </Link>
-          ))}
-
-          <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800">
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="group relative block w-full text-center py-4 rounded-xl font-semibold overflow-hidden shadow-lg"
-            >
-              <div className="absolute inset-0 bg-indigo-600 dark:bg-indigo-500"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative flex items-center justify-center gap-2 text-white">
-                Start Project
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </div>
+                <div className="mt-4 flex items-center justify-between px-2">
+                  <span className="text-xs text-slate-400 dark:text-slate-500 font-medium uppercase tracking-wider">Theme Mode</span>
+                  <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 shadow-sm"
+                  >
+                    {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav >
   );
 };

@@ -45,7 +45,7 @@ const Services = () => {
         'Reduced operational costs'
       ],
       deliveryTime: '4-8 weeks',
-      pricing: 'Custom Quote'
+      pricing: 'Custom Pricing'
     },
     {
       id: 2,
@@ -68,7 +68,7 @@ const Services = () => {
         'Faster deployment'
       ],
       deliveryTime: '6-12 weeks',
-      pricing: 'Custom Quote'
+      pricing: 'Custom Pricing'
     },
     {
       id: 3,
@@ -91,7 +91,7 @@ const Services = () => {
         '24/7 availability'
       ],
       deliveryTime: '3-6 weeks',
-      pricing: 'Starting at $5,000'
+      pricing: 'Custom Pricing'
     },
     {
       id: 4,
@@ -114,7 +114,7 @@ const Services = () => {
         'Reduce operational costs'
       ],
       deliveryTime: '1-3 weeks',
-      pricing: 'Starting at $2,000'
+      pricing: 'Custom Pricing'
     },
     {
       id: 5,
@@ -137,7 +137,7 @@ const Services = () => {
         'Better data accuracy'
       ],
       deliveryTime: '2-4 weeks',
-      pricing: 'Starting at $3,000'
+      pricing: 'Custom Pricing'
     },
     {
       id: 6,
@@ -160,7 +160,7 @@ const Services = () => {
         'Competitive advantage'
       ],
       deliveryTime: '3-5 weeks',
-      pricing: 'Starting at $4,000'
+      pricing: 'Custom Pricing'
     },
     {
       id: 7,
@@ -183,7 +183,7 @@ const Services = () => {
         'Lower customer acquisition cost'
       ],
       deliveryTime: '2-4 weeks',
-      pricing: 'Starting at $2,500'
+      pricing: 'Custom Pricing'
     },
     {
       id: 8,
@@ -206,7 +206,7 @@ const Services = () => {
         'Long-term ROI'
       ],
       deliveryTime: 'Ongoing',
-      pricing: 'Starting at $1,500/month'
+      pricing: 'Custom Pricing'
     },
     {
       id: 9,
@@ -229,7 +229,7 @@ const Services = () => {
         'Improved team capabilities'
       ],
       deliveryTime: 'Flexible',
-      pricing: 'Starting at $200/hour'
+      pricing: 'Custom Pricing'
     },
     {
       id: 10,
@@ -252,7 +252,7 @@ const Services = () => {
         'Better reliability'
       ],
       deliveryTime: '4-8 weeks',
-      pricing: 'Custom Quote'
+      pricing: 'Custom Pricing'
     },
     {
       id: 11,
@@ -275,7 +275,7 @@ const Services = () => {
         'Build customer trust'
       ],
       deliveryTime: '2-6 weeks',
-      pricing: 'Starting at $3,500'
+      pricing: 'Custom Pricing'
     },
     {
       id: 12,
@@ -298,7 +298,7 @@ const Services = () => {
         'Enhanced functionality'
       ],
       deliveryTime: '2-4 weeks',
-      pricing: 'Starting at $2,500'
+      pricing: 'Custom Pricing'
     }
   ];
 
@@ -428,19 +428,18 @@ const Services = () => {
                   </ul>
                 </div>
 
-                {/* Pricing & CTA */}
+                {/* Delivery Time & CTA */}
                 <div className="pt-6 border-t border-slate-200 dark:border-slate-800">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400">Starting at</div>
-                      <div className="text-lg font-bold text-indigo-600 dark:text-indigo-400">
-                        {service.pricing}
+                      <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold">Estimated Delivery</div>
+                      <div className="text-base font-bold text-indigo-600 dark:text-indigo-400">
+                        {service.deliveryTime}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-slate-500 dark:text-slate-400">Delivery</div>
-                      <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        {service.deliveryTime}
+                      <div className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded-full uppercase tracking-wider border border-indigo-100 dark:border-indigo-800/50">
+                        Top Rated
                       </div>
                     </div>
                   </div>

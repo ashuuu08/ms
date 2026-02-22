@@ -6,7 +6,6 @@ import {
   Github,
   Twitter,
   Linkedin,
-  Mail,
   MapPin,
   ArrowRight,
   Phone,
@@ -16,6 +15,7 @@ import {
   Database,
   Zap,
   Megaphone,
+  MessageSquare,
   Instagram,
 } from "lucide-react";
 
@@ -69,9 +69,9 @@ const Footer = () => {
                 <Phone size={14} className="text-indigo-500 flex-shrink-0" />
                 +91 96912 07533
               </a>
-              <a href="mailto:contact@ashbitsoft.in" className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                <Mail size={14} className="text-indigo-500 flex-shrink-0" />
-                contact@ashbitsoft.in
+              <a href="https://wa.me/917697706427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <MessageSquare size={14} className="text-indigo-500 flex-shrink-0" />
+                +91 76977 06427
               </a>
               <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-500">
                 <MapPin size={14} className="flex-shrink-0" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Target, Users, Heart, Award, Globe, TrendingUp, Lightbulb, Mail, MapPin, Phone } from 'lucide-react';
+import { Building2, Target, Users, Heart, Award, Globe, TrendingUp, Lightbulb, MessageSquare, MapPin, Phone } from 'lucide-react';
 
 const Company = () => {
     const stats = [
@@ -172,9 +172,9 @@ const Company = () => {
 
                         <div className="grid md:grid-cols-3 gap-6 mb-8">
                             <div className="text-center">
-                                <Mail className="mx-auto mb-3" size={32} />
-                                <p className="font-semibold mb-1">Email</p>
-                                <p className="text-indigo-100">contact@ashbitsoft.in</p>
+                                <MessageSquare className="mx-auto mb-3" size={32} />
+                                <p className="font-semibold mb-1">WhatsApp</p>
+                                <p className="text-indigo-100">+91 76977 06427</p>
                             </div>
                             <div className="text-center">
                                 <Phone className="mx-auto mb-3" size={32} />
