@@ -16,6 +16,7 @@ export const blogPosts = [
         gradient: "from-emerald-600 to-teal-600",
         icon: "⚡",
         featured: true
+        
     },
     {
         id: 2,
