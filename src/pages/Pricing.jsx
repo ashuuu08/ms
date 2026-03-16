@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Check, Zap, Crown, Rocket, ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -72,6 +73,11 @@ const Pricing = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Service Pricing - Transparent & Custom Quotes" 
+                description="Get competitive, custom pricing for web development, automation, and digital marketing. We offer flexible plans tailored to startups and SMEs."
+                ogUrl="/pricing"
+            />
             <AntiGravityBackground />
             <div className="max-w-7xl mx-auto relative z-10">
 

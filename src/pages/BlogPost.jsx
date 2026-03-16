@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { getPostBySlug, getRecentPosts } from '../data/blogData';
 import BlogCard from '../components/BlogCard';
+import SEO from '../components/SEO';
 
 const BlogPost = () => {
     const { slug } = useParams();
@@ -24,16 +25,7 @@ const BlogPost = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-
-        // Set dynamic SEO meta tags
-        if (post) {
-            document.title = `${post.title} | AshbitSoft Blog`;
-            const metaDescription = document.querySelector('meta[name="description"]');
-            if (metaDescription) {
-                metaDescription.setAttribute('content', post.excerpt);
-            }
-        }
-    }, [slug, post]);
+    }, [slug]);
 
     if (!post) {
         return (
@@ -68,6 +60,13 @@ const BlogPost = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
+            <SEO 
+                title={post.title} 
+                description={post.excerpt} 
+                keywords={post.tags.join(', ')} 
+                ogUrl={`/blog/${post.slug}`}
+                ogImage={post.image}
+            />
             {/* Hero Section */}
             <section className="relative pt-32 pb-12 px-4 overflow-hidden">
                 {/* Background Elements */}
@@ -266,7 +265,7 @@ const BlogPost = () => {
                                         </a>
                                         <a
                                             href={shareLinks.linkedin}
-                                            target="_blank"
+                                            target="https://www.linkedin.com/company/111382117"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-3 px-4 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg transition-colors font-medium"
                                         >

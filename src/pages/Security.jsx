@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Eye, Server, FileCheck, AlertTriangle } from 'lucide-react';
 
@@ -51,6 +52,11 @@ const Security = () => {
 
     return (
         <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+            <SEO 
+                title="Security & Compliance - Data Protection First" 
+                description="Learn about AshbitSoft's enterprise-grade security standards, data encryption, and compliance measures to protect your business assets."
+                ogUrl="/company/security"
+            />
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}

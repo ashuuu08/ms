@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logoo.png';
 import {
@@ -337,6 +338,11 @@ const Home = () => {
   return (
     <div className="overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 font-sans min-h-screen">
 
+      <SEO 
+        title="Custom Software Development & Automation" 
+        description="AshbitSoft builds digital growth engines. We specialize in MERN stack development, custom automation, and ROI-driven digital marketing for startups." 
+        keywords="custom software, mern stack, web development automation, business growth engine, digital transformation india"
+      />
       {/* ═══════════════════════════════════════════════════════
           1. HERO SECTION
       ═══════════════════════════════════════════════════════ */}

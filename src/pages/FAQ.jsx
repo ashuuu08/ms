@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AntiGravityBackground from '../components/AntiGravityBackground';
@@ -96,6 +97,11 @@ const FAQ = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Frequently Asked Questions - Support & Info" 
+                description="Get answers to common questions about AshbitSoft's services, pricing, project timelines, and technical expertise."
+                ogUrl="/company/faq"
+            />
             <AntiGravityBackground />
             <div className="max-w-4xl mx-auto relative z-10">
 

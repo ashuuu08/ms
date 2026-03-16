@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Building, Target, LineChart, Shield, Workflow, Database, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -49,6 +50,11 @@ const SMEs = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Tech Solutions for SMEs - Automation & Growth" 
+                description="Empower your growing business with custom automation and digital transformation. We help SMEs optimize workflows and scale efficiently."
+                ogUrl="/solutions/smes"
+            />
             <AntiGravityBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import {
   FileSpreadsheet, Globe, Server, Share2, Layout, Cpu, ShieldCheck,
@@ -337,6 +338,11 @@ const Services = () => {
 
   return (
     <div className="w-full max-w-full overflow-x-hidden bg-white dark:bg-slate-950 min-h-screen pt-28 pb-20 transition-colors duration-300 font-sans">
+      <SEO 
+        title="Our Tech Services - Development, AI & Automation" 
+        description="Comprehensive technical services including MERN stack development, AI integration, Google Sheets automation, and digital marketing solutions."
+        ogUrl="/services"
+      />
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Header */}

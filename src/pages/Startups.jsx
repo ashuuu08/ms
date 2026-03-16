@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Rocket, Zap, TrendingUp, DollarSign, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -43,6 +44,11 @@ const Startups = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Startup Tech Solutions - MVP & Scaling" 
+                description="Launch your startup faster with AshbitSoft. We specialize in rapid MVP development, scalable architecture, and cost-effective tech stacks for new ventures."
+                ogUrl="/solutions/startups"
+            />
             <AntiGravityBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">

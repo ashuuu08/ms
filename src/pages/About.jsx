@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2, Award, Users, Zap, Terminal, Globe, Code2, Cpu, Coffee, ArrowRight,
@@ -84,6 +85,11 @@ const About = () => {
 
   return (
     <div className="bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden font-sans">
+      <SEO 
+        title="About Our Tech Startup - Our Mission & Vision" 
+        description="Learn about AshbitSoft's journey from custom scripts to scalable systems. Our mission is to democratize technology for businesses worldwide."
+        ogUrl="/company/about"
+      />
 
       {/* --- HERO SECTION --- */}
       <div className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

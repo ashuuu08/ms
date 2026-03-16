@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Send, Linkedin, Github, Twitter, CheckCircle2, Loader2, ArrowRight, AlertCircle, DollarSign, Clock, Shield, Phone } from 'lucide-react';
 import AntiGravityBackground from '../components/AntiGravityBackground';
@@ -53,6 +54,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300 py-8 px-4 flex items-center justify-center font-sans">
+      <SEO 
+        title="Contact Us - Let's Start Your Project" 
+        description="Ready to scale? Connect with AshbitSoft for a free consultation on custom software, automation, or digital marketing."
+        ogUrl="/contact"
+      />
 
       {/* Background Decor - Reduced */}
       <AntiGravityBackground />

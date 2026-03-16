@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { Rocket, Building2, Building, ArrowRight, CheckCircle2 } from 'lucide-react';
 import AntiGravityBackground from '../components/AntiGravityBackground';
@@ -36,6 +37,11 @@ const Solutions = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Business Tech Solutions - Scaling Made Simple" 
+                description="Tailored technical strategies for startups, SMEs, and enterprises. We provide the infrastructure and automation to support every stage of your business growth."
+                ogUrl="/solutions"
+            />
             <AntiGravityBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">

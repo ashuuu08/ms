@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Building2, Globe, Lock, Cpu, Cloud, Layers, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -78,6 +79,11 @@ const Enterprises = () => {
 
     return (
         <div className="min-h-screen w-full max-w-full pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden font-sans">
+            <SEO 
+                title="Enterprise Tech Infrastructure - Security & Scale" 
+                description="Scalable, mission-critical infrastructure for enterprises. AshbitSoft delivers secure, compliant, and high-performance technical solutions for large operations."
+                ogUrl="/solutions/enterprises"
+            />
             <AntiGravityBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">
