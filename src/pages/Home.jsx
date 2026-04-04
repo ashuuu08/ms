@@ -78,6 +78,60 @@ const TESTIMONIALS = [
     company: "BrandBoost Media",
     rating: 5,
     color: "from-violet-500 to-indigo-500"
+  },
+  {
+    id: 4,
+    quote: "The Java-based backend they built handles our 50k requests per minute without any latency issues. Their enterprise architecture knowledge is world-class.",
+    author: "Vivek Roy",
+    role: "Engineering Manager",
+    company: "DataOps Tech",
+    rating: 5,
+    color: "from-blue-600 to-indigo-700"
+  },
+  {
+    id: 5,
+    quote: "Exceptional AI chatbot integration. It reduced our support overhead by 60% in just the first month. Our customers love the instant, smart responses.",
+    author: "Aditi Sharma",
+    role: "Head of Support",
+    company: "ZenLearn Edu",
+    rating: 5,
+    color: "from-purple-500 to-pink-600"
+  },
+  {
+    id: 6,
+    quote: "Automating our Shopify-to-Sheets syncing saved our inventory team hours of manual export/import work. They really understand business operations.",
+    author: "Rahul Bajaj",
+    role: "Proprietor",
+    company: "LuxDecor",
+    rating: 5,
+    color: "from-emerald-600 to-teal-500"
+  },
+  {
+    id: 7,
+    quote: "From MVP to a scaled product in 3 months. Their MERN stack proficiency is unmatched. They don't just write code, they build scalable products.",
+    author: "Pranay Sheth",
+    role: "Co-Founder",
+    company: "FinPilot",
+    rating: 5,
+    color: "from-orange-500 to-red-600"
+  },
+  {
+    id: 8,
+    quote: "The data visualization dashboard they built for our healthcare analytics project was intuitive and fast. Security was handled according to all standards.",
+    author: "Dr. Anjali Rao",
+    role: "Clinical Director",
+    company: "HealthCore Systems",
+    rating: 5,
+    color: "from-sky-500 to-blue-600"
+  },
+  {
+    id: 9,
+    quote: "Reliable and fast. Our Google Ads campaign performance reporting is now automated and error-free, and we've seen clear ROI growth.",
+    author: "Siddharth Jain",
+    role: "E-Commerce Head",
+    company: "TrendSetters",
+    rating: 5,
+    color: "from-rose-500 to-rose-700"
   }
 ];
 
@@ -114,15 +168,54 @@ const CASE_STUDIES = [
   },
 ];
 
-const INDUSTRIES = [
-  { name: "Startups & MVPs", icon: Rocket, color: "text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20" },
-  { name: "E-Commerce", icon: Globe, color: "text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20" },
-  { name: "Healthcare", icon: ShieldCheck, color: "text-violet-600 bg-violet-50 dark:bg-violet-900/20" },
-  { name: "Finance & FinTech", icon: TrendingUp, color: "text-indigo-700 bg-indigo-50 dark:bg-indigo-900/30" },
-  { name: "Education", icon: FileCheck, color: "text-blue-600 bg-blue-50 dark:bg-blue-900/20" },
-  { name: "Logistics", icon: Server, color: "text-violet-500 bg-violet-50 dark:bg-violet-900/20" },
-  { name: "Marketing Agencies", icon: Megaphone, color: "text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20" },
-  { name: "Enterprise", icon: Briefcase, color: "text-slate-600 bg-slate-100 dark:bg-slate-800" },
+const INDUSTRIES_WE_SERVE = [
+  { name: "Startups & MVPs", desc: "Helping founders go from idea to launch in record time with scalable 0-to-1 engineering.", icon: Rocket },
+  { name: "E-Commerce", desc: "Building high-performance online stores with custom inventory sync and automated order processing.", icon: Globe },
+  { name: "Healthcare & MedTech", desc: "Designing secure, HIPAA-compliant patient management systems and booking automations.", icon: ShieldCheck },
+  { name: "Finance & FinTech", desc: "Robust data processing and secure dashboarding for transactional apps and financial reporting.", icon: TrendingUp },
+  { name: "Education", desc: "Interactive learning platforms and automated student onboarding workflows.", icon: FileCheck },
+  { name: "Logistics", desc: "Real-time tracking dashboards and automated shipment notification systems.", icon: Server },
+  { name: "Marketing Agencies", desc: "Internal tools for automated reporting, CRM sync, and multi-channel campaign management.", icon: Megaphone },
+  { name: "Enterprise", desc: "Modernizing legacy workflows with cloud integration and building bespoke secure systems.", icon: Briefcase },
+];
+
+const SPECIALIZED_EXPERTISE = [
+  {
+    title: 'Full-Stack Development',
+    desc: 'Scalable web applications using the MERN stack (React, Node.js, MongoDB). We focus on building fast, secure, and production-ready systems that grow with your business.',
+    icon: Code2,
+    techs: ['React', 'Node.js', 'MongoDB', 'Express']
+  },
+  {
+    title: 'Java Enterprise Systems',
+    desc: 'Robust backend architectures powered by Java Spring Boot. We specialize in high-transaction, enterprise-grade systems with complex business logic.',
+    icon: Coffee,
+    techs: ['Java', 'Spring Boot', 'Microservices', 'Hibernate']
+  },
+  {
+    title: 'Workflow & Sheet Automation',
+    desc: 'Bespoke automation for manual tasks using Google Apps Script and custom APIs. We eliminate data entry and synchronize business workflows in real-time.',
+    icon: Table,
+    techs: ['Apps Script', 'Sheets API', 'Gmail Automation']
+  },
+  {
+    title: 'AI & Machine Learning Integration',
+    desc: 'Deploy custom AI solutions using Python and OpenAI. From smart chatbots trained on your docs to predictive analytics for business intelligence.',
+    icon: Bot,
+    techs: ['Python', 'OpenAI API', 'LangChain', 'Data Engineering']
+  },
+  {
+    title: 'Cloud & Database Architecture',
+    desc: 'Secure, real-time database management using Supabase and PostgreSQL. We design serverless cloud backends with maximum uptime.',
+    icon: Database,
+    techs: ['Supabase', 'PostgreSQL', 'Auth', 'Edge Functions']
+  },
+  {
+    title: 'Digital Marketing & Growth',
+    desc: 'Data-driven marketing strategies including SEO, PPC, and campaign automation. We help you acquire and retain customers through performance-focused tactics.',
+    icon: Megaphone,
+    techs: ['SEO/SEM', 'PPC Ads', 'Performance Marketing', 'Analytics']
+  }
 ];
 
 // --- ANIMATION VARIANTS ---
@@ -310,6 +403,120 @@ const SpotlightCard = ({ to, icon: Icon, title, desc, techs, color }) => {
   );
 };
 
+const ServiceAccordionItem = ({ item, index, isOpen, onToggle }) => {
+  const Icon = item.icon || item.icon;
+  const title = item.title || item.name;
+
+  return (
+    <div className={`overflow-hidden border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 ${isOpen ? 'bg-indigo-50/30 dark:bg-indigo-500/5' : 'bg-transparent'}`}>
+      <button
+        onClick={() => onToggle(index)}
+        className="w-full flex items-center justify-between p-6 text-left group focus:outline-none"
+      >
+        <div className="flex items-center gap-5">
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700'}`}>
+            <Icon size={24} />
+          </div>
+          <div>
+            <h4 className={`text-lg font-bold transition-colors duration-300 ${isOpen ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-900 dark:text-white'}`}>
+              {title}
+            </h4>
+            {item.techs && !isOpen && (
+              <div className="hidden sm:flex gap-2 mt-1">
+                {item.techs.slice(0, 3).map((t, i) => (
+                  <span key={i} className="text-[10px] text-slate-400 font-medium">{t}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
+          <ChevronRight size={14} className="transform rotate-90" />
+        </div>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="px-6 pb-6 pt-0 ml-16">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-base max-w-3xl mb-4">
+                {item.desc}
+              </p>
+              {item.techs && (
+                <div className="flex flex-wrap gap-2">
+                  {item.techs.map((tech, i) => (
+                    <span key={i} className="text-[10px] font-bold px-2 py-1 rounded bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50 uppercase tracking-wider">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const WhyChooseCard = ({ icon: Icon, title, desc, color, delay }) => {
+  const colors = {
+    amber: "from-amber-400 to-orange-500 bg-amber-50 dark:bg-amber-900/20 shadow-amber-500/20",
+    emerald: "from-emerald-400 to-teal-500 bg-emerald-50 dark:bg-emerald-900/20 shadow-emerald-500/20",
+    blue: "from-blue-400 to-indigo-500 bg-blue-50 dark:bg-blue-900/20 shadow-blue-500/20",
+    purple: "from-purple-400 to-pink-500 bg-purple-50 dark:bg-purple-900/20 shadow-purple-500/20"
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.8,
+        delay,
+        ease: [0.16, 1, 0.3, 1] // Custom ultra-smooth ease-out
+      }}
+      whileHover={{
+        y: -10,
+        scale: 1.025,
+        transition: {
+          type: "spring",
+          stiffness: 80,
+          damping: 25,
+          mass: 0.5
+        }
+      }}
+      className="bg-white/40 dark:bg-slate-900/30 backdrop-blur-2xl p-7 rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl relative group z-30 overflow-hidden"
+    >
+      {/* Animated Border Beam - High-End Technical Look */}
+      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+
+      {/* Glow Effect */}
+      <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br ${colors[color]} opacity-[0.03] group-hover:opacity-10 transition-opacity blur-3xl rounded-full`} />
+
+      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${colors[color]} flex items-center justify-center mb-6 transition-all duration-700 ease-out shadow-lg ring-4 ring-white/10 dark:ring-white/5 group-hover:rotate-[15deg] group-hover:scale-110 group-hover:shadow-2xl`}>
+        <Icon size={22} className="text-white" />
+      </div>
+
+      <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight transition-colors duration-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{title}</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors duration-500">
+        {desc}
+      </p>
+
+      {/* Modern 'Learn More' Micro-cue */}
+      <div className="mt-6 flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+        Discover <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-500" />
+      </div>
+    </motion.div>
+  );
+};
+
 // --- MAIN PAGE COMPONENT ---
 const Home = () => {
   const mouseX = useMotionValue(0);
@@ -320,6 +527,8 @@ const Home = () => {
   const cardY = useTransform(smoothY, (v) => v * -0.02);
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [openService, setOpenService] = useState(0);
+  const [openIndustry, setOpenIndustry] = useState(-1);
 
   useEffect(() => {
     const timer = setInterval(() => setActiveTestimonial(p => (p + 1) % TESTIMONIALS.length), 5000);
@@ -338,9 +547,9 @@ const Home = () => {
   return (
     <div className="overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 font-sans min-h-screen">
 
-      <SEO 
-        title="Custom Software Development & Automation" 
-        description="AshbitSoft builds digital growth engines. We specialize in MERN stack development, custom automation, and ROI-driven digital marketing for startups." 
+      <SEO
+        title="Custom Software Development & Automation"
+        description="AshbitSoft builds digital growth engines. We specialize in MERN stack development, custom automation, and ROI-driven digital marketing for startups."
         keywords="custom software, mern stack, web development automation, business growth engine, digital transformation india"
       />
       {/* ═══════════════════════════════════════════════════════
@@ -487,42 +696,100 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           3. SERVICES / EXPERTISE SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 relative overflow-hidden bg-white dark:bg-slate-950">
+      <section className="py-28 px-4 relative overflow-hidden bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-14">
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Complete Digital Solutions</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
-              From coding complex backends to running high-ROI marketing campaigns — we are your all-in-one technical partner.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { icon: Code2, title: 'Full-Stack Development', desc: 'Scalable web apps using React, Node.js, and MongoDB. Fast, secure, and built to grow with your business.', techs: ['React', 'Node.js', 'MongoDB', 'Express'], color: 'blue' },
-              { icon: Coffee, title: 'Java Enterprise', desc: 'Robust backend systems powered by Java Spring Boot — perfect for large-scale, high-transaction processing.', techs: ['Java', 'Spring Boot', 'Microservices'], color: 'orange' },
-              { icon: Table, title: 'Workflow Automation', desc: 'We automate your manual processes using custom Google Apps Scripts, Sheets APIs, and Gmail integrations.', techs: ['Apps Script', 'Sheets API', 'Gmail Automations'], color: 'green' },
-              { icon: Database, title: 'Supabase & Cloud DB', desc: 'Real-time databases and secure authentication using Supabase. Serverless power without the complexity.', techs: ['Supabase', 'PostgreSQL', 'Auth', 'Edge Functions'], color: 'emerald' },
-              { icon: Bot, title: 'AI & Smart Chatbots', desc: 'Custom AI setups using Python and OpenAI. Deploy smart chatbots and predictive analytics on your platform.', techs: ['Python', 'OpenAI API', 'LangChain', 'Chatbots'], color: 'violet' },
-              { icon: Megaphone, title: 'Digital Marketing', desc: 'Data-driven SEO, PPC advertising, and social media campaigns to acquire and retain customers for your startup.', techs: ['SEO/SEM', 'PPC Ads', 'Content Strategy', 'Analytics'], color: 'pink' },
-            ].map((svc, i) => (
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            {/* Header Text - Left Side Enhanced */}
+            <div className="lg:sticky lg:top-32">
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.07, ease: 'easeOut' }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
               >
-                <SpotlightCard to="/services" icon={svc.icon} title={svc.title} desc={svc.desc} techs={svc.techs} color={svc.color} />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-widest mb-6 border border-indigo-100 dark:border-indigo-800/50">
+                  <Cpu size={14} className="animate-pulse" />
+                  <span>Technical Excellence</span>
+                </div>
+
+                <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 leading-[1.1]">
+                  Specialized <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Expertise.</span>
+                </h2>
+
+                <p className="text-slate-600 dark:text-slate-400 text-lg mb-10 max-w-xl leading-relaxed">
+                  We don't just build software — we architect high-performance digital ecosystems. From <span className="text-slate-900 dark:text-white font-semibold">MERN stacks</span> to <span className="text-slate-900 dark:text-white font-semibold">custom AI automation</span>, we ship code that drives ROI.
+                </p>
+
+                {/* Feature List (The 'Something Missing') */}
+                <div className="space-y-6 mb-12">
+                  {[
+                    { title: "Direct Architect Access", desc: "Speak directly with engineers, not middle managers.", icon: Users },
+                    { title: "Enterprise Reliability", desc: "99.9% uptime architectures for mission-critical apps.", icon: ShieldCheck },
+                    { title: "Rapid Development", desc: "4-8 week typical delivery for MVPs and automation.", icon: Zap },
+                  ].map((feature, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-start gap-4 group"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + (i * 0.1) }}
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-indigo-500 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                        <feature.icon size={20} />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 transition-colors">{feature.title}</h4>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">{feature.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Stats */}
+                <div className="flex flex-wrap gap-8 py-8 border-t border-slate-100 dark:border-slate-800">
+                  <div>
+                    <div className="text-4xl font-black text-slate-900 dark:text-white mb-1 tracking-tight">100%</div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      In-house Delivery
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-black text-slate-900 dark:text-white mb-1 tracking-tight">500k+</div>
+                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
+                      Lines of Code
+                    </div>
+                  </div>
+                </div>
               </motion.div>
-            ))}
+            </div>
+
+            {/* Accordion List (Right Side) */}
+            <div className="bg-slate-50/50 dark:bg-slate-900/50 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-2xl relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl -z-10 rounded-full"></div>
+              {SPECIALIZED_EXPERTISE.map((svc, i) => (
+                <ServiceAccordionItem
+                  key={i}
+                  item={svc}
+                  index={i}
+                  isOpen={openService === i}
+                  onToggle={(idx) => setOpenService(openService === idx ? -1 : idx)}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-20">
             <Link to="/services">
-              <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                View All Services <ArrowRight size={16} />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-10 py-5 rounded-2xl bg-indigo-600 text-white font-bold text-base hover:bg-indigo-700 transition shadow-2xl shadow-indigo-500/30 flex items-center gap-3 mx-auto"
+              >
+                Explore Full Tech Stack <ArrowRight size={20} />
               </motion.button>
             </Link>
           </div>
@@ -532,39 +799,140 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           4. WHY CHOOSE US — DIFFERENTIATORS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">Our Edge</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Why Companies Choose Us</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xl mx-auto">We don't just ship code — we build systems that create leverage.</p>
+      <section className="py-32 px-4 relative bg-white dark:bg-slate-950 overflow-hidden border-y border-slate-100 dark:border-slate-800">
+        {/* Subtle Dot Grid Background */}
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">
+              Why Companies <span className="text-indigo-600">Choose AshbitSoft</span>
+            </h2>
+            <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+              A tech and IT company named AshbitSoft is ultra-premium, <br className="hidden md:block" />
+              realistically crafted with precision and modern engineering.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              { icon: Zap, title: 'Fast Turnaround', desc: 'MVPs in 4–8 weeks. Automation scripts in days. We move at startup speed without cutting corners.', color: 'from-amber-500 to-orange-500', bg: 'bg-amber-50 dark:bg-amber-900/20' },
-              { icon: ShieldCheck, title: '100% Code Ownership', desc: 'Every line of code we write belongs to you. No lock-in, no licensing traps, full IP transfer on delivery.', color: 'from-emerald-500 to-teal-500', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
-              { icon: MessageSquare, title: 'Transparent Communication', desc: "Daily updates, weekly demos, and real-time access to your project board. You're never left in the dark.", color: 'from-blue-500 to-indigo-500', bg: 'bg-blue-50 dark:bg-blue-900/20' },
-              { icon: TrendingUp, title: 'ROI-First Approach', desc: "We don't build for the sake of building. Every feature is tied to a business outcome that improves your bottom line.", color: 'from-purple-500 to-pink-500', bg: 'bg-purple-50 dark:bg-purple-900/20' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
-                whileHover={{ y: -6 }}
-                className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all"
-              >
-                <div className={`w-12 h-12 rounded-xl ${item.bg} flex items-center justify-center mb-4`}>
-                  <div className={`bg-gradient-to-br ${item.color} rounded-lg w-10 h-10 flex items-center justify-center`}>
-                    <item.icon size={20} className="text-white" />
+          <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 md:gap-0 mt-16">
+
+            {/* Left Cards */}
+            <div className="flex flex-col gap-8 w-full md:w-1/3 md:pr-10 order-2 md:order-1">
+              <WhyChooseCard
+                icon={Zap}
+                title="Fast Turnaround"
+                desc="MVPs in 4-8 weeks. Automation scripts in days. Startup speed without cutting corners."
+                color="amber"
+                delay={0.1}
+              />
+              <WhyChooseCard
+                icon={MessageSquare}
+                title="Transparent Communication"
+                desc="Daily updates, weekly demos. Real-time project board access. You're never in the dark."
+                color="blue"
+                delay={0.2}
+              />
+            </div>
+
+            {/* Central Animated Logo - More Compact & Branded */}
+            <div className="relative w-64 h-64 md:w-[320px] md:h-[320px] flex items-center justify-center flex-shrink-0 z-20 order-1 md:order-2">
+
+              {/* Outer Water Wave Ripples - Varied Oceanic Colors */}
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0.1, opacity: 0 }}
+                  animate={{
+                    scale: [0.1, 4.8],
+                    opacity: [0, 0.45, 0],
+                    borderWidth: [1, 2.5, 0.5]
+                  }}
+                  transition={{
+                    duration: 6 + (i * 0.5),
+                    repeat: Infinity,
+                    delay: i * 1.1,
+                    ease: "easeOut"
+                  }}
+                  className={`absolute inset-0 border-solid rounded-full pointer-events-none -z-10 shadow-[0_0_25px_rgba(34,211,238,0.1)] ${i % 3 === 0 ? 'border-cyan-400/20' : i % 3 === 1 ? 'border-indigo-400/25' : 'border-teal-400/20'
+                    }`}
+                />
+              ))}
+
+              {/* Secondary Liquid Shimmers - Fast Atmospheric Waves */}
+              {[1, 2, 3].map((i) => (
+                <motion.div
+                  key={`wave-${i}`}
+                  initial={{ scale: 0.1, opacity: 0 }}
+                  animate={{ scale: [0.1, 2.8], opacity: [0, 0.25, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: i * 0.7,
+                    ease: "linear"
+                  }}
+                  className="absolute inset-0 border border-blue-400/10 rounded-full pointer-events-none shadow-[0_0_30px_rgba(56,189,248,0.08)] -z-10"
+                />
+              ))}
+
+              {/* Inner Glowing Core - Even More Compact */}
+              <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full bg-slate-900 dark:bg-slate-800 flex items-center justify-center shadow-[0_0_40px_rgba(99,102,241,0.25)] border border-indigo-500/30 overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/15 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
+
+                {/* Branded Triple Rotating Half-Circles - Minimum Gap Mechanical Visuals */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 border-[2px] border-transparent border-t-cyan-400/40 rounded-full"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-[3px] border-[2px] border-transparent border-b-indigo-400/30 rounded-full"
+                />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-[6px] border-[2px] border-transparent border-l-teal-400/30 rounded-full"
+                />
+
+                <div className="flex flex-col items-center justify-center relative z-10 px-4 text-center">
+                  <motion.div
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="text-lg md:text-xl font-black text-white tracking-tighter drop-shadow-lg"
+                  >
+                    Ashbit<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#349ec9] to-[#172a5f] font-extrabold">Soft</span>
+                  </motion.div>
+                  <div className="text-[7px] font-bold text-indigo-300 uppercase tracking-[0.3em] mt-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                    Tech & IT Solution
                   </div>
                 </div>
-                <h3 className="font-bold text-slate-900 dark:text-white mb-2 text-base">{item.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
+
+                {/* Core Glow Center */}
+                <div className="absolute inset-4 rounded-full bg-indigo-500/5 blur-3xl"></div>
+              </div>
+            </div>
+
+            {/* Right Cards */}
+            <div className="flex flex-col gap-8 w-full md:w-1/3 md:pl-10 order-3">
+              <WhyChooseCard
+                icon={ShieldCheck}
+                title="100% Code Ownership"
+                desc="Every line belongs to you. No licensing traps. Full IP transfer on delivery."
+                color="emerald"
+                delay={0.3}
+              />
+              <WhyChooseCard
+                icon={TrendingUp}
+                title="ROI-First Approach"
+                desc="Every feature tied to a business outcome that improves your bottom line."
+                color="purple"
+                delay={0.4}
+              />
+            </div>
+
           </div>
         </div>
       </section>
@@ -671,42 +1039,109 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           7. OUR PROCESS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">How We Work</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Our Delivery Process</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xl mx-auto">A proven 4-step process that delivers results on time, every time.</p>
+      <section className="py-24 px-4 bg-white dark:bg-slate-950 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.03),transparent_70%)] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-[0.4em] mb-3 block"
+            >
+              How We Work
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6"
+            >
+              Our Delivery Process
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-slate-500 dark:text-slate-400 text-lg max-w-xl mx-auto"
+            >
+              A precision-engineered 4-step framework designed for speed, transparency, and high-performance outcomes.
+            </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { step: '01', title: 'Discovery', desc: 'We start by deeply understanding your business goals, pain points, and the context of what you are building.', icon: Search, color: 'from-indigo-500 to-indigo-600' },
-              { step: '02', title: 'Strategy', desc: 'We create a detailed roadmap — tech stack, timeline, milestones — so you know exactly what to expect.', icon: FileCheck, color: 'from-indigo-600 to-violet-500' },
-              { step: '03', title: 'Development', desc: 'Agile sprints with daily updates. You see progress constantly and can give feedback at every stage.', icon: Code, color: 'from-violet-500 to-violet-600' },
-              { step: '04', title: 'Launch & Support', desc: "We deploy, monitor, and provide a 30-day post-launch support window. You're never dropped after go-live.", icon: Rocket, color: 'from-violet-600 to-indigo-500' },
-            ].map((process, index) => {
-              const Icon = process.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className="relative bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all group"
-                >
-                  <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${process.color} opacity-10 rounded-bl-full`} />
-                  <div className={`text-4xl font-black bg-gradient-to-r ${process.color} bg-clip-text text-transparent mb-3`}>{process.step}</div>
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${process.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon size={20} className="text-white" />
-                  </div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">{process.title}</h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{process.desc}</p>
-                </motion.div>
-              );
-            })}
+          <div className="relative">
+            {/* Horizontal Line - Desktop - Hidden on Mobile */}
+            <div className="hidden lg:block absolute top-[4.5rem] left-[10%] right-[10%] h-0.5 bg-slate-100 dark:bg-slate-800 -z-10">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+              />
+            </div>
+
+            {/* Vertical Line - Mobile - Hidden on Desktop */}
+            <div className="lg:hidden absolute top-0 bottom-0 left-[2rem] w-0.5 bg-slate-100 dark:bg-slate-800 -z-10">
+              <motion.div
+                initial={{ height: 0 }}
+                whileInView={{ height: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="w-full bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8">
+              {[
+                { step: '01', title: 'Discovery', desc: 'We dive deep into your workflow to identify high-impact automation opportunities and growth bottlenecks.', icon: Search, color: 'from-blue-500 to-indigo-600' },
+                { step: '02', title: 'Strategy', desc: 'Architecting a roadmap with clear milestones, optimized tech stack, and a focus on maximizing ROI.', icon: FileCheck, color: 'from-indigo-600 to-purple-600' },
+                { step: '03', title: 'Development', desc: 'Accelerated agile cycles with real-time feedback loops and daily progress reporting.', icon: Code, color: 'from-purple-600 to-indigo-600' },
+                { step: '04', title: 'Launch & Care', desc: "Production-ready deployment followed by a dedicated support window to ensure absolute reliability.", icon: Rocket, color: 'from-indigo-500 to-blue-500' },
+              ].map((process, index) => {
+                const Icon = process.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: index * 0.15 }}
+                    className="relative group flex flex-col items-center lg:items-start text-center lg:text-left pl-0 lg:pl-0"
+                  >
+                    {/* Mobile Timeline Dot */}
+                    <div className="lg:hidden absolute left-[1.625rem] top-8 w-3 h-3 rounded-full bg-indigo-500 ring-4 ring-white dark:ring-slate-950 z-20"></div>
+
+                    <motion.div
+                      whileHover={{ y: -8 }}
+                      className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 w-full group relative overflow-hidden"
+                    >
+                      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${process.color} opacity-[0.03] group-hover:opacity-10 transition-opacity rounded-bl-full`} />
+
+                      <div className="flex items-center justify-center lg:justify-start gap-4 mb-6 relative">
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${process.color} flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                          <Icon size={24} />
+                        </div>
+                        <div className={`text-4xl font-black bg-gradient-to-r ${process.color} bg-clip-text text-transparent opacity-20 group-hover:opacity-100 transition-opacity`}>
+                          {process.step}
+                        </div>
+                      </div>
+
+                      <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 transition-colors">
+                        {process.title}
+                      </h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+                        {process.desc}
+                      </p>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -714,29 +1149,61 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           8. INDUSTRIES WE SERVE
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 px-4 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">Sectors</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">Industries We Serve</h2>
+      <section className="py-24 px-4 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">Market Sectors</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Industries We Serve</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-lg mx-auto">
+              Strategic technical partnerships across high-growth industries.
+            </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {INDUSTRIES.map((ind, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                whileHover={{ y: -4 }}
-                className="flex items-center gap-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 shadow-sm hover:shadow-md transition-all cursor-default"
-              >
-                <div className={`w-9 h-9 rounded-lg ${ind.color} flex items-center justify-center flex-shrink-0`}>
-                  <ind.icon size={18} />
+
+          <div className="border-t border-slate-100 dark:border-slate-800">
+            {INDUSTRIES_WE_SERVE.map((ind, i) => {
+              const Icon = ind.icon;
+              const isOpen = openIndustry === i;
+              return (
+                <div
+                  key={i}
+                  className={`border-b border-slate-100 dark:border-slate-800 transition-all duration-300 ${isOpen ? 'bg-slate-50/50 dark:bg-slate-900/20' : 'hover:bg-slate-50/30 dark:hover:bg-slate-900/10'}`}
+                >
+                  <button
+                    onClick={() => setOpenIndustry(isOpen ? -1 : i)}
+                    className="w-full flex items-center justify-between py-6 px-4 text-left group"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isOpen ? 'bg-indigo-600 text-white' : 'text-slate-400 group-hover:text-indigo-600'}`}>
+                        <Icon size={18} />
+                      </div>
+                      <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-300'}`}>
+                        {ind.name}
+                      </span>
+                    </div>
+                    <div className={`transition-transform duration-300 ${isOpen ? 'rotate-180 text-indigo-600' : 'text-slate-300'}`}>
+                      <ChevronRight size={16} className="transform rotate-90" />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-12 pb-6 ml-6">
+                          <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed max-w-2xl">
+                            {ind.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">{ind.name}</span>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -744,46 +1211,67 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           9. TESTIMONIALS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 bg-white dark:bg-slate-950">
+      <section className="py-24 px-4 bg-white dark:bg-slate-950 overflow-hidden relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-16">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-bold mb-4">
-              <Star size={14} /> Client Stories
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-4 border border-amber-100 dark:border-amber-800/30">
+              <Star size={14} className="fill-amber-400" /> Client Success Stories
             </motion.div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">What Our Clients Say</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">What Our Clients Say</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-lg max-w-xl mx-auto">We've helped 50+ founders and enterprise teams ship faster and automate more. Here's their take on our partnership.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={t.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col hover:border-indigo-500/30 hover:shadow-lg transition-all"
+          <div className="relative group/marquee">
+            {/* Edge Fades */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white dark:from-slate-950 to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none" />
+
+            <motion.div
+              className="flex gap-6 pb-8"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+              whileHover={{ animationPlayState: "paused" }}
+            >
+              {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                <div
+                  key={i}
+                  className="w-[380px] flex-shrink-0 bg-slate-50/50 dark:bg-slate-900/30 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col hover:border-indigo-500/30 hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 relative group"
+                >
+                  <Quote className="absolute top-6 right-8 text-indigo-400/10 group-hover:text-indigo-400 transition-colors" size={60} />
+
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-6">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <Star key={j} size={14} className="text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+
+                  <p className="text-slate-700 dark:text-slate-300 italic mb-8 flex-grow leading-relaxed text-base relative z-10">"{t.quote}"</p>
+
+                  <div className="flex items-center gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 relative z-10">
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-bold text-xl shadow-lg flex-shrink-0 transform -rotate-3 group-hover:rotate-0 transition-transform`}>
+                      {t.author[0]}
+                    </div>
+                    <div>
+                      <div className="font-bold text-slate-900 dark:text-white text-base leading-none mb-1.5">{t.author}</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">{t.role} · {t.company}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="text-indigo-600 dark:text-indigo-400 font-bold flex items-center gap-2 mx-auto hover:text-indigo-500 transition-colors"
               >
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} size={14} className="text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <Quote className="text-indigo-200 dark:text-indigo-800 mb-4" size={28} />
-                <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 flex-grow leading-relaxed">"{t.quote}"</p>
-                <div className="flex items-center gap-3 mt-auto border-t border-slate-200 dark:border-slate-800 pt-4">
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-bold text-lg shadow-md flex-shrink-0`}>
-                    {t.author[0]}
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 dark:text-white text-sm">{t.author}</div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400">{t.role} · {t.company}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                Ready to be our next success story? <ArrowRight size={18} />
+              </motion.button>
+            </Link>
           </div>
         </div>
       </section>
