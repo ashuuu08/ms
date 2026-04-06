@@ -245,7 +245,6 @@ const AntiGravityBackground = () => {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -254,7 +253,7 @@ const AntiGravityBackground = () => {
     let animationFrameId;
     let particles = [];
     let width = 0, height = 0;
-    const PARTICLE_COUNT = 350;
+    const PARTICLE_COUNT = isMobile ? 20 : 300;
     const MOUSE_RADIUS = 150;
     const FLOAT_SPEED = 0.2;
     const COLORS = ['#6366f1', '#a855f7', '#10b981', '#349ec9'];
@@ -326,14 +325,17 @@ const AntiGravityBackground = () => {
     };
   }, [isMobile]);
 
-  if (isMobile) return (
-    <div className="absolute inset-0 z-0 pointer-events-none">
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
-    </div>
+  return (
+    <>
+      {isMobile && (
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)' }} />
+        </div>
+      )}
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-60" />
+    </>
   );
-
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-60" />;
 };
 
 // --- COMPONENT: COUNTING NUMBER ---
@@ -492,7 +494,7 @@ const WhyChooseCard = ({ icon: Icon, title, desc, color, delay }) => {
           mass: 0.5
         }
       }}
-      className="bg-white/40 dark:bg-slate-900/30 backdrop-blur-2xl p-7 rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl relative group z-30 overflow-hidden"
+      className="bg-white/90 dark:bg-slate-900/90 md:bg-white/40 md:dark:bg-slate-900/30 md:backdrop-blur-2xl p-7 rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl relative group z-30 overflow-hidden will-change-transform"
     >
       {/* Animated Border Beam - High-End Technical Look */}
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
@@ -526,6 +528,15 @@ const Home = () => {
   const cardX = useTransform(smoothX, (v) => v * -0.02);
   const cardY = useTransform(smoothY, (v) => v * -0.02);
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mql.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [openService, setOpenService] = useState(0);
   const [openIndustry, setOpenIndustry] = useState(-1);
@@ -536,13 +547,14 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    if (isMobile) return;
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX - window.innerWidth / 2);
       mouseY.set(e.clientY - window.innerHeight / 2);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
 
   return (
     <div className="overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-300 font-sans min-h-screen">
@@ -555,7 +567,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           1. HERO SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-28 pb-10 lg:pt-36 lg:pb-16 overflow-hidden min-h-[88vh] flex items-center">
+      <section className="relative pt-24 pb-10 lg:pt-28 lg:pb-12 overflow-hidden min-h-[auto] md:min-h-[85vh] flex items-center">
         <AntiGravityBackground />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -614,13 +626,13 @@ const Home = () => {
 
             {/* RIGHT: Dashboard Card */}
             <motion.div
-              style={{ x: cardX, y: cardY }}
+              style={{ x: isMobile ? 0 : cardX, y: isMobile ? 0 : cardY }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="relative hidden lg:block max-w-md mx-auto z-10"
+              className="relative hidden lg:block max-w-md mx-auto z-10 will-change-transform"
             >
-              <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-3xl border border-white/20 dark:border-slate-700/50 ring-1 ring-black/5 dark:ring-white/10 rounded-2xl p-5 shadow-2xl dark:shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500">
+              <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 lg:backdrop-blur-3xl border border-white/20 dark:border-slate-700/50 ring-1 ring-black/5 dark:ring-white/10 rounded-2xl p-5 shadow-2xl dark:shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500">
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center"><Rocket size={16} /></div>
@@ -673,7 +685,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           2. STATS STRIP
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-10 bg-slate-50 dark:bg-slate-900/40 relative z-10 border-y border-slate-100 dark:border-slate-800/50">
+      <section className="py-8 md:py-10 bg-slate-50 dark:bg-slate-900/40 relative z-10 border-y border-slate-100 dark:border-slate-800/50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -696,7 +708,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           3. SERVICES / EXPERTISE SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-28 px-4 relative overflow-hidden bg-white dark:bg-slate-950">
+      <section className="py-16 lg:py-20 px-4 relative overflow-hidden bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-start">
             {/* Header Text - Left Side Enhanced */}
@@ -799,7 +811,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           4. WHY CHOOSE US — DIFFERENTIATORS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-32 px-4 relative bg-white dark:bg-slate-950 overflow-hidden border-y border-slate-100 dark:border-slate-800">
+      <section className="py-16 lg:py-20 px-4 relative bg-white dark:bg-slate-950 overflow-hidden border-y border-slate-100 dark:border-slate-800">
         {/* Subtle Dot Grid Background */}
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
           style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
@@ -840,7 +852,7 @@ const Home = () => {
             <div className="relative w-64 h-64 md:w-[320px] md:h-[320px] flex items-center justify-center flex-shrink-0 z-20 order-1 md:order-2">
 
               {/* Outer Water Wave Ripples - Varied Oceanic Colors */}
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <motion.div
                   key={i}
                   initial={{ scale: 0.1, opacity: 0 }}
@@ -855,7 +867,7 @@ const Home = () => {
                     delay: i * 1.1,
                     ease: "easeOut"
                   }}
-                  className={`absolute inset-0 border-solid rounded-full pointer-events-none -z-10 shadow-[0_0_25px_rgba(34,211,238,0.1)] ${i % 3 === 0 ? 'border-cyan-400/20' : i % 3 === 1 ? 'border-indigo-400/25' : 'border-teal-400/20'
+                  className={`absolute inset-0 border-solid rounded-full pointer-events-none -z-10 shadow-[0_0_25px_rgba(34,211,238,0.1)] will-change-transform ${i % 3 === 0 ? 'border-cyan-400/20' : i % 3 === 1 ? 'border-indigo-400/25' : 'border-teal-400/20'
                     }`}
                 />
               ))}
@@ -872,7 +884,7 @@ const Home = () => {
                     delay: i * 0.7,
                     ease: "linear"
                   }}
-                  className="absolute inset-0 border border-blue-400/10 rounded-full pointer-events-none shadow-[0_0_30px_rgba(56,189,248,0.08)] -z-10"
+                  className="absolute inset-0 border border-blue-400/10 rounded-full pointer-events-none shadow-[0_0_30px_rgba(56,189,248,0.08)] -z-10 will-change-transform"
                 />
               ))}
 
@@ -884,17 +896,17 @@ const Home = () => {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 border-[2px] border-transparent border-t-cyan-400/40 rounded-full"
+                  className="absolute inset-0 border-[2px] border-transparent border-t-cyan-400/40 rounded-full will-change-transform"
                 />
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-[3px] border-[2px] border-transparent border-b-indigo-400/30 rounded-full"
+                  className="absolute inset-[3px] border-[2px] border-transparent border-b-indigo-400/30 rounded-full will-change-transform"
                 />
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-[6px] border-[2px] border-transparent border-l-teal-400/30 rounded-full"
+                  className="absolute inset-[6px] border-[2px] border-transparent border-l-teal-400/30 rounded-full will-change-transform"
                 />
 
                 <div className="flex flex-col items-center justify-center relative z-10 px-4 text-center">
@@ -951,7 +963,7 @@ const Home = () => {
           <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-white dark:from-slate-950 to-transparent" />
           <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-white dark:from-slate-950 to-transparent" />
           <motion.div
-            className="flex gap-8 items-center whitespace-nowrap pr-8"
+            className="flex gap-8 items-center whitespace-nowrap pr-8 will-change-transform"
             animate={{ x: "-50%" }}
             transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
           >
@@ -985,7 +997,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           6. CASE STUDIES / FEATURED WORK
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900/30 border-b border-slate-100 dark:border-slate-800">
+      <section className="py-12 lg:py-16 px-4 bg-slate-50 dark:bg-slate-900/30 border-b border-slate-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-widest mb-2 block">Real Outcomes</span>
@@ -1039,7 +1051,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           7. OUR PROCESS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 px-4 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <section className="py-16 lg:py-20 px-4 bg-white dark:bg-slate-950 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.03),transparent_70%)] pointer-events-none"></div>
 
@@ -1149,7 +1161,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           8. INDUSTRIES WE SERVE
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 px-4 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
+      <section className="py-16 lg:py-20 px-4 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">Market Sectors</span>
@@ -1211,7 +1223,7 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           9. TESTIMONIALS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 px-4 bg-white dark:bg-slate-950 overflow-hidden relative">
+      <section className="py-16 lg:py-20 px-4 bg-white dark:bg-slate-950 overflow-hidden relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -1228,7 +1240,7 @@ const Home = () => {
             <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none" />
 
             <motion.div
-              className="flex gap-6 pb-8"
+              className="flex gap-6 pb-8 will-change-transform"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
               whileHover={{ animationPlayState: "paused" }}
@@ -1301,9 +1313,9 @@ const Home = () => {
       {/* ═══════════════════════════════════════════════════════
           11. MAIN CTA SECTION
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 px-4 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <section className="py-16 lg:py-20 px-4 bg-white dark:bg-slate-950 relative overflow-hidden">
         {/* Background decorations */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full md:blur-3xl blur-2xl pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

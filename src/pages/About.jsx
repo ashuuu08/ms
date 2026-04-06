@@ -98,7 +98,7 @@ const About = () => {
       />
 
       {/* --- HERO SECTION --- */}
-      <div className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="relative py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="absolute top-0 right-0 -z-10 opacity-30 dark:opacity-10 translate-x-1/3 -translate-y-1/4">
           <svg width="404" height="784" fill="none" viewBox="0 0 404 784"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="4" height="4" className="text-slate-200 dark:text-slate-800" fill="currentColor"></rect></pattern></defs><rect width="404" height="784" fill="url(#dots)"></rect></svg>
         </div>
@@ -143,9 +143,9 @@ const About = () => {
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative transform-gpu will-change-transform"
           >
-            <div className="absolute inset-0 bg-indigo-600 blur-[80px] opacity-20 rounded-full"></div>
+            <div className="absolute inset-0 bg-indigo-600 md:blur-[80px] blur-2xl opacity-20 rounded-full"></div>
             <motion.div
               whileHover={{ rotate: 0, scale: 1.02 }}
               className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 transform rotate-2 transition-transform duration-500"
@@ -164,7 +164,7 @@ const About = () => {
 
                 <div className="relative z-10 w-full h-full flex flex-col justify-between">
                   {/* Top Header / IDE Bar */}
-                  <div className="flex justify-between items-center bg-slate-900/50 p-3 rounded-2xl border border-slate-800/50 backdrop-blur-sm shadow-sm">
+                  <div className="flex justify-between items-center bg-slate-900/50 p-3 rounded-2xl border border-slate-800/50 md:backdrop-blur-sm shadow-sm">
                     <div className="flex items-center gap-3">
                       <div className="flex gap-1.5 ml-2">
                         <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
@@ -188,7 +188,7 @@ const About = () => {
                     <motion.div
                       animate={{ y: [-4, 4, -4] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md flex flex-col items-center justify-center gap-2 z-20 shadow-xl"
+                      className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl md:backdrop-blur-md flex flex-col items-center justify-center gap-2 z-20 shadow-xl will-change-transform"
                     >
                       <Terminal size={24} className="text-indigo-400" />
                       <span className="text-[8px] font-bold text-slate-300 uppercase tracking-widest text-center">Raw<br />Data</span>
@@ -209,18 +209,18 @@ const About = () => {
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                        className="absolute -inset-6 border border-dashed border-indigo-500/40 rounded-full"
+                        className="absolute -inset-6 border border-dashed border-indigo-500/40 rounded-full will-change-transform"
                       />
                       <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-                        className="absolute -inset-10 border-[1.5px] border-slate-700/50 rounded-full border-t-indigo-500/40"
+                        className="absolute -inset-10 border-[1.5px] border-slate-700/50 rounded-full border-t-indigo-500/40 will-change-transform"
                       />
 
                       <motion.div
                         animate={{ scale: [1, 1.05, 1], boxShadow: ["0 0 20px rgba(99,102,241,0.2)", "0 0 40px rgba(99,102,241,0.5)", "0 0 20px rgba(99,102,241,0.2)"] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-28 h-28 bg-[#0a0f1c] border border-indigo-500/40 rounded-full flex flex-col items-center justify-center gap-2 relative overflow-hidden backdrop-blur-xl"
+                        className="w-28 h-28 bg-[#0a0f1c] border border-indigo-500/40 rounded-full flex flex-col items-center justify-center gap-2 relative overflow-hidden md:backdrop-blur-xl will-change-transform"
                       >
                         <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 to-transparent opacity-50"></div>
                         <Cpu size={32} className="text-white relative z-10" />
@@ -241,7 +241,7 @@ const About = () => {
                     <motion.div
                       animate={{ y: [4, -4, 4] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                      className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md flex flex-col items-center justify-center gap-2 z-20 shadow-xl"
+                      className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl md:backdrop-blur-md flex flex-col items-center justify-center gap-2 z-20 shadow-xl will-change-transform"
                     >
                       <Globe size={24} className="text-purple-400" />
                       <span className="text-[8px] font-bold text-slate-300 uppercase tracking-widest text-center">Live<br />Output</span>
@@ -254,7 +254,7 @@ const About = () => {
                     <motion.div
                       animate={{ y: [0, -24, -48, -72, 0] }}
                       transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className="flex flex-col gap-2 relative z-10"
+                      className="flex flex-col gap-2 relative z-10 will-change-transform"
                     >
                       <div className="flex gap-2">
                         <span className="text-indigo-500 font-bold">{'>'}</span>
@@ -291,7 +291,7 @@ const About = () => {
       </div>
 
       {/* --- COMPANY EVOLUTION (Bento Grid) --- */}
-      <div className="py-24 bg-slate-50 dark:bg-slate-950">
+      <div className="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-sm font-bold text-indigo-500 uppercase tracking-widest mb-3">Our Evolution</h2>
@@ -313,7 +313,7 @@ const About = () => {
               <motion.div
                 animate={{ rotate: 360, scale: [1, 1.1, 1] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-32 -right-32 w-72 h-72 bg-gradient-to-b from-indigo-500/20 to-purple-500/5 rounded-full blur-[80px] pointer-events-none"
+                className="absolute -top-32 -right-32 w-72 h-72 bg-gradient-to-b from-indigo-500/20 to-purple-500/5 rounded-full md:blur-[80px] blur-3xl pointer-events-none will-change-transform"
               />
 
               <div className="relative z-10 h-full flex flex-col justify-center">
@@ -342,7 +342,7 @@ const About = () => {
                 className="absolute inset-0 bg-indigo-400/30 rounded-full m-auto w-24 h-24"
               />
               <div className="relative z-10">
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-500 border border-white/20 shadow-xl">
+                <div className="w-12 h-12 bg-white/10 md:backdrop-blur-md rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-500 border border-white/20 shadow-xl group-hover:will-change-transform">
                   <CheckCircle2 size={24} className="text-white" />
                 </div>
                 <h3 className="text-4xl font-black text-white mb-1 tracking-tighter">150<span className="text-indigo-300">+</span></h3>
@@ -368,7 +368,7 @@ const About = () => {
                   </div>
                   <div className="flex -space-x-3">
                     {[1, 2, 3].map((i) => (
-                      <div key={i} className={`w-7 h-7 rounded-full border-2 border-white dark:border-slate-900 opacity-80 backdrop-blur-sm bg-gradient-to-br ${i === 1 ? 'from-blue-400 to-indigo-500' : i === 2 ? 'from-purple-400 to-pink-500' : 'from-amber-400 to-orange-500'}`}></div>
+                      <div key={i} className={`w-7 h-7 rounded-full border-2 border-white dark:border-slate-900 opacity-80 md:backdrop-blur-sm bg-gradient-to-br ${i === 1 ? 'from-blue-400 to-indigo-500' : i === 2 ? 'from-purple-400 to-pink-500' : 'from-amber-400 to-orange-500'}`}></div>
                     ))}
                   </div>
                 </div>
@@ -404,7 +404,7 @@ const About = () => {
                     <motion.div
                       animate={{ x: ["0%", "-50%"] }}
                       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                      className="flex gap-3 min-w-[200%]"
+                      className="flex gap-3 min-w-[200%] will-change-transform"
                     >
                       {['React', 'Node.js', 'Python', 'AWS', 'Docker', 'GraphQL', 'Next.js', 'PostgreSQL', 'React', 'Node.js', 'Python', 'AWS', 'Docker', 'GraphQL'].map((tag, i) => (
                         <span key={i} className="px-4 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 text-xs font-bold border border-slate-200 dark:border-slate-700/50 shadow-sm whitespace-nowrap hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-default">
@@ -422,7 +422,7 @@ const About = () => {
       </div>
 
       {/* --- CORE VALUES (Animated Rope / Timeline) --- */}
-      <div ref={ropeRef} className="py-24 bg-white dark:bg-slate-950 relative overflow-x-hidden font-sans">
+      <div ref={ropeRef} className="py-16 lg:py-20 bg-white dark:bg-slate-950 relative overflow-x-hidden font-sans">
         <div className="max-w-6xl mx-auto px-4 relative z-10 w-full">
 
           {/* DESKTOP CURSIVE TIMELINE */}
@@ -503,8 +503,8 @@ const About = () => {
             <div className="absolute left-[24px] top-0 bottom-0 w-1 bg-blue-100 dark:bg-slate-800/80 z-0" />
             {/* Scrolling Solid Fill */}
             <motion.div
-              style={{ height: scrollYProgress, scaleY: scrollYProgress, transformOrigin: 'top' }}
-              className="absolute left-[24px] top-0 w-1 bg-blue-500 z-0"
+              style={{ scaleY: scrollYProgress, transformOrigin: 'top' }}
+              className="absolute left-[24px] top-0 bottom-0 w-1 bg-blue-500 z-0 will-change-transform"
             />
 
             {[
@@ -537,7 +537,7 @@ const About = () => {
           {/* THE EXACT BLUE CTA BANNER SLIDING LEFT TO RIGHT */}
           <div className="w-full max-w-5xl mx-auto mt-16 md:mt-24 relative z-20 pb-20 px-4 flex items-center">
              <motion.div 
-               initial={{ opacity: 0, x: -600 }}
+               initial={{ opacity: 0, x: -50 }}
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: false, amount: 0.1 }}
                transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
@@ -549,7 +549,7 @@ const About = () => {
                {/* Left Scribble/Plane Icon inside left */}
                <div className="mb-6 md:mb-0 md:mr-8 shrink-0 z-10">
                  <div className="relative">
-                    <Plane className="text-white w-10 h-10 md:w-12 md:h-12 transform rotate-45 opacity-100 drop-shadow-md" />
+                    <Rocket className="text-white w-10 h-10 md:w-12 md:h-12 transform rotate-45 opacity-100 drop-shadow-md" />
                     {/* Small starry squiggles aesthetic */}
                     <div className="absolute -top-3 -right-3 text-white text-xs opacity-80">✦</div>
                     <div className="absolute -bottom-2 -left-2 text-white text-[10px] opacity-70">⋆</div>
@@ -571,21 +571,17 @@ const About = () => {
                   </Link>
                </div>
 
-               {/* Right Side Illustration - Flaring Plane outside the box */}
-               <div className="hidden md:block absolute right-[-70px] top-1/2 transform -translate-y-1/2 z-30 pointer-events-none drop-shadow-[0_15px_35px_rgba(0,0,0,0.4)] animate-[pulse_3s_ease-in-out_infinite]">
+               {/* Right Side Illustration - Flaring Rocket outside the box */}
+               <div className="hidden md:block absolute right-[-160px] top-1/2 transform -translate-y-1/2 z-30 pointer-events-none drop-shadow-[0_15px_35px_rgba(0,0,0,0.4)] animate-[pulse_3s_ease-in-out_infinite]">
                   <div className="relative text-white">
-                     {/* Solid Jet Airliner Graphic facing strictly right */}
-                     <svg viewBox="0 0 24 24" width="140" height="140" className="opacity-100 transform rotate-90">
-                        <path fill="currentColor" opacity="1" d="M21,16v-2l-8-5V3.5c0-0.83-0.67-1.5-1.5-1.5S10,2.67,10,3.5V9l-8,5v2l8-2.5V19l-2,1.5V22l3.5-1l3.5,1v-1.5L13,19v-5.5L21,16z" />
-                     </svg>
+                     {/* Rocket Graphic */}
+                     <Rocket size={140} className="opacity-100 transform rotate-[45deg]" />
                   </div>
                </div>
 
-               {/* Mobile Inner Plane Graphic */}
-               <div className="md:hidden absolute right-[-10px] bottom-[-10px] z-0 pointer-events-none drop-shadow-xl text-white">
-                  <svg viewBox="0 0 24 24" width="100" height="100" className="opacity-40 transform rotate-90">
-                     <path fill="currentColor" d="M21,16v-2l-8-5V3.5c0-0.83-0.67-1.5-1.5-1.5S10,2.67,10,3.5V9l-8,5v2l8-2.5V19l-2,1.5V22l3.5-1l3.5,1v-1.5L13,19v-5.5L21,16z" />
-                  </svg>
+               {/* Mobile Inner Rocket Graphic */}
+               <div className="md:hidden absolute right-[10px] bottom-[10px] z-0 pointer-events-none drop-shadow-xl text-white">
+                  <Rocket size={80} className="opacity-40 transform rotate-45" />
                </div>
              </div>
             </motion.div>
@@ -595,7 +591,7 @@ const About = () => {
       </div>
 
       {/* --- STRATEGIC IMPACT (MISSION & VISION) --- */}
-      <div className="py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <div className="py-16 md:py-20 bg-white dark:bg-slate-950 relative overflow-hidden">
         {/* Modern grid background for section */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
@@ -697,10 +693,10 @@ const About = () => {
       </div>
 
       {/* --- OUR EVOLUTION SECTION (REIMAGINED) --- */}
-      <div className="py-24 bg-slate-50 dark:bg-slate-900/40 relative overflow-hidden">
+      <div className="py-16 lg:py-20 bg-slate-50 dark:bg-slate-900/40 relative overflow-hidden">
         {/* Abstract Background Decoration */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px] -z-0"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] -z-0"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full md:blur-[120px] blur-3xl -z-0"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full md:blur-[120px] blur-3xl -z-0"></div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
@@ -789,7 +785,7 @@ const About = () => {
       </div>
 
       {/* --- STRATEGIC FRAMEWORK (PROCESS) --- */}
-      <div className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <div className="py-16 lg:py-20 bg-white dark:bg-slate-950 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
@@ -810,7 +806,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="group relative bg-white dark:bg-slate-900/50 backdrop-blur-sm p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-indigo-500/20 transition-all duration-500"
+                className="group relative bg-white dark:bg-slate-900/50 md:backdrop-blur-sm p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-indigo-500/20 transition-all duration-500 will-change-transform"
               >
                 <div className="w-14 h-14 bg-slate-50 dark:bg-slate-800 text-slate-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:scale-110 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:shadow-indigo-500/30 transition-all duration-300">
                   <step.icon size={24} />
@@ -827,7 +823,7 @@ const About = () => {
       </div>
 
       {/* --- COMPARISON SECTION (Redesigned: Grid Cards) --- */}
-      <div className="py-24 bg-slate-50 dark:bg-slate-900/50">
+      <div className="py-16 lg:py-20 bg-slate-50 dark:bg-slate-900/50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Not Just Another Dev Shop</h2>
@@ -893,7 +889,7 @@ const About = () => {
       </div>
 
       {/* --- FAQ SECTION (OPTIMIZED) --- */}
-      <div className="py-32 bg-white dark:bg-slate-950">
+      <div className="py-16 lg:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-16">
             {/* Left Stick Column */}
@@ -942,9 +938,9 @@ const About = () => {
       </div>
 
       {/* --- FINAL CTA SECTION --- */}
-      <div className="py-20 px-4">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-center text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="py-16 md:py-16 px-4">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-center text-white shadow-2xl relative overflow-hidden relative transform-gpu">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full md:blur-3xl blur-2xl -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
             <h2 className="text-4xl font-extrabold mb-6">Ready to Scale?</h2>
             <p className="text-indigo-100 mb-10 max-w-xl mx-auto text-lg">
