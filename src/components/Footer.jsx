@@ -30,10 +30,10 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5 mb-16">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:gap-12 md:grid-cols-2 lg:grid-cols-5 mb-16">
 
           {/* 1. Brand Section — takes 2 columns */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="col-span-2 lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-3 group w-fit">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#349ec9]/20 to-[#172a5f]/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -103,7 +103,7 @@ const Footer = () => {
           </div>
 
           {/* 3. Company */}
-          <div>
+          <div className="text-right md:text-left">
             <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-5">Company</h4>
             <ul className="space-y-3 text-sm">
               {[
@@ -125,7 +125,7 @@ const Footer = () => {
           </div>
 
           {/* 4. Solutions */}
-          <div>
+          <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-5">Solutions</h4>
             <ul className="space-y-3 text-sm">
               {[
