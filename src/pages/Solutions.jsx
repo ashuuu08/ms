@@ -67,6 +67,8 @@ const Solutions = () => {
                         const Icon = item.icon;
                         return (
                             <div key={index} className="group flex flex-col bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 hover:border-indigo-500/30 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                                <Link to={item.link} className="absolute inset-0 z-10" aria-label={`View ${item.title} solutions`} />
+                                
                                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
                                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -90,12 +92,11 @@ const Solutions = () => {
                                     ))}
                                 </ul>
 
-                                <Link
-                                    to={item.link}
-                                    className={`inline-flex items-center gap-2 font-bold ${item.btnColor} mt-auto group-hover:gap-3 transition-all`}
+                                <div
+                                    className={`inline-flex items-center gap-2 font-bold ${item.btnColor} mt-auto group-hover:gap-3 transition-all relative z-20`}
                                 >
                                     Explore {item.title} Solutions <ArrowRight size={18} />
-                                </Link>
+                                </div>
                             </div>
                         );
                     })}

@@ -98,7 +98,7 @@ const About = () => {
       />
 
       {/* --- HERO SECTION --- */}
-      <div className="relative py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="relative pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="absolute top-0 right-0 -z-10 opacity-30 dark:opacity-10 translate-x-1/3 -translate-y-1/4">
           <svg width="404" height="784" fill="none" viewBox="0 0 404 784"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="4" height="4" className="text-slate-200 dark:text-slate-800" fill="currentColor"></rect></pattern></defs><rect width="404" height="784" fill="url(#dots)"></rect></svg>
         </div>
@@ -118,17 +118,17 @@ const About = () => {
             </h1>
 
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-              Ashbit Soft started with a rebellious mission: <strong className="text-slate-900 dark:text-white">To kill manual data entry.</strong>
+              AshbitSoft was founded on a singular, high-performance principle: <strong className="text-slate-900 dark:text-white">Eliminating technical friction through intelligent engineering.</strong>
             </p>
 
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-              What began as automating simple workflows has evolved into a powerhouse agency building <strong>Enterprise-grade Systems</strong> and <strong>Social Media Bots</strong>. We don't just write code; we engineer time.
+              What started as an elite automation unit has matured into a comprehensive digital architecture firm. We specialize in building <strong>Enterprise-grade Ecosystems</strong>, <strong>AI-driven Workflows</strong>, and <strong>Scalable SaaS Platforms</strong>. We don't just write code; we architect results that move the needle.
             </p>
 
             <div className="flex flex-wrap gap-8 sm:gap-12 border-t border-slate-200 dark:border-slate-800 pt-8">
               {[
                 { val: 3, label: "Years Exp" },
-                { val: 150, label: "Projects" },
+                { val: 50, label: "Projects" },
                 { val: 100, label: "Delivery Rate", sfx: "%" }
               ].map((stat, i) => (
                 <div key={i}>
@@ -345,7 +345,7 @@ const About = () => {
                 <div className="w-12 h-12 bg-white/10 md:backdrop-blur-md rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-500 border border-white/20 shadow-xl group-hover:will-change-transform">
                   <CheckCircle2 size={24} className="text-white" />
                 </div>
-                <h3 className="text-4xl font-black text-white mb-1 tracking-tighter">150<span className="text-indigo-300">+</span></h3>
+                <h3 className="text-4xl font-black text-white mb-1 tracking-tighter">50<span className="text-indigo-300">+</span></h3>
                 <p className="text-indigo-100 font-bold tracking-widest uppercase text-[10px]">Projects Shipped</p>
               </div>
             </motion.div>
@@ -631,7 +631,7 @@ const About = () => {
 
                 <div className="relative pt-8 border-t border-slate-100 dark:border-slate-800">
                   <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium">
-                    We democratize enterprise-grade technology, removing the barrier of complexity and cost. Our goal is to make digital transformation a reality for startups and global players alike.
+                    We're committed to democratizing high-tier technology by removing the barriers of technical complexity and prohibitive costs. Our strategy is simple: deliver elite software that empowers businesses to outperform their competition in an increasingly digital world.
                   </p>
                   
                   {/* Stylized Icon Bottom Right */}
@@ -676,7 +676,7 @@ const About = () => {
 
                 <div className="relative pt-8 border-t border-slate-100 dark:border-slate-800">
                   <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium">
-                    We envision a world where manual processes are obsolete and technology amplifies human potential. We are building the tools that will define the next era of global business.
+                    Our vision is to redefine the standards of modern software delivery—where every project is a masterpiece of efficiency and security. We are building the foundational tools and platforms that will power the next generation of global industry.
                   </p>
                   
                   <div className="mt-12 flex justify-end">

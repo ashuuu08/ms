@@ -5,7 +5,7 @@ import logo from '../assets/logoo.png';
 import { useNavigate } from 'react-router-dom';
 
 const KNOWLEDGE_BASE = [
-    { keys: ['who', 'what', 'company', 'about', 'ashbitsoft'], response: "AshbitSoft is a full-cycle tech startup that builds digital growth engines. We specialize in MERN stack development, AI automation, and digital marketing. Established in 2023, we've delivered 50+ projects globally." },
+    { keys: ['who', 'what', 'company', 'about', 'ashbitsoft'], response: "AshbitSoft is an elite digital architecture firm founded in 2023. We specialize in engineering high-performance ecosystems through MERN development, AI-driven automation, and strategic digital growth. We have a 100% delivery rate across 50+ global projects, ranging from AI startups to enterprise systems." },
     { keys: ['location', 'where', 'based', 'address', 'anuppur'], response: "We are based in Anuppur, Madhya Pradesh, India, and serve clients worldwide with dedicated remote teams and global standards." },
     { keys: ['founder', 'team', 'who runs', 'people'], response: "Our team includes expert Full-Stack Developers, UI/UX Designers, DevOps Engineers, and AI Specialists. We are a group of passionate innovators dedicated to bridging the gap between business and code." },
     { keys: ['services', 'offer', 'do you do', 'expertise'], response: "We offer Custom Web Apps (MERN/Java), Mobile Apps (React Native), Workflow Automation, AI Integration, Cloud services (AWS/GCP), and Digital Marketing." },
@@ -182,7 +182,7 @@ const ChatBot = () => {
             drag={!isOpen}
             dragConstraints={{ left: -window.innerWidth + 80, right: 0, top: -window.innerHeight + 80, bottom: 0 }}
             dragMomentum={false}
-            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end cursor-grab active:cursor-grabbing"
+            className="fixed bottom-20 right-4 md:bottom-24 md:right-6 z-50 flex flex-col items-end cursor-grab active:cursor-grabbing"
         >
             <div className="relative flex items-center gap-4">
                 <motion.div
@@ -240,7 +240,7 @@ const ChatBot = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-white text-sm">Ashbit Support AI</h3>
-                                    <span className="text-[10px] text-emerald-200">{isTyping ? 'Typing...' : 'Online · Typically replies instantly'}</span>
+                                    <span className="text-[10px] text-emerald-200">{isTyping ? 'Typing...' : 'Online'}</span>
                                 </div>
                             </div>
                             <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors">

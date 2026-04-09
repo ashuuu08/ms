@@ -169,14 +169,14 @@ const CASE_STUDIES = [
 ];
 
 const INDUSTRIES_WE_SERVE = [
-  { name: "Startups & MVPs", desc: "Helping founders go from idea to launch in record time with scalable 0-to-1 engineering.", icon: Rocket },
+  { name: "Startups & MVPs", desc: "Helping founders go from idea to launch in record time with scalable 0-to-1 engineering.", icon: Rocket, path: "/solutions/startups" },
   { name: "E-Commerce", desc: "Building high-performance online stores with custom inventory sync and automated order processing.", icon: Globe },
   { name: "Healthcare & MedTech", desc: "Designing secure, HIPAA-compliant patient management systems and booking automations.", icon: ShieldCheck },
   { name: "Finance & FinTech", desc: "Robust data processing and secure dashboarding for transactional apps and financial reporting.", icon: TrendingUp },
   { name: "Education", desc: "Interactive learning platforms and automated student onboarding workflows.", icon: FileCheck },
   { name: "Logistics", desc: "Real-time tracking dashboards and automated shipment notification systems.", icon: Server },
   { name: "Marketing Agencies", desc: "Internal tools for automated reporting, CRM sync, and multi-channel campaign management.", icon: Megaphone },
-  { name: "Enterprise", desc: "Modernizing legacy workflows with cloud integration and building bespoke secure systems.", icon: Briefcase },
+  { name: "Enterprise", desc: "Modernizing legacy workflows with cloud integration and building bespoke secure systems.", icon: Briefcase, path: "/solutions/enterprises" },
 ];
 
 const SPECIALIZED_EXPERTISE = [
@@ -725,12 +725,12 @@ const Home = () => {
                 </div>
 
                 <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 leading-[1.1]">
-                  Specialized <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Expertise.</span>
+                  The Engine <br />
+                  Behind Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Growth.</span>
                 </h2>
 
                 <p className="text-slate-600 dark:text-slate-400 text-lg mb-10 max-w-xl leading-relaxed">
-                  We don't just build software — we architect high-performance digital ecosystems. From <span className="text-slate-900 dark:text-white font-semibold">MERN stacks</span> to <span className="text-slate-900 dark:text-white font-semibold">custom AI automation</span>, we ship code that drives ROI.
+                  Founded on a mission to eliminate technical bottlenecks, AshbitSoft is an elite digital architecture firm. We don't just build software — we engineer <strong>high-performance ecosystems</strong> that drive ROI and scale with your ambition.
                 </p>
 
                 {/* Feature List (The 'Something Missing') */}
@@ -1206,9 +1206,17 @@ const Home = () => {
                         transition={{ duration: 0.3 }}
                       >
                         <div className="px-12 pb-6 ml-6">
-                          <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed max-w-2xl">
+                          <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed max-w-2xl mb-4">
                             {ind.desc}
                           </p>
+                          {ind.path && (
+                            <Link 
+                              to={ind.path}
+                              className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:gap-3 transition-all"
+                            >
+                              Explore {ind.name} Solutions <ArrowRight size={16} />
+                            </Link>
+                          )}
                         </div>
                       </motion.div>
                     )}

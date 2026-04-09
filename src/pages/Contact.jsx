@@ -53,7 +53,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300 py-8 px-4 flex items-center justify-center font-sans">
+    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300 pt-32 pb-12 px-4 flex items-center justify-center font-sans">
       <SEO 
         title="Contact Us - Let's Start Your Project" 
         description="Ready to scale? Connect with AshbitSoft for a free consultation on custom software, automation, or digital marketing."

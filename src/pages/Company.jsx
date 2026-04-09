@@ -79,7 +79,7 @@ const Company = () => {
                     </h1>
 
                     <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                        We're a team of passionate innovators dedicated to creating exceptional digital experiences that drive real business results.
+                        AshbitSoft is an elite digital architecture firm dedicated to engineering high-performance ecosystems that drive measurable business results and scalable growth.
                     </p>
                 </div>
 
@@ -104,10 +104,10 @@ const Company = () => {
                             Our Story
                         </h2>
                         <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Founded in 2023, AshbitSoft started with a clear mission: to help startups and SMBs build tech that actually moves the needle. What began as one developer with a laptop has grown into a lean, full-cycle team delivering apps, automation, and growth strategies.
+                            Founded in 2023, AshbitSoft emerged with a singular focus: to bridge the gap between complex business logic and high-performance code. What began as an agile automation unit has evolved into a comprehensive digital powerhouse delivering enterprise-grade apps and AI-driven growth strategies.
                         </p>
                         <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                            We work with a small number of clients at a time intentionally — so every project gets our full focus. We don't outsource, we don't cut corners, and we don't disappear after launch.
+                            We operate on a boutique model, intentionally working with a select number of high-potential clients to ensure every architecture we build is a masterpiece of efficiency, security, and scalability.
                         </p>
                     </div>
                 </div>

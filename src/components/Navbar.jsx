@@ -186,7 +186,8 @@ const Navbar = () => {
               onMouseEnter={() => setCompanyDropdownOpen(true)}
               onMouseLeave={() => setCompanyDropdownOpen(false)}
             >
-              <button
+              <Link
+                to="/company/about"
                 className={getLinkClass('/company')}
               >
                 <span className="relative flex items-center gap-1">
@@ -196,7 +197,7 @@ const Navbar = () => {
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-indigo-600 to-indigo-400 dark:from-indigo-400 dark:to-indigo-300 transition-all duration-300 ${location.pathname.startsWith('/company') ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
                     }`}></span>
                 </span>
-              </button>
+              </Link>
 
               {/* Dropdown Menu - Simple & Clean */}
               <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 ${companyDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
@@ -344,6 +345,17 @@ const Navbar = () => {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden space-y-1"
                       >
+                        <Link
+                          to="/solutions"
+                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center justify-between px-4 py-3 ml-4 rounded-lg text-sm font-bold transition-all duration-300 ${location.pathname === '/solutions'
+                            ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
+                            : 'text-indigo-600 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                            }`}
+                        >
+                          View All Solutions
+                          <ArrowRight size={14} />
+                        </Link>
                         {solutionsDropdownItems.map((item) => (
                           <Link
                             key={item.name}
@@ -386,6 +398,17 @@ const Navbar = () => {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden space-y-1"
                       >
+                        <Link
+                          to="/company/about"
+                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center justify-between px-4 py-3 ml-4 rounded-lg text-sm font-bold transition-all duration-300 ${location.pathname === '/company/about'
+                            ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
+                            : 'text-indigo-600 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900/50'
+                            }`}
+                        >
+                          Company Overview
+                          <ArrowRight size={14} />
+                        </Link>
                         {companyDropdownItems.map((item) => (
                           <Link
                             key={item.name}

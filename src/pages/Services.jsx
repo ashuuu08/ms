@@ -356,10 +356,10 @@ const Services = () => {
             Our Services
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6">
-            Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Digital Solutions</span>
+            Elite <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Digital Architecture</span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            From custom development to automation and consulting, we provide end-to-end solutions that drive growth and efficiency for your business.
+            We engineer high-performance ecosystems through custom development, intelligent automation, and strategic consulting designed for global scale.
           </p>
         </motion.div>
 
@@ -474,7 +474,7 @@ const Services = () => {
           className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-3xl p-12 mb-20 border border-indigo-100 dark:border-indigo-800/30"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white text-center mb-12">
-            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AshbitSoft</span>
+            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AshbitSoft Advantage</span>
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -496,8 +496,8 @@ const Services = () => {
               },
               {
                 icon: ShieldCheck,
-                title: 'Quality Assured',
-                description: 'Rigorous testing and quality control processes'
+                title: 'Engineering Excellence',
+                description: 'Rigorous architectural standards and uncompromising quality control'
               }
             ].map((item, index) => {
               const Icon = item.icon;
