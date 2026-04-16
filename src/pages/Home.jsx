@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SEO from '../components/SEO';
+import HeroSlider from '../components/HeroSlider';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logoo.png';
 import {
@@ -466,7 +467,7 @@ const ServiceAccordionItem = ({ item, index, isOpen, onToggle }) => {
   );
 };
 
-const WhyChooseCard = ({ icon: Icon, title, desc, color, delay }) => {
+const WhyChooseCard = ({ icon: Icon, title, desc, color, delay, slug }) => {
   const colors = {
     amber: "from-amber-400 to-orange-500 bg-amber-50 dark:bg-amber-900/20 shadow-amber-500/20",
     emerald: "from-emerald-400 to-teal-500 bg-emerald-50 dark:bg-emerald-900/20 shadow-emerald-500/20",
@@ -494,27 +495,29 @@ const WhyChooseCard = ({ icon: Icon, title, desc, color, delay }) => {
           mass: 0.5
         }
       }}
-      className="bg-white/90 dark:bg-slate-900/90 md:bg-white/40 md:dark:bg-slate-900/30 md:backdrop-blur-2xl p-7 rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl relative group z-30 overflow-hidden will-change-transform"
+      className="bg-white/90 dark:bg-slate-900/90 md:bg-white/40 md:dark:bg-slate-900/30 md:backdrop-blur-2xl rounded-3xl border border-white/20 dark:border-slate-800 shadow-xl relative group z-30 overflow-hidden will-change-transform"
     >
-      {/* Animated Border Beam - High-End Technical Look */}
-      <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+      <Link to={slug ? `/features/${slug}` : '#'} className="block p-7 h-full w-full">
+        {/* Animated Border Beam - High-End Technical Look */}
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
-      {/* Glow Effect */}
-      <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br ${colors[color]} opacity-[0.03] group-hover:opacity-10 transition-opacity blur-3xl rounded-full`} />
+        {/* Glow Effect */}
+        <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br ${colors[color]} opacity-[0.03] group-hover:opacity-10 transition-opacity blur-3xl rounded-full`} />
 
-      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${colors[color]} flex items-center justify-center mb-6 transition-all duration-700 ease-out shadow-lg ring-4 ring-white/10 dark:ring-white/5 group-hover:rotate-[15deg] group-hover:scale-110 group-hover:shadow-2xl`}>
-        <Icon size={22} className="text-white" />
-      </div>
+        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${colors[color]} flex items-center justify-center mb-6 transition-all duration-700 ease-out shadow-lg ring-4 ring-white/10 dark:ring-white/5 group-hover:rotate-[15deg] group-hover:scale-110 group-hover:shadow-2xl`}>
+          <Icon size={22} className="text-white" />
+        </div>
 
-      <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight transition-colors duration-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{title}</h3>
-      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors duration-500">
-        {desc}
-      </p>
+        <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight transition-colors duration-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{title}</h3>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium transition-colors duration-500">
+          {desc}
+        </p>
 
-      {/* Modern 'Learn More' Micro-cue */}
-      <div className="mt-6 flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
-        Discover <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-500" />
-      </div>
+        {/* Modern 'Learn More' Micro-cue */}
+        <div className="mt-6 flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+          Discover <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-500" />
+        </div>
+      </Link>
     </motion.div>
   );
 };
@@ -565,122 +568,10 @@ const Home = () => {
         keywords="custom software, mern stack, web development automation, business growth engine, digital transformation india"
       />
       {/* ═══════════════════════════════════════════════════════
-          1. HERO SECTION
+          1. HERO SECTION (MULTI-SLIDER)
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-24 pb-10 lg:pt-28 lg:pb-12 overflow-hidden min-h-[auto] md:min-h-[85vh] flex items-center">
-        <AntiGravityBackground />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <HeroSlider />
 
-            {/* LEFT: Text */}
-            <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="text-center lg:text-left z-20">
-
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-wider mb-5 cursor-default shadow-sm hover:scale-105 transition-transform">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600" />
-                </span>
-                Full-Cycle Tech Startup
-              </div>
-
-              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-5">
-                We Build Digital&nbsp;<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
-                  Growth Engines.
-                </span>
-              </h1>
-
-              <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 mb-7 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                From <strong>MERN Stack Apps</strong> to <strong>AI Automation</strong> and <strong>Digital Marketing</strong> — we are the startup that powers your startup.
-              </p>
-
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-7">
-                <Link to="/contact">
-                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:opacity-90 transition shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 group text-sm">
-                    Start Your Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </Link>
-                <Link to="/services">
-                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center justify-center gap-2 text-sm shadow-sm">
-                    Explore Services
-                  </motion.button>
-                </Link>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="flex flex-wrap gap-5 justify-center lg:justify-start text-xs text-slate-500 dark:text-slate-400">
-                {[
-                  { icon: ShieldCheck, text: "30-Day Guarantee" },
-                  { icon: Clock, text: "24h Response" },
-                  { icon: Award, text: "100% Code Ownership" },
-                ].map((b) => (
-                  <div key={b.text} className="flex items-center gap-1.5 font-medium">
-                    <b.icon size={14} className="text-indigo-500" />
-                    {b.text}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* RIGHT: Dashboard Card */}
-            <motion.div
-              style={{ x: isMobile ? 0 : cardX, y: isMobile ? 0 : cardY }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative hidden lg:block max-w-md mx-auto z-10 will-change-transform"
-            >
-              <div className="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 lg:backdrop-blur-3xl border border-white/20 dark:border-slate-700/50 ring-1 ring-black/5 dark:ring-white/10 rounded-2xl p-5 shadow-2xl dark:shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center"><Rocket size={16} /></div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-800 dark:text-slate-100">Growth Dashboard</div>
-                      <div className="text-[10px] text-emerald-500 font-bold">● Live — All Systems Active</div>
-                    </div>
-                  </div>
-                  <div className="text-[10px] text-slate-400 font-medium">Feb 2026</div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {[
-                    { label: "Leads Generated", val: "1,240", delta: "↑ 12% vs last week", deltaColor: "text-emerald-500" },
-                    { label: "Tasks Automated", val: "8,502", delta: "⚡ Saved 40hrs", deltaColor: "text-indigo-500" },
-                  ].map(m => (
-                    <div key={m.label} className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
-                      <div className="text-[10px] text-slate-400 uppercase font-bold">{m.label}</div>
-                      <div className="text-xl font-bold text-slate-900 dark:text-white mt-1">{m.val}</div>
-                      <div className={`text-[10px] ${m.deltaColor} font-bold mt-1`}>{m.delta}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  {[
-                    { icon: Table, text: "Spreadsheet Sync", sub: "Data updated from CRM", color: "text-green-500", bg: "bg-green-100 dark:bg-green-900/20" },
-                    { icon: Megaphone, text: "Ad Campaign Live", sub: "Facebook & Instagram", color: "text-blue-500", bg: "bg-blue-100 dark:bg-blue-900/20" },
-                    { icon: Bot, text: "AI Chatbot Active", sub: "60% tickets resolved", color: "text-violet-500", bg: "bg-violet-100 dark:bg-violet-900/20" },
-                    { icon: Database, text: "Supabase Backup", sub: "Encrypted — Secure", color: "text-purple-500", bg: "bg-purple-100 dark:bg-purple-900/20" },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition">
-                      <div className={`w-8 h-8 rounded-lg ${item.bg} ${item.color} flex items-center justify-center flex-shrink-0`}>
-                        <item.icon size={14} />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-700 dark:text-slate-200">{item.text}</div>
-                        <div className="text-[10px] text-slate-400">{item.sub}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════
           2. STATS STRIP
@@ -838,6 +729,7 @@ const Home = () => {
                 desc="MVPs in 4-8 weeks. Automation scripts in days. Startup speed without cutting corners."
                 color="amber"
                 delay={0.1}
+                slug="rapid-deployment"
               />
               <WhyChooseCard
                 icon={MessageSquare}
@@ -845,6 +737,7 @@ const Home = () => {
                 desc="Daily updates, weekly demos. Real-time project board access. You're never in the dark."
                 color="blue"
                 delay={0.2}
+                slug="team-collaboration"
               />
             </div>
 
@@ -935,6 +828,7 @@ const Home = () => {
                 desc="Every line belongs to you. No licensing traps. Full IP transfer on delivery."
                 color="emerald"
                 delay={0.3}
+                slug="enterprise-security"
               />
               <WhyChooseCard
                 icon={TrendingUp}
@@ -942,6 +836,7 @@ const Home = () => {
                 desc="Every feature tied to a business outcome that improves your bottom line."
                 color="purple"
                 delay={0.4}
+                slug="real-time-analytics"
               />
             </div>
 

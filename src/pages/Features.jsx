@@ -59,21 +59,21 @@ const SpotlightCard = ({ children, className = '' }) => {
    DATA
 ══════════════════════════════════════════════ */
 const FEATURES = [
-    { icon: Zap, title: 'Lightning Fast', desc: 'Optimized pipelines ensure your apps run at peak speed with sub-100ms response times.', color: 'from-yellow-500 to-orange-500', tag: 'Performance' },
-    { icon: Shield, title: 'Enterprise Security', desc: 'Bank-grade encryption, OWASP compliance, and vulnerability scanning on every deployment.', color: 'from-green-500 to-emerald-500', tag: 'Security' },
-    { icon: Gauge, title: 'Real-time Analytics', desc: 'Live dashboards and custom reports so you make decisions on data, not gut feeling.', color: 'from-blue-500 to-cyan-500', tag: 'Insights' },
-    { icon: Users, title: 'Team Collaboration', desc: 'Shared workspaces, role-based permissions, and async update flows — built for distributed teams.', color: 'from-purple-500 to-pink-500', tag: 'Teamwork' },
-    { icon: Headphones, title: '24/7 Support', desc: 'Round-the-clock engineering support with a guaranteed 4-hour response SLA on all plans.', color: 'from-indigo-500 to-purple-500', tag: 'Support' },
-    { icon: Globe, title: 'Global CDN', desc: 'Edge nodes in 40+ PoPs deliver content in under 30ms to users anywhere on the planet.', color: 'from-cyan-500 to-blue-500', tag: 'Infra' },
-    { icon: Lock, title: 'Data Privacy', desc: 'GDPR & CCPA compliant by default. Full audit logs, DPA agreements, and data residency options.', color: 'from-red-500 to-rose-500', tag: 'Compliance' },
-    { icon: Code, title: 'API First', desc: 'Complete REST and GraphQL coverage. Webhooks, SDKs in 6 languages, and OpenAPI specs included.', color: 'from-slate-500 to-gray-600', tag: 'Dev Tools' },
-    { icon: TrendingUp, title: 'Auto-scaling Infra', desc: 'Elastic architecture absorbs traffic spikes without manual intervention. Pay for what you use.', color: 'from-green-500 to-teal-500', tag: 'Infra' },
-    { icon: Award, title: 'Industry Leading', desc: 'Trusted by 80+ companies. Consistent 4.9-star ratings across independent review platforms.', color: 'from-amber-500 to-yellow-500', tag: 'Trust' },
-    { icon: Rocket, title: 'Rapid Deployment', desc: 'From first commit to production in minutes. CI/CD pipelines and one-click rollbacks included.', color: 'from-violet-500 to-purple-500', tag: 'DevOps' },
-    { icon: Sparkles, title: 'AI Powered', desc: 'LLM pipelines, smart scoring, and predictive automation baked into every workflow we ship.', color: 'from-fuchsia-500 to-pink-500', tag: 'AI' },
+    { slug: 'lightning-fast',     icon: Zap,       title: 'Lightning Fast',      desc: 'Optimized pipelines ensure your apps run at peak speed with sub-100ms response times.',                                               color: 'from-yellow-500 to-orange-500', tag: 'Performance' },
+    { slug: 'enterprise-security',icon: Shield,    title: 'Enterprise Security',  desc: 'Bank-grade encryption, OWASP compliance, and vulnerability scanning on every deployment.',                                          color: 'from-green-500 to-emerald-500',  tag: 'Security'    },
+    { slug: 'real-time-analytics',icon: Gauge,     title: 'Real-time Analytics',  desc: 'Live dashboards and custom reports so you make decisions on data, not gut feeling.',                                                color: 'from-blue-500 to-cyan-500',      tag: 'Insights'    },
+    { slug: 'team-collaboration', icon: Users,     title: 'Team Collaboration',   desc: 'Shared workspaces, role-based permissions, and async update flows — built for distributed teams.',                                  color: 'from-purple-500 to-pink-500',    tag: 'Teamwork'    },
+    { slug: '24-7-support',       icon: Headphones,title: '24/7 Support',         desc: 'Round-the-clock engineering support with a guaranteed 4-hour response SLA on all plans.',                                         color: 'from-indigo-500 to-purple-500',  tag: 'Support'     },
+    { slug: 'global-cdn',         icon: Globe,     title: 'Global CDN',           desc: 'Edge nodes in 40+ PoPs deliver content in under 30ms to users anywhere on the planet.',                                           color: 'from-cyan-500 to-blue-500',      tag: 'Infra'       },
+    { slug: 'data-privacy',       icon: Lock,      title: 'Data Privacy',         desc: 'GDPR & CCPA compliant by default. Full audit logs, DPA agreements, and data residency options.',                                   color: 'from-red-500 to-rose-500',       tag: 'Compliance'  },
+    { slug: 'api-first',          icon: Code,      title: 'API First',            desc: 'Complete REST and GraphQL coverage. Webhooks, SDKs in 6 languages, and OpenAPI specs included.',                                   color: 'from-slate-500 to-gray-600',     tag: 'Dev Tools'   },
+    { slug: 'auto-scaling-infra', icon: TrendingUp,title: 'Auto-scaling Infra',   desc: 'Elastic architecture absorbs traffic spikes without manual intervention. Pay for what you use.',                                    color: 'from-green-500 to-teal-500',     tag: 'Infra'       },
+    { slug: 'industry-leading',   icon: Award,     title: 'Industry Leading',     desc: 'Trusted by 80+ companies. Consistent 4.9-star ratings across independent review platforms.',                                       color: 'from-amber-500 to-yellow-500',   tag: 'Trust'       },
+    { slug: 'rapid-deployment',   icon: Rocket,    title: 'Rapid Deployment',     desc: 'From first commit to production in minutes. CI/CD pipelines and one-click rollbacks included.',                                   color: 'from-violet-500 to-purple-500',  tag: 'DevOps'      },
+    { slug: 'ai-powered',         icon: Sparkles,  title: 'AI Powered',           desc: 'LLM pipelines, smart scoring, and predictive automation baked into every workflow we ship.',                                        color: 'from-fuchsia-500 to-pink-500',   tag: 'AI'          },
 ];
 
-const ALL_TAGS = ['All', ...Array.from(new Set(FEATURES.map(f => f.tag)))];
+
 
 const DEEP_DIVE = [
     {
@@ -109,12 +109,7 @@ const STATS = [
    PAGE COMPONENT
 ══════════════════════════════════════════════ */
 const Features = () => {
-    const [activeTag, setActiveTag] = useState('All');
     const [activeDeep, setActiveDeep] = useState(0);
-
-    const filtered = activeTag === 'All'
-        ? FEATURES
-        : FEATURES.filter(f => f.tag === activeTag);
 
     return (
         <div className="min-h-screen w-full bg-white dark:bg-slate-950 transition-colors duration-300 font-sans overflow-x-hidden">
@@ -175,34 +170,16 @@ const Features = () => {
                 </div>
             </section>
 
-            {/* ══ 2. FILTER TABS + FEATURE GRID ═════════════════ */}
+            {/* ══ 2. FEATURE GRID ═════════════════════════════ */}
             <section className="py-16 px-4 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-800 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.04] pointer-events-none"
                     style={{ backgroundImage: 'linear-gradient(90deg,#6366f1 1px,transparent 1px),linear-gradient(#6366f1 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
 
                 <div className="max-w-7xl mx-auto relative z-10">
-                    {/* Filter tabs */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-12">
-                        {ALL_TAGS.map(tag => (
-                            <motion.button
-                                key={tag}
-                                whileHover={{ scale: 1.04 }}
-                                whileTap={{ scale: 0.96 }}
-                                onClick={() => setActiveTag(tag)}
-                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-200 ${activeTag === tag
-                                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                                        : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700'
-                                    }`}
-                            >
-                                {tag}
-                            </motion.button>
-                        ))}
-                    </div>
 
                     {/* Grid */}
                     <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <AnimatePresence mode="popLayout">
-                            {filtered.map((feature, i) => {
+                            {FEATURES.map((feature, i) => {
                                 const Icon = feature.icon;
                                 return (
                                     <motion.div
@@ -214,6 +191,7 @@ const Features = () => {
                                         transition={{ duration: 0.35, delay: i * 0.04 }}
                                         whileHover={{ y: -6, transition: { type: 'spring', stiffness: 300, damping: 22 } }}
                                     >
+                                        <Link to={`/features/${feature.slug}`} className="block h-full">
                                         <SpotlightCard className="h-full rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/5 hover:border-indigo-300/40 dark:hover:border-indigo-700/40 transition-all duration-300">
                                             <div className="p-7">
                                                 {/* Tag pill */}
@@ -239,10 +217,10 @@ const Features = () => {
                                                 </div>
                                             </div>
                                         </SpotlightCard>
+                                        </Link>
                                     </motion.div>
                                 );
                             })}
-                        </AnimatePresence>
                     </motion.div>
                 </div>
             </section>

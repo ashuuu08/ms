@@ -236,11 +236,11 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-2.5 rounded-lg text-sm font-semibold overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="group relative px-6 py-2.5 rounded-3xl text-sm font-semibold overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                <div className="absolute inset-0 bg-slate-900 dark:bg-white transition-transform duration-300"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative flex items-center gap-2 text-white dark:text-slate-900 group-hover:text-white transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 rounded-3xl [border-radius:30px_0_30px_0]"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl [border-radius:0_30px_0_30px]"></div>
+                <span className="relative flex items-center gap-2 text-white transition-colors duration-300">
                   Let's Talk
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </span>

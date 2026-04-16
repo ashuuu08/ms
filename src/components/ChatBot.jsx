@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User, Sparkles, CheckCircle2 } from 'lucide-react';
 import logo from '../assets/logoo.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const KNOWLEDGE_BASE = [
     { keys: ['who', 'what', 'company', 'about', 'ashbitsoft'], response: "AshbitSoft is an elite digital architecture firm founded in 2023. We specialize in engineering high-performance ecosystems through MERN development, AI-driven automation, and strategic digital growth. We have a 100% delivery rate across 50+ global projects, ranging from AI startups to enterprise systems." },
@@ -59,7 +59,10 @@ const KNOWLEDGE_BASE = [
 
 const ChatBot = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
+
+
     const [messages, setMessages] = useState([
         { id: 1, text: "Hello! 👋 I'm your Ashbit Support Assistant. How can I help you build or scale today?", sender: 'bot' }
     ]);
@@ -175,6 +178,10 @@ const ChatBot = () => {
         }, delay);
     };
 
+    // Don't show chatbot on the home page (hero page)
+    if (location.pathname === '/') {
+        return null;
+    }
 
     return (
         <motion.div
