@@ -3,9 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import hero1 from '../assets/hero/hero1.png';
+import hero2 from '../assets/hero/hero2.png';
+import hero3 from '../assets/hero/hero3.png';
+import hero4 from '../assets/hero/hero4.png';
+
 const slides = [
   {
-    image: '/src/assets/hero/hero1.png',
+    image: hero1,
     title: 'Custom Software Solutions for Modern Business',
     subtitle: 'AshbitSoft Services',
     description: 'We build high-performance, scalable web and mobile applications tailored to your specific business logic and growth goals.',
@@ -13,7 +18,7 @@ const slides = [
     buttonLink: '/services'
   },
   {
-    image: '/src/assets/hero/hero2.png',
+    image: hero2,
     title: 'Enterprise Cloud & Database Architecture',
     subtitle: 'Secure & Scalable',
     description: 'Specializing in robust backend systems, Supabase integration, and high-uptime cloud infrastructure for mission-critical apps.',
@@ -21,7 +26,7 @@ const slides = [
     buttonLink: '/solutions'
   },
   {
-    image: '/src/assets/hero/hero3.png',
+    image: hero3,
     title: 'Advanced AI & Machine Learning Integration',
     subtitle: 'Intelligent Automation',
     description: 'Leverage custom AI agents, LLM integrations, and predictive analytics to automate workflows and drive efficiency.',
@@ -29,7 +34,7 @@ const slides = [
     buttonLink: '/solutions'
   },
   {
-    image: '/src/assets/hero/hero4.png',
+    image: hero4,
     title: 'Digital Transformation & Performance Growth',
     subtitle: 'Full-Cycle Development',
     description: 'From MVPs to complex ecosystems, we provide end-to-end technical excellence to scale your digital presence.',
