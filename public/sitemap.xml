@@ -1,68 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage - High Priority -->
   <url>
     <loc>https://ashbit.in/</loc>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
+  
+  <!-- Solutions Pages -->
   <url>
     <loc>https://ashbit.in/solutions</loc>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/solutions/startups</loc>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/solutions/smes</loc>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/solutions/enterprises</loc>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
     <changefreq>weekly</changefreq>
   </url>
+  
+  <!-- Services Pages -->
   <url>
     <loc>https://ashbit.in/services</loc>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://ashbit.in/pricing</loc>
+    <loc>https://ashbit.in/features</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
+  
+  <!-- Pricing -->
+  <url>
+    <loc>https://ashbit.in/pricing</loc>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- Company Info -->
   <url>
     <loc>https://ashbit.in/company/about</loc>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/company/faq</loc>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/company/security</loc>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ashbit.in/company/policy</loc>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
+  
+  <!-- Blog -->
   <url>
     <loc>https://ashbit.in/blog</loc>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <changefreq>daily</changefreq>
   </url>
+  
+  <!-- Contact -->
   <url>
     <loc>https://ashbit.in/contact</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>
