@@ -15,6 +15,7 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Security from './pages/Security';
 import Policy from './pages/Policy';
+import Careers from './pages/Careers';
 import Startups from './pages/Startups';
 import SMEs from './pages/SMEs';
 import Enterprises from './pages/Enterprises';
@@ -89,6 +90,7 @@ const AppContent = () => {
           <Route path="/features/:slug" element={<FeatureDetail />} />
           <Route path="/company" element={<Company />} />
           <Route path="/company/about" element={<About />} />
+          <Route path="/company/careers" element={<Careers />} />
           <Route path="/company/faq" element={<FAQ />} />
           <Route path="/company/security" element={<Security />} />
           <Route path="/company/policy" element={<Policy />} />

@@ -31,6 +31,7 @@ const Navbar = () => {
   // Company Dropdown Items
   const companyDropdownItems = [
     { name: 'About', path: '/company/about' },
+    { name: 'Careers', path: '/company/careers' },
     { name: 'FAQ', path: '/company/faq' },
     { name: 'Security', path: '/company/security' },
     { name: 'Policy', path: '/company/policy' },
