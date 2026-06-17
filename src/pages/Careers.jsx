@@ -54,8 +54,6 @@ const JobsList = ({ jobs, onApply }) => {
 const Careers = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isFallback, setIsFallback] = useState(false);
   const [applyingFor, setApplyingFor] = useState(null);
   const [form, setForm] = useState({ name: '', mail: '', mobile: '', resume: '', message: '' });
   const SCRIPT_BASE = import.meta.env.VITE_JOBS_PROXY_URL || '/api/careers';
@@ -72,6 +70,10 @@ const Careers = () => {
       try {
         const res = await fetch(SHEET_GET);
         if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+        const contentType = res.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+          throw new Error('Remote endpoint did not return JSON.');
+        }
         const data = await res.json();
         const remoteJobs = Array.isArray(data) ? data : (data.jobs || []);
         if (!remoteJobs.length) {
@@ -80,9 +82,7 @@ const Careers = () => {
         setJobs(remoteJobs);
       } catch (e) {
         console.error(e);
-        setError('Could not load remote jobs. Showing fallback listings.');
         setJobs(defaultJobs);
-        setIsFallback(true);
       } finally {
         setLoading(false);
       }
@@ -147,13 +147,9 @@ const Careers = () => {
         </div>
 
         {loading && <p className="text-slate-600 dark:text-slate-400">Loading jobs...</p>}
-        {error && <p className="text-rose-500">{error}</p>}
 
         {!loading && (
           <JobsList jobs={jobs} onApply={handleApply} />
-        )}
-        {isFallback && (
-          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">This page is currently using fallback job data because the remote endpoint is unavailable or blocked by CORS.</p>
         )}
 
         {/* Application Modal/Box */}
