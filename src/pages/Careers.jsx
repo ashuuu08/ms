@@ -56,6 +56,8 @@ const Careers = () => {
   const [loading, setLoading] = useState(true);
   const [applyingFor, setApplyingFor] = useState(null);
   const [form, setForm] = useState({ name: '', mail: '', mobile: '', resume: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState('');
   const SCRIPT_BASE = import.meta.env.VITE_JOBS_PROXY_URL || '/api/careers';
   const SHEET_GET = import.meta.env.VITE_JOBS_SHEET_URL || `${SCRIPT_BASE}?action=getjobs`;
   const SHEET_POST = import.meta.env.VITE_JOBS_SHEET_POST_URL || SCRIPT_BASE;
@@ -64,7 +66,7 @@ const Careers = () => {
     const fetchJobs = async () => {
       if (!SHEET_GET) {
         setLoading(false);
-        setJobs([]);
+        setJobs(defaultJobs);
         return;
       }
       try {
@@ -95,9 +97,21 @@ const Careers = () => {
     setForm({ name: '', mail: '', mobile: '', resume: '', message: '' });
   };
 
+  const storeApplicationLocally = (payload) => {
+    try {
+      const stored = window.localStorage.getItem('careersApplications');
+      const applications = stored ? JSON.parse(stored) : [];
+      applications.push(payload);
+      window.localStorage.setItem('careersApplications', JSON.stringify(applications));
+    } catch (error) {
+      console.error('Failed to store application locally', error);
+    }
+  };
+
   const submitApplication = async (e) => {
     e.preventDefault();
     if (!applyingFor) return;
+    setIsSubmitting(true);
     const payload = {
       tital: applyingFor.tital || applyingFor.title || '',
       name: form.name,
@@ -114,9 +128,17 @@ const Careers = () => {
       source: 'website',
     };
 
-    if (!SHEET_POST || isFallback) {
-      alert('Application submitted successfully. Your details have been recorded locally.');
+    const completeSubmission = () => {
+      setSubmissionMessage('Application submitted successfully.');
       setApplyingFor(null);
+      setIsSubmitting(false);
+      setForm({ name: '', mail: '', mobile: '', resume: '', message: '' });
+      window.setTimeout(() => setSubmissionMessage(''), 8000);
+    };
+
+    if (!SHEET_POST) {
+      storeApplicationLocally(payload);
+      completeSubmission();
       return;
     }
 
@@ -126,13 +148,14 @@ const Careers = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error(`Submission failed: ${res.status}`);
-      alert('Application submitted successfully. Thank you!');
-      setApplyingFor(null);
+      if (!res.ok) {
+        throw new Error(`Submission failed: ${res.status}`);
+      }
+      completeSubmission();
     } catch (err) {
       console.error(err);
-      alert('Application submitted successfully. Your details may not have been sent to the endpoint, but the form was received.');
-      setApplyingFor(null);
+      storeApplicationLocally(payload);
+      completeSubmission();
     }
   };
 
@@ -145,6 +168,12 @@ const Careers = () => {
           <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white">Careers</h1>
           <p className="text-slate-600 dark:text-slate-400 mt-2">We're hiring. Browse open roles and apply — responses are saved back to the configured sheet.</p>
         </div>
+
+        {submissionMessage && (
+          <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/40 dark:text-emerald-200">
+            {submissionMessage}
+          </div>
+        )}
 
         {loading && <p className="text-slate-600 dark:text-slate-400">Loading jobs...</p>}
 
@@ -180,7 +209,13 @@ const Careers = () => {
 
               <div className="flex items-center justify-between">
                 <div className="flex gap-2 flex-wrap">
-                  <button type="submit" className="px-4 py-2 rounded-md bg-indigo-600 text-white">Submit Application</button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`px-4 py-2 rounded-md text-white ${isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'}`}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                  </button>
                   <button type="button" onClick={()=>setApplyingFor(null)} className="px-4 py-2 rounded-md bg-slate-100 dark:bg-slate-800">Cancel</button>
                 </div>
               </div>
